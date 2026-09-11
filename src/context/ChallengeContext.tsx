@@ -80,12 +80,16 @@ export const ChallengeProvider: React.FC<{ children: ReactNode }> = ({ children 
     // Insert into live Supabase cloud database
     if (isSupabaseConfigured()) {
       try {
-        const ok = await insertChallengeToSupabase(newChallenge);
-        if (ok) {
-          console.log('[CivicSolve] Confirmed new problem ticket saved in Supabase PostgreSQL:', newChallenge.ticketId);
+        await insertChallengeToSupabase(newChallenge);
+        console.log('[CivicSolve] Confirmed new problem ticket saved in Supabase PostgreSQL:', newChallenge.ticketId);
+        // Refresh entire list from Supabase to keep all platform views completely in sync
+        const remoteList = await fetchChallengesFromSupabase();
+        if (remoteList && remoteList.length > 0) {
+          setChallenges(remoteList);
         }
       } catch (err) {
-        console.warn('[CivicSolve] Could not sync new challenge to Supabase:', err);
+        console.error('[CivicSolve] Could not sync new challenge to Supabase:', err);
+        throw err;
       }
     }
 

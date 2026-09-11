@@ -127,10 +127,10 @@ export const CitizenReportPage: React.FC = () => {
       setIsDispatching(false);
       alert(`✅ Challenge successfully registered under ${created.ticketId}!\n\nSubmitted by: ${reporter}\nStatus: Saved to live Supabase PostgreSQL database.`);
       navigate('/admin');
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error submitting challenge:', err);
       setIsDispatching(false);
-      alert('Encountered an issue submitting problem. Please try again.');
+      alert(`⚠️ Issue submitting to database: ${err?.message || 'Please check your connection and try again.'}`);
     }
   };
 

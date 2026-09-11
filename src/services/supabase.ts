@@ -128,7 +128,7 @@ export const fetchChallengesFromSupabase = async (): Promise<Challenge[] | null>
   }
 
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/challenges?select=*,challenge_media(*)&order=created_at.desc`, {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/challenges?select=*&order=created_at.desc`, {
       headers: {
         apikey: SUPABASE_ANON_KEY,
         Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
@@ -157,8 +157,7 @@ export const fetchChallengesFromSupabase = async (): Promise<Challenge[] | null>
  */
 export const insertChallengeToSupabase = async (challenge: Challenge): Promise<boolean> => {
   if (!isSupabaseConfigured()) {
-    console.warn('[Supabase] Not configured or credentials missing');
-    return false;
+    throw new Error('Supabase database credentials are not configured.');
   }
 
   try {
@@ -178,14 +177,14 @@ export const insertChallengeToSupabase = async (challenge: Challenge): Promise<b
     if (!res.ok) {
       const errText = await res.text();
       console.error('[Supabase] Failed to insert challenge:', res.status, errText);
-      return false;
+      throw new Error(`Supabase error (${res.status}): ${errText}`);
     }
 
     console.log('✅ [Supabase] Problem ticket successfully written to PostgreSQL:', row.ticket_id);
     return true;
   } catch (error) {
     console.error('[Supabase] Error inserting challenge into Supabase:', error);
-    return false;
+    throw error;
   }
 };
 
