@@ -202,6 +202,8 @@ export const CitizenReportPage: React.FC = () => {
           setFormData={setFormData}
           onTriggerAI={handleTriggerAI}
           isAnalyzing={isAnalyzing}
+          onDispatch={handleDispatch}
+          isDispatching={isDispatching}
         />
         <AIDiagnosticsPanel
           diagnostics={diagnostics}

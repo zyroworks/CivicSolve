@@ -13,6 +13,8 @@ interface CitizenFormProps {
   setFormData: React.Dispatch<React.SetStateAction<any>>;
   onTriggerAI: () => void;
   isAnalyzing: boolean;
+  onDispatch?: () => void;
+  isDispatching?: boolean;
 }
 
 export const CitizenForm: React.FC<CitizenFormProps> = ({
@@ -20,6 +22,8 @@ export const CitizenForm: React.FC<CitizenFormProps> = ({
   setFormData,
   onTriggerAI,
   isAnalyzing,
+  onDispatch,
+  isDispatching,
 }) => {
   const [fileAttached, setFileAttached] = useState(true);
 
@@ -206,23 +210,33 @@ export const CitizenForm: React.FC<CitizenFormProps> = ({
           </div>
         </div>
 
-        {/* Action Button */}
+        {/* Action Buttons */}
         <div className="pt-space-sm flex flex-col sm:flex-row items-center justify-between gap-space-md border-t border-surface-container-high/60">
-          <div className="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
-            <span className="material-symbols-outlined text-base text-tertiary">lock</span>
-            <span>Encrypted submission under DPDP Act 2023</span>
-          </div>
           <button
             type="button"
             onClick={onTriggerAI}
             disabled={isAnalyzing}
-            className="w-full sm:w-auto px-space-lg py-space-sm bg-tertiary-container hover:bg-tertiary text-on-tertiary font-label-lg text-label-lg rounded-xl shadow-md active:scale-95 transition-all flex items-center justify-center gap-space-xs font-bold"
+            className="w-full sm:w-auto px-space-md py-space-sm bg-tertiary-container hover:bg-tertiary text-on-tertiary font-label-md text-label-md rounded-xl shadow-sm active:scale-95 transition-all flex items-center justify-center gap-space-xs font-semibold"
           >
-            <span className={`material-symbols-outlined text-lg ${isAnalyzing ? 'animate-spin' : ''}`}>
+            <span className={`material-symbols-outlined text-base ${isAnalyzing ? 'animate-spin' : ''}`}>
               {isAnalyzing ? 'sync' : 'auto_awesome'}
             </span>
-            <span>{isAnalyzing ? 'Re-indexing AI Triage...' : 'Run AI Pre-Validation & Update'}</span>
+            <span>{isAnalyzing ? 'Analyzing...' : '1. Run AI Diagnostics'}</span>
           </button>
+
+          {onDispatch && (
+            <button
+              type="button"
+              onClick={onDispatch}
+              disabled={isDispatching}
+              className="w-full sm:w-auto px-space-lg py-space-sm bg-primary hover:bg-primary/90 text-on-primary font-label-lg text-label-lg rounded-xl shadow-md active:scale-95 transition-all flex items-center justify-center gap-space-xs font-bold"
+            >
+              <span className={`material-symbols-outlined text-lg ${isDispatching ? 'animate-spin' : ''}`}>
+                {isDispatching ? 'sync' : 'cloud_upload'}
+              </span>
+              <span>{isDispatching ? 'Saving to Database...' : '2. Submit Problem to Database'}</span>
+            </button>
+          )}
         </div>
       </div>
     </section>
