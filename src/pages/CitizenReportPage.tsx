@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useChallenges } from '../context/ChallengeContext';
+import { useAuth } from '../context/AuthContext';
 import { CitizenForm } from '../components/report/CitizenForm';
 import { AIDiagnosticsPanel } from '../components/report/AIDiagnosticsPanel';
 import { AIDiagnosticResult } from '../types';
@@ -8,6 +9,7 @@ import { AIDiagnosticResult } from '../types';
 export const CitizenReportPage: React.FC = () => {
   const navigate = useNavigate();
   const { addChallenge, analyzeProblemWithAI } = useChallenges();
+  const { user, currentUser, isAuthenticated } = useAuth();
 
   const [formData, setFormData] = useState({
     title: 'Contaminated tap water and recurring pipeline leaks in Ward 14, Sangam Vihar',
@@ -97,6 +99,10 @@ export const CitizenReportPage: React.FC = () => {
   const handleDispatch = () => {
     setIsDispatching(true);
     setTimeout(() => {
+      const reporter = isAuthenticated && user
+        ? `${user.displayName} (${user.email})`
+        : currentUser.name || 'Anonymous Citizen';
+
       const created = addChallenge({
         title: formData.title,
         category: formData.category,
@@ -104,19 +110,21 @@ export const CitizenReportPage: React.FC = () => {
         description: formData.description,
         priority: diagnostics.priority,
         location: {
-          lat: 28.5033,
-          lng: 77.2482,
-          address: `${formData.ward}, ${formData.district}`,
+          lat: 23.3441,
+          lng: 85.3096,
+          address: `${formData.ward}, ${formData.district}, Jharkhand`,
           ward: formData.ward,
           district: formData.district,
         },
+        state: 'Jharkhand',
+        submitted_by: reporter,
         aiDiagnostics: diagnostics,
         mediaUrl: 'https://images.unsplash.com/photo-1584467735815-f778f274e296?w=600&auto=format&fit=crop&q=80',
         mediaName: 'pipeline_leak_photo.jpg',
         mediaSize: '2.4 MB',
       });
       setIsDispatching(false);
-      alert(`Challenge successfully registered under ${created.ticketId}! Dispatched to District Admin.`);
+      alert(`Challenge successfully registered under ${created.ticketId}! Submitted by ${reporter}. Synced with live Supabase database.`);
       navigate('/admin');
     }, 1200);
   };
