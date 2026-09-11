@@ -40,7 +40,7 @@ export const Navbar: React.FC = () => {
                   Civic<span className="text-primary-container">Solve</span>
                 </span>
                 <span className="font-label-sm text-label-sm text-tertiary uppercase tracking-wider text-[10px] font-bold">
-                  SIH'24 Grand Innovation
+                  Societal Innovation Platform
                 </span>
               </div>
             </Link>

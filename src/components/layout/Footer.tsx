@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
               <span className="font-headline-sm text-headline-sm text-primary font-bold">CivicSolve</span>
             </div>
             <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-              National Open Civic Innovation Platform bridging academic researchers, municipal leaders, and civil society under the aegis of Smart India Hackathon.
+              National Open Civic Innovation Platform bridging academic researchers, municipal leaders, and civil society dedicated to grassroots problem solving.
             </p>
             <div className="inline-flex items-center gap-space-xs px-space-xs py-1 rounded-full bg-surface-container-high font-label-sm text-label-sm text-on-surface">
               <span className="material-symbols-outlined text-sm text-tertiary">account_balance</span>
@@ -54,7 +54,7 @@ export const Footer: React.FC = () => {
           <div className="space-y-space-xs">
             <h4 className="font-label-lg text-label-lg text-on-surface font-semibold">Platform & Governance</h4>
             <ul className="space-y-space-2xs font-body-sm text-body-sm text-on-surface-variant">
-              <li><a href="#" className="hover:text-primary transition-colors">SIH'24 Problem Statements</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Verified Problem Statements</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">DPDP Act 2023 Compliance</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Institutional Verification Guide</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Grievance Redressal</a></li>
@@ -63,10 +63,10 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="pt-space-lg border-t border-surface-container-high/60 flex flex-col sm:flex-row items-center justify-between gap-space-md text-on-surface-variant font-body-sm text-body-sm">
-          <span>© 2024 CivicSolve Platform • Smart India Hackathon Innovation Pipeline. All rights reserved.</span>
+          <span>© 2026 CivicSolve Platform • National Societal Innovation Pipeline. All rights reserved.</span>
           <div className="flex items-center gap-space-md font-label-sm text-label-sm">
             <span className="flex items-center gap-1 text-tertiary font-medium">
-              <span className="w-2 h-2 rounded-full bg-tertiary"></span> Live National Node SIH-NIC-04
+              <span className="w-2 h-2 rounded-full bg-tertiary"></span> Live National Node CS-NIC-04
             </span>
             <a href="#" className="hover:text-on-surface transition-colors">Helpdesk</a>
             <a href="#" className="hover:text-on-surface transition-colors">Terms & Privacy</a>

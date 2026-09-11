@@ -65,7 +65,7 @@ export async function analyzeWithGemini(params: AnalyzeParams): Promise<AIDiagno
       const genAI = new GoogleGenerativeAI(apiKey);
       const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-      const prompt = `You are the CivicSolve National Neural Triage Engine for the Smart India Hackathon.
+      const prompt = `You are the CivicSolve National Neural Triage Engine for the CivicSolve platform.
 Analyze this civic issue report submitted by a citizen:
 Title: "${params.title}"
 Category: "${params.category}"
@@ -159,7 +159,7 @@ Respond strictly with valid JSON only in this exact format, with no markdown for
     confidence: 91.2,
     severityScore: 72,
     priority: 'P2',
-    semanticTags: ['#CivicInnovation', '#LocalGovernance', '#SIH2024'],
+    semanticTags: ['#CivicInnovation', '#LocalGovernance', '#CivicSolve'],
     recommendedAction: 'Route to Zonal Development Council for feasibility validation.',
     recommendedSolverMatch: 'Regional Engineering College Innovation Hub',
     matchScore: 88,
@@ -243,7 +243,7 @@ export async function chatWithCivicAI(params: ChatParams): Promise<ChatResponse>
       const genAI = new GoogleGenerativeAI(apiKey);
       const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-      const prompt = `You are the CivicSolve AI Assistant, an AI innovation copilot for the CivicSolve societal innovation platform (Smart India Hackathon).
+      const prompt = `You are the CivicSolve AI Assistant, an AI innovation copilot for the CivicSolve societal innovation platform.
 CivicSolve connects Citizens, Municipal/District Government, Universities (Students and Faculty), and Industry Partners through a verifiable 8-stage societal innovation lifecycle.
 
 Current User Role: ${role}
@@ -497,7 +497,7 @@ CivicSolve provides private sector leaders and MSMEs with high-impact avenues to
   // 5. General Platform Questions / How CivicSolve Works
   const reply = `### 🌐 Welcome to CivicSolve AI Assistant
 
-CivicSolve is an AI-powered societal innovation and collaboration platform designed for the **Smart India Hackathon**. It establishes a transparent, collaborative pipeline connecting citizens, government, universities, and industry.
+CivicSolve is an AI-powered societal innovation and collaboration platform. It establishes a transparent, collaborative pipeline connecting citizens, government, universities, and industry.
 
 #### 🔄 The 8-Stage Innovation Lifecycle:
 1. **Citizen Problem Intake:** Citizens submit geo-tagged societal issues with photo and telemetry evidence.

@@ -53,7 +53,7 @@ export const CivicChatbot: React.FC = () => {
           id: 'welcome-msg',
           role: 'assistant',
           content: `### 🌟 Welcome to CivicSolve AI Assistant!
-I am your **National Neural Innovation Copilot** for the Smart India Hackathon. I help convert localized societal problems into structured, actionable engineering challenges.
+I am your **National Neural Innovation Copilot** for the CivicSolve platform. I help convert localized societal problems into structured, actionable engineering challenges.
 
 Select a quick action below or describe any civic problem in your ward:`,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),

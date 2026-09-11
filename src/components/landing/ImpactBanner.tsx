@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 export const ImpactBanner: React.FC = () => {
@@ -10,7 +10,7 @@ export const ImpactBanner: React.FC = () => {
             <div className="lg:col-span-8 space-y-space-md">
               <div className="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-white/15 backdrop-blur-md text-on-primary font-label-sm text-label-sm font-semibold">
                 <span className="material-symbols-outlined text-sm text-tertiary-fixed">verified</span>
-                Smart India Hackathon 2024 · Flagship Innovation Network
+                National Flagship Civic Innovation Network
               </div>
               <h2 className="font-headline-xl text-headline-xl text-on-primary max-w-2xl leading-tight font-bold">
                 Ready to turn grassroots civic problems into deployable breakthroughs?
@@ -37,7 +37,7 @@ export const ImpactBanner: React.FC = () => {
             </div>
 
             <div className="lg:col-span-4 bg-white/10 backdrop-blur-lg p-space-lg rounded-2xl space-y-space-md border border-white/20">
-              <div className="font-label-sm text-label-sm uppercase tracking-wider text-on-primary/80 font-bold">SIH National Coverage</div>
+              <div className="font-label-sm text-label-sm uppercase tracking-wider text-on-primary/80 font-bold">National Platform Coverage</div>
               <div className="space-y-space-sm">
                 <div className="flex justify-between items-center">
                   <span className="font-body-sm text-body-sm text-on-primary/90">Districts Mapped</span>

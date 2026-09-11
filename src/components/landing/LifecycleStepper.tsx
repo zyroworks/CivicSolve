@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 
 interface StepDetail {
   badge: string;
@@ -16,7 +16,7 @@ const LIFECYCLE_STEPS: Record<number, StepDetail> = {
     desc: "Citizens submit geo-tagged images, audio descriptions in regional Indian languages, and exact coordinates. The platform extracts EXIF data to prevent falsified reports and clusters coincident issues.",
     stat: "99.4% SLA",
     width: "12%",
-    node: "SIH-NIC-01"
+    node: "CS-NIC-01"
   },
   2: {
     badge: "AI Inference: Gemini Multi-lingual Triage",
@@ -43,7 +43,7 @@ const LIFECYCLE_STEPS: Record<number, StepDetail> = {
     node: "AICTE-ROUTER"
   },
   5: {
-    badge: "R&D Track: SIH 2024 Sprints",
+    badge: "R&D Track: Collaborative Sprints",
     title: "Student & Faculty Collaborative Engineering",
     desc: "Multi-disciplinary teams undergo 6-8 week design sprints with embedded industry mentors, utilizing civic sandbox APIs, synthetic datasets, and remote test harness environments.",
     stat: "2,400+ Students",
@@ -99,7 +99,7 @@ export const LifecycleStepper: React.FC = () => {
             <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Innovation Architecture</span>
             <h2 className="font-headline-xl text-headline-xl text-on-surface mt-1 font-bold">The End-to-End Civic Lifecycle</h2>
             <p className="font-body-md text-body-md text-on-surface-variant mt-1 max-w-xl">
-              How raw citizen pain points transform into municipal infrastructure through SIH-engineered workflows.
+              How raw citizen pain points transform into municipal infrastructure through structured engineering workflows.
             </p>
           </div>
           <div className="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md bg-surface-container-lowest px-3 py-1.5 rounded-full border border-surface-container-high">

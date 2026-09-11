@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { AIDiagnosticResult } from '../../types';
 
 interface AIDiagnosticsPanelProps {
@@ -117,7 +117,7 @@ export const AIDiagnosticsPanel: React.FC<AIDiagnosticsPanelProps> = ({
           <div className="bg-surface-container-low p-space-sm rounded-xl space-y-1 border border-surface-container-high/60">
             <div className="flex items-center gap-1.5 text-on-surface">
               <span className="material-symbols-outlined text-base text-tertiary">school</span>
-              <span className="font-label-md text-label-md font-bold">SIH Hackathon Match Suggestion</span>
+              <span className="font-label-md text-label-md font-bold">Academic Research Match Suggestion</span>
             </div>
             <p className="font-body-sm text-body-sm text-on-surface-variant text-xs">
               <span className="text-tertiary font-bold">{diagnostics.recommendedSolverMatch}</span> — Notified for sandbox pilot prototype.
@@ -139,7 +139,7 @@ export const AIDiagnosticsPanel: React.FC<AIDiagnosticsPanelProps> = ({
             <span>{isDispatching ? 'Dispatching to District Collector...' : 'Confirm & Dispatch to District Admin'}</span>
           </button>
           <p className="font-body-sm text-body-sm text-on-surface-variant text-center px-space-xs text-xs">
-            By dispatching, you certify under the SIH Citizen Accord that this issue directly impacts local welfare. An official ticket ID will be issued instantly.
+            By dispatching, you certify under the Civic Citizen Accord that this issue directly impacts local welfare. An official ticket ID will be issued instantly.
           </p>
         </div>
       </div>
@@ -158,7 +158,7 @@ export const AIDiagnosticsPanel: React.FC<AIDiagnosticsPanelProps> = ({
           </div>
           <div className="bg-surface-container-low p-2 rounded-xl">
             <span className="material-symbols-outlined text-base text-tertiary block mx-auto">biotech</span>
-            <span className="font-label-sm text-label-sm text-on-surface font-semibold block mt-1">SIH Teams</span>
+            <span className="font-label-sm text-label-sm text-on-surface font-semibold block mt-1">R&D Teams</span>
             <span className="font-body-sm text-body-sm text-on-surface-variant text-xs">Live Feed</span>
           </div>
           <div className="bg-surface-container-low p-2 rounded-xl">

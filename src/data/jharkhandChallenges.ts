@@ -3,7 +3,7 @@ import { Challenge } from '../types';
 /**
  * Realistic Community Challenges Dataset across Jharkhand Districts
  * 
- * Note: These are DEMONSTRATION records created for the Smart India Hackathon prototype.
+ * Note: These are DEMONSTRATION records created for the CivicSolve platform prototype.
  * They represent realistic societal challenges across Jharkhand's 24 districts with distinct photographic evidence.
  */
 

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 
 interface CitizenFormProps {
   formData: {
@@ -40,7 +40,7 @@ export const CitizenForm: React.FC<CitizenFormProps> = ({
           <div className="bg-primary h-full rounded-full transition-all duration-500 w-1/2"></div>
         </div>
         <p className="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
-          Complete high-fidelity problem parameters to maximize university hackathon matching accuracy and grant eligibility.
+          Complete high-fidelity problem parameters to maximize university research matching accuracy and grant eligibility.
         </p>
       </div>
 

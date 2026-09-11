@@ -1,5 +1,5 @@
 # CivicSolve — AI-Powered Societal Innovation Platform
-### Smart India Hackathon (SIH 2024) National Finalist Implementation
+### National Societal Innovation & Civic Collaboration Platform
 
 CivicSolve is a unified digital platform connecting citizens, municipal governments, university research hubs, and industry partners to transform localized grassroots civic pain points into accredited, funded, and deployable public infrastructure.
 

@@ -12,7 +12,7 @@ export const HeroSection: React.FC = () => {
           <div className="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container-lowest shadow-sm border border-surface-container-high">
             <span className="inline-flex items-center justify-center w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
             <span className="font-label-sm text-label-sm text-tertiary uppercase tracking-wider font-bold">
-              SIH 2024 National Finalist
+              National Innovation Initiative
             </span>
             <span className="text-outline-variant font-bold">·</span>
             <span className="font-label-sm text-label-sm text-on-surface-variant font-medium">

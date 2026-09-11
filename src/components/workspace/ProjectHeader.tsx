@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Project } from '../../types';
 
 interface ProjectHeaderProps {
@@ -17,7 +17,7 @@ export const ProjectHeader: React.FC<ProjectHeaderProps> = ({ project }) => {
             </span>
             <span className="font-label-sm text-label-sm text-on-surface-variant font-medium">Drinking Water Turbidity • Ward 14</span>
             <span className="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-space-xs py-0.5 rounded-full font-bold">
-              <span className="material-symbols-outlined text-xs">verified</span> SIH Prototype Stage
+              <span className="material-symbols-outlined text-xs">verified</span> Pilot Prototype Stage
             </span>
             <span className="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-space-xs py-0.5 rounded-full font-bold">
               TRL Level: {project.trlLevel} (Validated)

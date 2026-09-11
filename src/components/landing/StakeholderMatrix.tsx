@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 export const StakeholderMatrix: React.FC = () => {
@@ -76,11 +76,11 @@ export const StakeholderMatrix: React.FC = () => {
                 <span className="font-label-sm text-label-sm text-secondary font-semibold tracking-wide uppercase">Academic Translation</span>
                 <h3 className="font-headline-sm text-headline-sm text-on-surface font-bold">Universities & Labs</h3>
                 <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-                  Transform verified municipal roadblocks into accredited capstones, funded PhD research, and high-impact student hackathon prototypes.
+                  Transform verified municipal roadblocks into accredited capstones, funded PhD research, and high-impact student engineering prototypes.
                 </p>
               </div>
               <div className="flex flex-wrap gap-1.5 pt-space-xs">
-                <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">SIH'24 Fast-Track</span>
+                <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Fast-Track Innovation</span>
                 <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Hardware Routing</span>
                 <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Academic Credits</span>
               </div>

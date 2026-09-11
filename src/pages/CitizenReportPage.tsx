@@ -127,7 +127,7 @@ export const CitizenReportPage: React.FC = () => {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-xl">
         <div className="space-y-space-2xs">
           <div className="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
-            <span className="text-tertiary font-bold">SIH'24 Citizen Intake</span>
+            <span className="text-tertiary font-bold">CivicSolve Citizen Intake</span>
             <span>/</span>
             <span>District Urban Hub</span>
             <span>/</span>
