@@ -1,0 +1,2621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivicSolve — SIH Winning Pitch Deck (6 Slides)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-dark: #050811;
+      --slide-bg: #070D1E;
+      --card-bg: rgba(13, 23, 48, 0.7);
+      --card-border: rgba(56, 189, 248, 0.2);
+      --cyan: #00F0FF;
+      --cyan-glow: rgba(0, 240, 255, 0.4);
+      --blue: #2563EB;
+      --blue-glow: rgba(37, 99, 235, 0.4);
+      --amber: #F59E0B;
+      --emerald: #10B981;
+      --red: #EF4444;
+      --purple: #8B5CF6;
+      --text-white: #FFFFFF;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Presentation Wrapper: Keeps 16:9 Aspect Ratio */
+    #deck-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 50%, #0c1630 0%, #050811 100%);
+    }
+
+    .slide-viewport {
+      width: 1920px;
+      height: 1080px;
+      transform-origin: center center;
+      position: absolute;
+      background-color: var(--slide-bg);
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(0, 240, 255, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 240, 255, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      display: none;
+      flex-direction: column;
+      padding: 56px 72px 48px 72px;
+    }
+
+    .slide-viewport.active {
+      display: flex;
+      animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.985); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Common Slide Header */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .category-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 9999px;
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .slide-title {
+      font-size: 44px;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #FFFFFF 30%, #BAE6FD 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .slide-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 18px;
+      border-radius: 9999px;
+      backdrop-filter: blur(8px);
+    }
+
+    .brand-logo-icon {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #00F0FF, #2563EB);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+      color: #050811;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+    }
+
+    .brand-tag {
+      font-size: 11px;
+      color: var(--cyan);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      background: rgba(0, 240, 255, 0.15);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* Content Area */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Glassmorphic Card Container */
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    /* ============================================================ */
+    /* SLIDE 1: THE PROBLEM                                         */
+    /* ============================================================ */
+    .slide1-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* Stakeholders grid */
+    .s1-stakeholders-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+
+    .s1-stakeholder-card {
+      padding: 24px 20px;
+      border-radius: 16px;
+      background: rgba(17, 24, 39, 0.7);
+      border: 1.5px dashed rgba(239, 68, 68, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .s1-stakeholder-card:hover {
+      border-color: rgba(239, 68, 68, 0.8);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(239, 68, 68, 0.2);
+    }
+
+    .s1-icon-badge {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin-bottom: 12px;
+      background: rgba(239, 68, 68, 0.12);
+      border: 2px solid rgba(239, 68, 68, 0.3);
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+    }
+
+    .s1-card-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .s1-card-status {
+      font-size: 12px;
+      font-weight: 700;
+      color: #F87171;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      background: rgba(239, 68, 68, 0.15);
+      padding: 3px 10px;
+      border-radius: 9999px;
+    }
+
+    .s1-card-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.4;
+    }
+
+    .s1-disconnect-tag {
+      position: absolute;
+      top: -12px;
+      right: 14px;
+      background: #EF4444;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Central Problem Flow */
+    .s1-flow-box {
+      padding: 28px 32px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1.5px solid rgba(239, 68, 68, 0.35);
+      border-radius: 20px;
+      position: relative;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(239, 68, 68, 0.05);
+    }
+
+    .s1-flow-label {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: #F87171;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .s1-pipeline-track {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .s1-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 2;
+      flex: 1;
+    }
+
+    .s1-node-box {
+      width: 100%;
+      max-width: 180px;
+      padding: 16px 12px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+
+    .s1-node-box.citizen {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(0, 240, 255, 0.2));
+      border: 1.5px solid var(--cyan);
+      color: #FFFFFF;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+    }
+
+    .s1-node-box.fail {
+      background: rgba(31, 41, 55, 0.8);
+      border: 1.5px solid rgba(239, 68, 68, 0.4);
+      color: #FCA5A5;
+    }
+
+    .s1-arrow {
+      color: #EF4444;
+      font-size: 24px;
+      font-weight: 900;
+      opacity: 0.7;
+    }
+
+    /* Bottom Hero Statement */
+    .s1-bottom-quote {
+      padding: 20px 32px;
+      border-radius: 16px;
+      background: linear-gradient(90deg, rgba(239, 68, 68, 0.12) 0%, rgba(37, 99, 235, 0.12) 50%, rgba(0, 240, 255, 0.12) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .s1-bottom-quote p {
+      font-size: 21px;
+      font-weight: 700;
+      text-align: center;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+    }
+
+    .s1-bottom-quote span.highlight {
+      color: var(--cyan);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* ============================================================ */
+    /* SLIDE 2: THE CIVICSOLVE ECOSYSTEM                            */
+    /* ============================================================ */
+    .slide2-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .s2-mesh-wrapper {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 280px 1fr 280px;
+      grid-template-rows: 1fr 1fr;
+      gap: 20px;
+      position: relative;
+    }
+
+    .s2-stakeholder {
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1.5px solid rgba(56, 189, 248, 0.25);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .s2-stakeholder:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
+    }
+
+    .s2-sh-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .s2-sh-icon {
+      font-size: 28px;
+    }
+
+    .s2-sh-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .s2-sh-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cyan);
+      background: rgba(0, 240, 255, 0.12);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      width: fit-content;
+      margin-bottom: 8px;
+    }
+
+    .s2-sh-action {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Central Platform Graphic */
+    .s2-central-platform {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      border-radius: 20px;
+      background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.25) 0%, rgba(7, 13, 30, 0.95) 75%);
+      border: 2px solid rgba(0, 240, 255, 0.4);
+      box-shadow: 0 0 50px rgba(0, 240, 255, 0.2), inset 0 0 35px rgba(37, 99, 235, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      position: relative;
+    }
+
+    .s2-core-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #00F0FF, #2563EB);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
+      margin-bottom: 12px;
+    }
+
+    .s2-core-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .s2-core-subtitle {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .s2-core-features {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .s2-feat-pill {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #E2E8F0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Central Flow Journey (Largest visual on slide) */
+    .s2-central-flow {
+      padding: 22px 28px;
+      background: rgba(13, 23, 48, 0.85);
+      border: 1.5px solid rgba(0, 240, 255, 0.35);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .s2-flow-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .s2-flow-title {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      text-transform: uppercase;
+    }
+
+    .s2-flow-tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .s2-flow-steps {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .s2-step-card {
+      flex: 1;
+      padding: 12px 8px;
+      border-radius: 10px;
+      background: rgba(17, 24, 39, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+
+    .s2-step-card:hover {
+      border-color: var(--cyan);
+      background: rgba(37, 99, 235, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .s2-step-num {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--cyan);
+    }
+
+    .s2-step-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .s2-step-sep {
+      color: var(--cyan);
+      font-size: 16px;
+      font-weight: 900;
+      opacity: 0.8;
+    }
+
+    /* Small labels strip */
+    .s2-stakeholder-roles {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .s2-role-pill {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      color: #CBD5E1;
+    }
+
+    .s2-role-pill strong {
+      color: var(--cyan);
+    }
+
+    /* ============================================================ */
+    /* SLIDE 3: AI FLOW                                             */
+    /* ============================================================ */
+    .slide3-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .s3-pipeline-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 460px 80px 1fr 80px 480px;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* Left: Citizen Intake UI */
+    .s3-mockup-card {
+      padding: 24px;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .s3-mockup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 10px;
+    }
+
+    .s3-mockup-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .s3-live-pill {
+      font-size: 10px;
+      font-weight: 800;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34D399;
+      border: 1px solid #10B981;
+      padding: 2px 8px;
+      border-radius: 9999px;
+    }
+
+    .s3-input-box {
+      background: rgba(7, 13, 30, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .s3-input-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .s3-input-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .s3-meta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .s3-meta-box {
+      background: rgba(17, 24, 39, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: #E2E8F0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .s3-img-preview {
+      height: 100px;
+      border-radius: 10px;
+      background: url('https://images.unsplash.com/photo-1541888946425-d0fbb18615f3?w=800&auto=format&fit=crop&q=80') center/cover no-repeat;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 8px;
+    }
+
+    .s3-img-badge {
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--cyan);
+    }
+
+    .s3-submit-btn {
+      background: linear-gradient(135deg, #2563EB, #00F0FF);
+      color: #050811;
+      font-weight: 800;
+      font-size: 14px;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+    }
+
+    /* Pipe Connectors */
+    .s3-pipe-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      color: var(--cyan);
+      text-shadow: 0 0 15px var(--cyan);
+    }
+
+    /* Center: AI Engine */
+    .s3-ai-core {
+      padding: 24px;
+      border-radius: 20px;
+      background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.25) 0%, rgba(15, 23, 42, 0.95) 80%);
+      border: 2px solid rgba(0, 240, 255, 0.5);
+      box-shadow: 0 0 45px rgba(0, 240, 255, 0.25), inset 0 0 25px rgba(37, 99, 235, 0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .s3-ai-core-head {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .s3-ai-badge {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: var(--cyan);
+      background: rgba(0, 240, 255, 0.15);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+    }
+
+    .s3-ai-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+    }
+
+    .s3-modules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .s3-module-chip {
+      background: rgba(17, 24, 39, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .s3-module-chip:hover {
+      border-color: var(--cyan);
+      background: rgba(37, 99, 235, 0.25);
+    }
+
+    .s3-mod-icon {
+      font-size: 18px;
+    }
+
+    .s3-mod-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .s3-mod-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .s3-mod-sub {
+      font-size: 10px;
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    /* Right: Intelligence Card */
+    .s3-intel-card {
+      padding: 24px;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 2px solid rgba(16, 185, 129, 0.4);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(16, 185, 129, 0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .s3-intel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 10px;
+    }
+
+    .s3-intel-badge {
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(16, 185, 129, 0.2);
+      color: #10B981;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 3px 10px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+    }
+
+    .s3-intel-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .s3-intel-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .s3-intel-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 13px;
+    }
+
+    .s3-intel-key {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .s3-intel-val {
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .s3-intel-val.p1 {
+      color: #EF4444;
+      background: rgba(239, 68, 68, 0.15);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .s3-routing-box {
+      margin-top: 4px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: #6EE7B7;
+      font-weight: 600;
+    }
+
+    /* Bottom Flow Strip */
+    .s3-bottom-flow {
+      padding: 18px 32px;
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(37, 99, 235, 0.2) 0%, rgba(0, 240, 255, 0.2) 50%, rgba(16, 185, 129, 0.2) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .s3-flow-tag {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .s3-flow-arrow {
+      color: var(--cyan);
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    /* ============================================================ */
+    /* SLIDE 4: INTERACTIVE MAP + PRODUCT                           */
+    /* ============================================================ */
+    .slide4-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    /* Realistic CivicSolve Home-Page UI framing the map */
+    .s4-browser-frame {
+      flex: 1;
+      border-radius: 18px;
+      background: rgba(11, 18, 36, 0.95);
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .s4-browser-nav {
+      padding: 12px 20px;
+      background: rgba(15, 23, 42, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .s4-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 16px;
+      color: #FFFFFF;
+    }
+
+    .s4-nav-filters {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .s4-filter-chip {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #CBD5E1;
+      font-weight: 600;
+    }
+
+    .s4-filter-chip.active {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .s4-map-content {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .s4-map-viewport {
+      position: relative;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 40% 50%, rgba(37, 99, 235, 0.12) 0%, rgba(5, 8, 17, 0.8) 80%);
+    }
+
+    .s4-map-svg-container {
+      width: 100%;
+      max-height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .s4-map-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(8px);
+    }
+
+    .s4-legend-box {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 14px;
+      border-radius: 8px;
+      display: flex;
+      gap: 14px;
+      backdrop-filter: blur(8px);
+    }
+
+    .s4-leg-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #E2E8F0;
+    }
+
+    .s4-leg-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    /* Selected Problem Details Panel */
+    .s4-detail-panel {
+      background: rgba(15, 23, 42, 0.85);
+      border-left: 1.5px solid rgba(56, 189, 248, 0.25);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      overflow-y: auto;
+    }
+
+    .s4-panel-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .s4-ticket-tag {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--cyan);
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .s4-prob-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1.3;
+    }
+
+    .s4-location-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .s4-real-img {
+      width: 100%;
+      height: 140px;
+      border-radius: 10px;
+      background: url('https://images.unsplash.com/photo-1541888946425-d0fbb18615f3?w=800&auto=format&fit=crop&q=80') center/cover no-repeat;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 8px 12px;
+    }
+
+    .s4-img-proof-tag {
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #10B981;
+    }
+
+    .s4-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .s4-stat-box {
+      background: rgba(17, 24, 39, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .s4-stat-k {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .s4-stat-v {
+      font-size: 13px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .s4-team-box {
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(37, 99, 235, 0.35);
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .s4-team-icon {
+      font-size: 24px;
+    }
+
+    .s4-team-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .s4-team-label {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--cyan);
+      text-transform: uppercase;
+    }
+
+    .s4-team-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    /* Bottom Pipeline */
+    .s4-bottom-workflow {
+      padding: 14px 28px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .s4-wf-step {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .s4-wf-step strong {
+      color: var(--cyan);
+    }
+
+    .s4-wf-arrow {
+      color: var(--cyan);
+      font-weight: 900;
+      font-size: 16px;
+    }
+
+    /* ============================================================ */
+    /* SLIDE 5: END-TO-END SOLUTION FLOW + TECHNOLOGY               */
+    /* ============================================================ */
+    .slide5-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    /* 8-Stage Horizontal Flowchart */
+    .s5-flowchart-card {
+      padding: 24px 28px;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .s5-flow-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .s5-flow-badge {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--cyan);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .s5-stages-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 12px;
+      position: relative;
+    }
+
+    .s5-stage-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 16px 10px;
+      border-radius: 14px;
+      background: rgba(17, 24, 39, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .s5-stage-node:hover {
+      border-color: var(--cyan);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 240, 255, 0.2);
+    }
+
+    .s5-num-badge {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--cyan);
+      background: rgba(0, 240, 255, 0.15);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    .s5-node-icon {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .s5-entity-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .s5-action-text {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.3;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Technology Architecture Strip */
+    .s5-tech-card {
+      padding: 20px 28px;
+      border-radius: 16px;
+      background: rgba(11, 18, 36, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .s5-tech-header {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .s5-tech-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    .s5-tech-box {
+      background: rgba(17, 24, 39, 0.7);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .s5-tech-layer {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .s5-tech-stack {
+      font-size: 13px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .s5-tech-detail {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ============================================================ */
+    /* SLIDE 6: IMPACT + WINNING VISION                             */
+    /* ============================================================ */
+    .slide6-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    /* Visual Transformation Graphic */
+    .s6-trans-row {
+      display: grid;
+      grid-template-columns: 1fr 280px 1fr;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .s6-problem-side {
+      background: rgba(31, 41, 55, 0.6);
+      border: 1.5px dashed rgba(239, 68, 68, 0.4);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .s6-prob-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #F87171;
+      font-weight: 800;
+      font-size: 17px;
+    }
+
+    .s6-prob-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .s6-prob-pill {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: #FCA5A5;
+      font-weight: 600;
+    }
+
+    .s6-center-catalyst {
+      border-radius: 20px;
+      background: radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.3) 0%, rgba(37, 99, 235, 0.2) 60%, rgba(7, 13, 30, 0.9) 100%);
+      border: 2px solid var(--cyan);
+      box-shadow: 0 0 40px rgba(0, 240, 255, 0.4);
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .s6-catalyst-icon {
+      font-size: 32px;
+    }
+
+    .s6-catalyst-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: #FFFFFF;
+    }
+
+    .s6-catalyst-sub {
+      font-size: 11px;
+      color: var(--cyan);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .s6-solution-side {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1.5px solid rgba(16, 185, 129, 0.4);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.15);
+    }
+
+    .s6-sol-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #34D399;
+      font-weight: 800;
+      font-size: 17px;
+    }
+
+    .s6-sol-items {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .s6-sol-pill {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: #A7F3D0;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* 4 Large Impact Cards */
+    .s6-impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .s6-impact-card {
+      padding: 24px 20px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1.5px solid rgba(56, 189, 248, 0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+
+    .s6-impact-card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 240, 255, 0.2);
+    }
+
+    .s6-imp-keyword {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--cyan);
+      letter-spacing: -0.02em;
+    }
+
+    .s6-imp-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .s6-imp-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.4;
+    }
+
+    /* Final Journey Super-Arrow & Quote */
+    .s6-bottom-superflow {
+      padding: 18px 28px;
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(37, 99, 235, 0.3) 0%, rgba(0, 240, 255, 0.3) 50%, rgba(16, 185, 129, 0.3) 100%);
+      border: 1.5px solid rgba(0, 240, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+    }
+
+    .s6-step-node {
+      font-size: 16px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 0.05em;
+    }
+
+    .s6-super-arrow {
+      color: var(--cyan);
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .s6-final-statement {
+      text-align: center;
+      padding: 10px 0 0 0;
+    }
+
+    .s6-final-statement p {
+      font-size: 22px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+    }
+
+    .s6-final-statement strong {
+      color: var(--cyan);
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+    }
+
+    /* ============================================================ */
+    /* Presentation Controls (Fixed Bar)                           */
+    /* ============================================================ */
+    #controls {
+      position: fixed;
+      bottom: 20px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(11, 18, 36, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 10px 24px;
+      border-radius: 9999px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .ctrl-btn {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .ctrl-btn:hover {
+      background: var(--blue);
+      border-color: var(--cyan);
+      color: #FFFFFF;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+    }
+
+    .slide-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .dot.active {
+      background: var(--cyan);
+      border-color: #FFFFFF;
+      box-shadow: 0 0 10px var(--cyan);
+      transform: scale(1.25);
+    }
+
+    .counter-text {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--cyan);
+      min-width: 45px;
+      text-align: center;
+    }
+
+    /* Print / PDF Styles */
+    @media print {
+      body {
+        background: #000;
+        overflow: visible;
+      }
+      #deck-container {
+        display: block;
+        background: none;
+      }
+      .slide-viewport {
+        display: flex !important;
+        position: relative !important;
+        page-break-after: always;
+        break-after: page;
+        transform: none !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+      #controls {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="deck-container">
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 1: THE PROBLEM                                         -->
+    <!-- ============================================================ -->
+    <section class="slide-viewport active" id="slide-1">
+      <div class="slide-header">
+        <div class="header-left">
+          <div class="category-pill">Slide 01 • The Problem</div>
+          <h1 class="slide-title">Real Problems. Disconnected Solutions.</h1>
+          <p class="slide-subtitle">Grassroots civic crises remain unresolved due to systemic ecosystem fragmentation.</p>
+        </div>
+        <div class="header-right">
+          <div class="brand-badge">
+            <div class="brand-logo-icon">C</div>
+            <span class="brand-name">CivicSolve</span>
+            <span class="brand-tag">SIH 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-body slide1-container">
+        <!-- 4 Disconnected Stakeholders -->
+        <div class="s1-stakeholders-row">
+          <!-- Citizen -->
+          <div class="s1-stakeholder-card">
+            <div class="s1-disconnect-tag">Silo #1</div>
+            <div class="s1-icon-badge">🧑</div>
+            <h3 class="s1-card-title">Citizens</h3>
+            <div class="s1-card-status">Isolated Reports</div>
+            <p class="s1-card-desc">Face contaminated water, broken roads, and health risks with zero transparent feedback loops or resolution status.</p>
+          </div>
+
+          <!-- Government -->
+          <div class="s1-stakeholder-card">
+            <div class="s1-disconnect-tag">Silo #2</div>
+            <div class="s1-icon-badge">🏛️</div>
+            <h3 class="s1-card-title">Government</h3>
+            <div class="s1-card-status">Administrative Backlog</div>
+            <p class="s1-card-desc">Municipal corporations overwhelmed by raw unverified complaints; long procurement cycles and manual triage.</p>
+          </div>
+
+          <!-- University -->
+          <div class="s1-stakeholder-card">
+            <div class="s1-disconnect-tag">Silo #3</div>
+            <div class="s1-icon-badge">🎓</div>
+            <h3 class="s1-card-title">Universities</h3>
+            <div class="s1-card-status">Theoretical Capstones</div>
+            <p class="s1-card-desc">Millions of student engineering projects end on library shelves without solving real, validated local challenges.</p>
+          </div>
+
+          <!-- Industry -->
+          <div class="s1-stakeholder-card">
+            <div class="s1-disconnect-tag">Silo #4</div>
+            <div class="s1-icon-badge">🏭</div>
+            <h3 class="s1-card-title">Industry</h3>
+            <div class="s1-card-status">Untracked CSR</div>
+            <p class="s1-card-desc">Corporate R&D grants disbursed into disconnected programs without measurable societal deployment telemetry.</p>
+          </div>
+        </div>
+
+        <!-- Central Problem Flow Diagram -->
+        <div class="s1-flow-box">
+          <div class="s1-flow-label">
+            <span>⚠️ The Broken Status Quo Journey</span>
+            <span style="opacity: 0.5">• High Friction & Low Success</span>
+          </div>
+          <div class="s1-pipeline-track">
+            <div class="s1-node">
+              <div class="s1-node-box citizen">🧑 CITIZEN<br><span style="font-size:12px; font-weight:500; opacity:0.8;">Problem Reported</span></div>
+            </div>
+            <div class="s1-arrow">→</div>
+            <div class="s1-node">
+              <div class="s1-node-box fail">❌ Scattered Data<br><span style="font-size:12px; font-weight:500; opacity:0.8;">Unstructured Inputs</span></div>
+            </div>
+            <div class="s1-arrow">→</div>
+            <div class="s1-node">
+              <div class="s1-node-box fail">❌ Manual Processing<br><span style="font-size:12px; font-weight:500; opacity:0.8;">Triage Bottleneck</span></div>
+            </div>
+            <div class="s1-arrow">→</div>
+            <div class="s1-node">
+              <div class="s1-node-box fail">❌ No Right Team<br><span style="font-size:12px; font-weight:500; opacity:0.8;">Skillset Mismatch</span></div>
+            </div>
+            <div class="s1-arrow">→</div>
+            <div class="s1-node">
+              <div class="s1-node-box fail">❌ Limited Collab<br><span style="font-size:12px; font-weight:500; opacity:0.8;">Zero R&D Synergy</span></div>
+            </div>
+            <div class="s1-arrow">→</div>
+            <div class="s1-node">
+              <div class="s1-node-box fail" style="border-color: #EF4444; background: rgba(239,68,68,0.2);">❌ Low Deployment<br><span style="font-size:12px; font-weight:500; opacity:0.8;">Zero Civic Impact</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Statement -->
+        <div class="s1-bottom-quote">
+          <p>“Great ideas exist. What is missing is a <span class="highlight">connected path</span> from problem → solution → deployment.”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 2: THE CIVICSOLVE ECOSYSTEM                            -->
+    <!-- ============================================================ */
+    -->
+    <section class="slide-viewport" id="slide-2">
+      <div class="slide-header">
+        <div class="header-left">
+          <div class="category-pill">Slide 02 • The Platform</div>
+          <h1 class="slide-title">One Platform. One Connected Innovation Ecosystem.</h1>
+          <p class="slide-subtitle">Unifying Citizens, Municipalities, Universities, and Industry into an AI-orchestrated pipeline.</p>
+        </div>
+        <div class="header-right">
+          <div class="brand-badge">
+            <div class="brand-logo-icon">C</div>
+            <span class="brand-name">CivicSolve</span>
+            <span class="brand-tag">SIH 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-body slide2-container">
+        <!-- Circular Quad-Mesh surrounding Central Platform -->
+        <div class="s2-mesh-wrapper">
+          <!-- Top: Citizens -->
+          <div class="s2-stakeholder" style="grid-column: 2; grid-row: 1; align-self: flex-start; z-index: 10;">
+            <div class="s2-sh-head">
+              <span class="s2-sh-icon">🧑</span>
+              <h3 class="s2-sh-title">Citizens</h3>
+            </div>
+            <div class="s2-sh-badge">Submit Problems</div>
+            <p class="s2-sh-action">Report geotagged civic grievances with photo evidence and community endorsements.</p>
+          </div>
+
+          <!-- Left: Universities (Students + Faculty) -->
+          <div class="s2-stakeholder" style="grid-column: 1; grid-row: 1 / span 2;">
+            <div class="s2-sh-head">
+              <span class="s2-sh-icon">🎓</span>
+              <h3 class="s2-sh-title">Universities</h3>
+            </div>
+            <div class="s2-sh-badge">Build Teams</div>
+            <p class="s2-sh-action">Students and faculty PIs match domain skillsets to convert academic capstones into funded prototypes.</p>
+            <div style="margin-top: 10px; padding: 6px 10px; background: rgba(0,240,255,0.08); border-radius: 6px; font-size: 11px; color: var(--cyan); font-weight:700;">
+              👥 Student Squads + Faculty PIs
+            </div>
+          </div>
+
+          <!-- Center Platform Hero -->
+          <div class="s2-central-platform">
+            <div class="s2-core-logo">⚡</div>
+            <h2 class="s2-core-title">CIVICSOLVE</h2>
+            <div class="s2-core-subtitle">AI-Powered Orchestration Core</div>
+            <div class="s2-core-features">
+              <div class="s2-feat-pill">🤖 Neural Triage</div>
+              <div class="s2-feat-pill">🏛️ Ward Routing</div>
+              <div class="s2-feat-pill">🤝 Quad Match</div>
+            </div>
+          </div>
+
+          <!-- Right: Government -->
+          <div class="s2-stakeholder" style="grid-column: 3; grid-row: 1 / span 2;">
+            <div class="s2-sh-head">
+              <span class="s2-sh-icon">🏛️</span>
+              <h3 class="s2-sh-title">Government</h3>
+            </div>
+            <div class="s2-sh-badge">Validate & Prioritize</div>
+            <p class="s2-sh-action">Municipal commissioners sanction verified challenges, allocate testbeds, and audit public delivery.</p>
+            <div style="margin-top: 10px; padding: 6px 10px; background: rgba(16,185,129,0.08); border-radius: 6px; font-size: 11px; color: #10B981; font-weight:700;">
+              📜 1-Click Administrative Sanction
+            </div>
+          </div>
+
+          <!-- Bottom: Industry -->
+          <div class="s2-stakeholder" style="grid-column: 2; grid-row: 2; align-self: flex-end; z-index: 10;">
+            <div class="s2-sh-head">
+              <span class="s2-sh-icon">🏭</span>
+              <h3 class="s2-sh-title">Industry</h3>
+            </div>
+            <div class="s2-sh-badge">Mentor & Support</div>
+            <p class="s2-sh-action">Provide CSR innovation grants, cloud hardware dev kits, and engineering mentorship.</p>
+          </div>
+        </div>
+
+        <!-- Main Central Flow (Largest visual on slide) -->
+        <div class="s2-central-flow">
+          <div class="s2-flow-header">
+            <span class="s2-flow-title">⚡ Continuous Innovation Lifeline</span>
+            <span class="s2-flow-tagline">Bidirectional Data & Resource Flow Between Every Stakeholder</span>
+          </div>
+          <div class="s2-flow-steps">
+            <div class="s2-step-card">
+              <span class="s2-step-num">01</span>
+              <span class="s2-step-name">Problem</span>
+            </div>
+            <span class="s2-step-sep">→</span>
+            <div class="s2-step-card">
+              <span class="s2-step-num">02</span>
+              <span class="s2-step-name">AI Analysis</span>
+            </div>
+            <span class="s2-step-sep">→</span>
+            <div class="s2-step-card">
+              <span class="s2-step-num">03</span>
+              <span class="s2-step-name">Validation</span>
+            </div>
+            <span class="s2-step-sep">→</span>
+            <div class="s2-step-card">
+              <span class="s2-step-num">04</span>
+              <span class="s2-step-name">Matching</span>
+            </div>
+            <span class="s2-step-sep">→</span>
+            <div class="s2-step-card">
+              <span class="s2-step-num">05</span>
+              <span class="s2-step-name">Collaboration</span>
+            </div>
+            <span class="s2-step-sep">→</span>
+            <div class="s2-step-card">
+              <span class="s2-step-num">06</span>
+              <span class="s2-step-name">Prototype</span>
+            </div>
+            <span class="s2-step-sep">→</span>
+            <div class="s2-step-card">
+              <span class="s2-step-num">07</span>
+              <span class="s2-step-name">Deployment</span>
+            </div>
+            <span class="s2-step-sep">→</span>
+            <div class="s2-step-card" style="border-color: #10B981; background: rgba(16,185,129,0.15);">
+              <span class="s2-step-num" style="color:#10B981;">08</span>
+              <span class="s2-step-name" style="color:#A7F3D0;">Impact</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Small Labels Strip -->
+        <div class="s2-stakeholder-roles">
+          <div class="s2-role-pill"><strong>Citizens</strong> → Submit Problems</div>
+          <div class="s2-role-pill"><strong>Government</strong> → Validate & Prioritize</div>
+          <div class="s2-role-pill"><strong>Universities</strong> → Build Teams</div>
+          <div class="s2-role-pill"><strong>Industry</strong> → Mentor & Support</div>
+          <div class="s2-role-pill" style="border-color:var(--cyan); background:rgba(0,240,255,0.1);"><strong>CivicSolve</strong> → Connects Everyone</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 3: AI FLOW                                             -->
+    <!-- ============================================================ -->
+    <section class="slide-viewport" id="slide-3">
+      <div class="slide-header">
+        <div class="header-left">
+          <div class="category-pill">Slide 03 • AI Pipeline</div>
+          <h1 class="slide-title">From a Citizen Complaint to an Actionable Challenge</h1>
+          <p class="slide-subtitle">Gemini NLP transforms messy citizen grievances into high-precision, actionable engineering dossiers.</p>
+        </div>
+        <div class="header-right">
+          <div class="brand-badge">
+            <div class="brand-logo-icon">C</div>
+            <span class="brand-name">CivicSolve</span>
+            <span class="brand-tag">SIH 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-body slide3-container">
+        <!-- Left to Right Pipeline -->
+        <div class="s3-pipeline-grid">
+          <!-- LEFT: Citizen Intake Screen -->
+          <div class="s3-mockup-card">
+            <div class="s3-mockup-header">
+              <span class="s3-mockup-title">📱 Citizen Intake Form</span>
+              <span class="s3-live-pill">GPS LOCKED</span>
+            </div>
+
+            <div class="s3-input-box">
+              <div class="s3-input-label">📝 Raw Citizen Complaint</div>
+              <div class="s3-input-text">“Water supply is irregular in my locality and community handpumps show dangerous white mineral deposits.”</div>
+            </div>
+
+            <div class="s3-meta-row">
+              <div class="s3-meta-box">📍 Chainpur, Palamu</div>
+              <div class="s3-meta-box">⏰ 10 Sep 2026</div>
+            </div>
+
+            <div class="s3-img-preview">
+              <span class="s3-img-badge">📷 palamu_well_pump.jpg (3.1 MB)</span>
+            </div>
+
+            <button class="s3-submit-btn">
+              <span>📤 Submit to CivicSolve AI Engine</span>
+            </button>
+          </div>
+
+          <!-- Arrow -->
+          <div class="s3-pipe-arrow">→</div>
+
+          <!-- CENTER: Large Glowing AI Processing Core -->
+          <div class="s3-ai-core">
+            <div class="s3-ai-core-head">
+              <span class="s3-ai-badge">GEMINI 2.5 FLASH NEURAL TRIAGE</span>
+              <h2 class="s3-ai-title">CIVICSOLVE AI ENGINE</h2>
+            </div>
+
+            <div class="s3-modules-grid">
+              <div class="s3-module-chip">
+                <span class="s3-mod-icon">🧠</span>
+                <div class="s3-mod-text">
+                  <span class="s3-mod-name">NLP Analysis</span>
+                  <span class="s3-mod-sub">Intent & Entity Parsing</span>
+                </div>
+              </div>
+
+              <div class="s3-module-chip">
+                <span class="s3-mod-icon">🏷️</span>
+                <div class="s3-mod-text">
+                  <span class="s3-mod-name">Categorization</span>
+                  <span class="s3-mod-sub">Water & Sanitation</span>
+                </div>
+              </div>
+
+              <div class="s3-module-chip">
+                <span class="s3-mod-icon">📍</span>
+                <div class="s3-mod-text">
+                  <span class="s3-mod-name">Location Analysis</span>
+                  <span class="s3-mod-sub">Palamu Ward #5 Bounds</span>
+                </div>
+              </div>
+
+              <div class="s3-module-chip">
+                <span class="s3-mod-icon">⚠️</span>
+                <div class="s3-mod-text">
+                  <span class="s3-mod-name">Severity Score</span>
+                  <span class="s3-mod-sub">91 / 100 (Critical P1)</span>
+                </div>
+              </div>
+
+              <div class="s3-module-chip">
+                <span class="s3-mod-icon">🔍</span>
+                <div class="s3-mod-text">
+                  <span class="s3-mod-name">Duplicate Detection</span>
+                  <span class="s3-mod-sub">12 Reports Clustered</span>
+                </div>
+              </div>
+
+              <div class="s3-module-chip">
+                <span class="s3-mod-icon">📊</span>
+                <div class="s3-mod-text">
+                  <span class="s3-mod-name">Impact Analysis</span>
+                  <span class="s3-mod-sub">3,200+ Citizens Risk</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="s3-module-chip" style="grid-column: 1 / span 2; justify-content: center; background: rgba(37,99,235,0.3); border-color: var(--cyan);">
+              <span class="s3-mod-icon">🤝</span>
+              <div class="s3-mod-text" style="text-align: center;">
+                <span class="s3-mod-name">Autonomous Team Recommendation</span>
+                <span class="s3-mod-sub">Matching NIT Jamshedpur Water Tech R&D Lab (96% Fit)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="s3-pipe-arrow">→</div>
+
+          <!-- RIGHT: Problem Intelligence Card -->
+          <div class="s3-intel-card">
+            <div class="s3-intel-header">
+              <span class="s3-intel-badge">AI DOSSIER #JH-7102</span>
+              <span style="font-size: 11px; color: var(--cyan); font-weight: 700;">AUTOMATED</span>
+            </div>
+
+            <h3 class="s3-intel-title">Drinking Water Fluoride Contamination</h3>
+
+            <div class="s3-intel-rows">
+              <div class="s3-intel-row">
+                <span class="s3-intel-key">Category:</span>
+                <span class="s3-intel-val">Infrastructure (Potable Water)</span>
+              </div>
+              <div class="s3-intel-row">
+                <span class="s3-intel-key">Location:</span>
+                <span class="s3-intel-val">Chainpur, Palamu (Jharkhand)</span>
+              </div>
+              <div class="s3-intel-row">
+                <span class="s3-intel-key">Priority:</span>
+                <span class="s3-intel-val p1">P1 — High Urgency</span>
+              </div>
+              <div class="s3-intel-row">
+                <span class="s3-intel-key">Impact:</span>
+                <span class="s3-intel-val">3,200+ Rural Inhabitants</span>
+              </div>
+              <div class="s3-intel-row">
+                <span class="s3-intel-key">Similar Reports:</span>
+                <span class="s3-intel-val" style="color:var(--cyan);">12 Verified Cases Merged</span>
+              </div>
+              <div class="s3-intel-row">
+                <span class="s3-intel-key">Suggested Domain:</span>
+                <span class="s3-intel-val">Civil / Environmental Engineering</span>
+              </div>
+            </div>
+
+            <div class="s3-routing-box">
+              <span style="font-size: 18px;">🏛️</span>
+              <div>
+                <strong style="color:#FFFFFF;">Govt Sanction Queue</strong> → Automated Lab Matching (NIT JSR)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Journey Ribbon -->
+        <div class="s3-bottom-flow">
+          <div class="s3-flow-tag">
+            <span>📝</span> RAW COMPLAINT
+          </div>
+          <span class="s3-flow-arrow">➔</span>
+          <div class="s3-flow-tag">
+            <span>⚡</span> AI INTELLIGENCE
+          </div>
+          <span class="s3-flow-arrow">➔</span>
+          <div class="s3-flow-tag">
+            <span>🚀</span> ACTIONABLE CHALLENGE
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 4: INTERACTIVE MAP + PRODUCT                           -->
+    <!-- ============================================================ -->
+    <section class="slide-viewport" id="slide-4">
+      <div class="slide-header">
+        <div class="header-left">
+          <div class="category-pill">Slide 04 • Geographic Intelligence</div>
+          <h1 class="slide-title">See Problems Where They Actually Exist</h1>
+          <p class="slide-subtitle">Authentic Jharkhand state GIS layer embedded seamlessly inside the CivicSolve home-page portal.</p>
+        </div>
+        <div class="header-right">
+          <div class="brand-badge">
+            <div class="brand-logo-icon">C</div>
+            <span class="brand-name">CivicSolve</span>
+            <span class="brand-tag">SIH 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-body slide4-container">
+        <!-- Realistic CivicSolve Home-Page UI surrounding the map -->
+        <div class="s4-browser-frame">
+          <!-- Top App Bar -->
+          <div class="s4-browser-nav">
+            <div class="s4-nav-brand">
+              <span style="font-size: 20px;">🛡️</span>
+              <span>CivicSolve Jharkhand Portal</span>
+              <span style="font-size: 11px; background: rgba(0,240,255,0.15); color: var(--cyan); padding: 2px 8px; border-radius: 4px;">Live Telemetry</span>
+            </div>
+            <div class="s4-nav-filters">
+              <span class="s4-filter-chip active">📍 All 24 Districts</span>
+              <span class="s4-filter-chip active">💧 Water & Sanitation</span>
+              <span class="s4-filter-chip">⚠️ P1 Critical Only</span>
+              <span class="s4-filter-chip">🔍 Search: "water"</span>
+            </div>
+          </div>
+
+          <!-- Main Viewport: Map on Left + Selected Popup Card on Right -->
+          <div class="s4-map-content">
+            <!-- Map Viewport -->
+            <div class="s4-map-viewport">
+              <div class="s4-map-badge">
+                <span>🗺️</span>
+                <span>JHARKHAND STATE ONLY (24 DISTRICTS)</span>
+              </div>
+
+              <!-- Embedded Vector Map of Jharkhand -->
+              <div class="s4-map-svg-container" id="jharkhand-map-slot">
+                <!-- SVG map dynamically injected or rendered -->
+                <img src="/jharkhand_state_map.svg" onerror="this.onerror=null;this.src='jharkhand_state_map.svg';if(!this.complete)this.src='public/jharkhand_state_map.svg';" alt="Jharkhand State Map" style="max-height: 420px; width: auto;" />
+              </div>
+
+              <!-- Map Legend -->
+              <div class="s4-legend-box">
+                <div class="s4-leg-item"><div class="s4-leg-dot" style="background:#00F0FF;"></div> Water Supply</div>
+                <div class="s4-leg-item"><div class="s4-leg-dot" style="background:#F59E0B;"></div> Solid Waste</div>
+                <div class="s4-leg-item"><div class="s4-leg-dot" style="background:#FB923C;"></div> Road Transit</div>
+                <div class="s4-leg-item"><div class="s4-leg-dot" style="background:#10B981;"></div> Healthcare</div>
+                <div class="s4-leg-item"><div class="s4-leg-dot" style="background:#818CF8;"></div> Education</div>
+              </div>
+            </div>
+
+            <!-- Right: Selected Marker Popup Details Card -->
+            <div class="s4-detail-panel">
+              <div class="s4-panel-top">
+                <span class="s4-ticket-tag">ACTIVE SELECTION • #JH-7102</span>
+                <span style="font-size: 11px; color:#EF4444; font-weight:800;">CRITICAL P1</span>
+              </div>
+
+              <h3 class="s4-prob-title">Water Supply & High Fluoride Ingestion</h3>
+              <div class="s4-location-row">
+                <span>📍</span>
+                <span>Chainpur Block Panchayat 5, Daltonganj, Palamu</span>
+              </div>
+
+              <!-- Real Problem Photo -->
+              <div class="s4-real-img">
+                <div class="s4-img-proof-tag">📷 Verified Field Image (EXIF Validated)</div>
+              </div>
+
+              <!-- Key Metrics Grid -->
+              <div class="s4-stats-grid">
+                <div class="s4-stat-box">
+                  <span class="s4-stat-k">⚠️ Priority</span>
+                  <span class="s4-stat-v" style="color:#EF4444;">P1 (Urgent Triage)</span>
+                </div>
+                <div class="s4-stat-box">
+                  <span class="s4-stat-k">📊 Affected</span>
+                  <span class="s4-stat-v">3,200+ Residents</span>
+                </div>
+                <div class="s4-stat-box">
+                  <span class="s4-stat-k">🏛️ Govt Status</span>
+                  <span class="s4-stat-v" style="color:#10B981;">GOVT_VALIDATED</span>
+                </div>
+                <div class="s4-stat-box">
+                  <span class="s4-stat-k">⚡ AI Severity</span>
+                  <span class="s4-stat-v" style="color:var(--cyan);">91 / 100</span>
+                </div>
+              </div>
+
+              <!-- Assigned Solution Team -->
+              <div class="s4-team-box">
+                <span class="s4-team-icon">🎓</span>
+                <div class="s4-team-info">
+                  <span class="s4-team-label">Assigned Solution Team</span>
+                  <span class="s4-team-name">NIT Jamshedpur Water Tech Lab</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Flow Below -->
+        <div class="s4-bottom-workflow">
+          <div class="s4-wf-step"><strong>01</strong> Location (Palamu)</div>
+          <span class="s4-wf-arrow">➔</span>
+          <div class="s4-wf-step"><strong>02</strong> Problem (Fluoride)</div>
+          <span class="s4-wf-arrow">➔</span>
+          <div class="s4-wf-step"><strong>03</strong> Evidence (EXIF Photo)</div>
+          <span class="s4-wf-arrow">➔</span>
+          <div class="s4-wf-step"><strong>04</strong> Validation (Ward Sanction)</div>
+          <span class="s4-wf-arrow">➔</span>
+          <div class="s4-wf-step"><strong>05</strong> Solution (NIT JSR Squad)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 5: END-TO-END SOLUTION FLOW + TECHNOLOGY               -->
+    <!-- ============================================================ -->
+    <section class="slide-viewport" id="slide-5">
+      <div class="slide-header">
+        <div class="header-left">
+          <div class="category-pill">Slide 05 • Full Lifecycle & Architecture</div>
+          <h1 class="slide-title">From Problem to Deployment</h1>
+          <p class="slide-subtitle">A rigorous 8-stage innovation lifecycle backed by an enterprise-grade modern tech stack.</p>
+        </div>
+        <div class="header-right">
+          <div class="brand-badge">
+            <div class="brand-logo-icon">C</div>
+            <span class="brand-name">CivicSolve</span>
+            <span class="brand-tag">SIH 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-body slide5-container">
+        <!-- Top: 8-Stage Horizontal Journey Flowchart -->
+        <div class="s5-flowchart-card">
+          <div class="s5-flow-header">
+            <span class="s5-flow-badge">⚡ THE CIVICSOLVE 8-STAGE INNOVATION LIFECYCLE</span>
+            <span style="font-size:12px; color:var(--text-muted);">From Citizen Intake to Accredited Civic Infrastructure</span>
+          </div>
+
+          <div class="s5-stages-grid">
+            <!-- 01 -->
+            <div class="s5-stage-node">
+              <div class="s5-num-badge">01</div>
+              <span class="s5-node-icon">🧑</span>
+              <span class="s5-entity-name">Citizen</span>
+              <span class="s5-action-text">Submit Geotagged Problem & Photo</span>
+            </div>
+
+            <!-- 02 -->
+            <div class="s5-stage-node">
+              <div class="s5-num-badge">02</div>
+              <span class="s5-node-icon">🤖</span>
+              <span class="s5-entity-name">AI Engine</span>
+              <span class="s5-action-text">Analyze, Deduplicate & Score Severity</span>
+            </div>
+
+            <!-- 03 -->
+            <div class="s5-stage-node">
+              <div class="s5-num-badge">03</div>
+              <span class="s5-node-icon">🏛️</span>
+              <span class="s5-entity-name">Government</span>
+              <span class="s5-action-text">Validate, Sanction & Prioritize Budget</span>
+            </div>
+
+            <!-- 04 -->
+            <div class="s5-stage-node">
+              <div class="s5-num-badge">04</div>
+              <span class="s5-node-icon">🎓</span>
+              <span class="s5-entity-name">University</span>
+              <span class="s5-action-text">Find Relevant Engineering Domain</span>
+            </div>
+
+            <!-- 05 -->
+            <div class="s5-stage-node">
+              <div class="s5-num-badge">05</div>
+              <span class="s5-node-icon">👥</span>
+              <span class="s5-entity-name">Student + Faculty</span>
+              <span class="s5-action-text">Build Multidisciplinary Solution Squad</span>
+            </div>
+
+            <!-- 06 -->
+            <div class="s5-stage-node">
+              <div class="s5-num-badge">06</div>
+              <span class="s5-node-icon">🏭</span>
+              <span class="s5-entity-name">Industry</span>
+              <span class="s5-action-text">Mentor, Fund CSR & Supply Hardware</span>
+            </div>
+
+            <!-- 07 -->
+            <div class="s5-stage-node">
+              <div class="s5-num-badge">07</div>
+              <span class="s5-node-icon">💡</span>
+              <span class="s5-entity-name">Prototype</span>
+              <span class="s5-action-text">Build, Iterate & Pilot in Testbed</span>
+            </div>
+
+            <!-- 08 -->
+            <div class="s5-stage-node" style="border-color: #10B981; background: rgba(16,185,129,0.12);">
+              <div class="s5-num-badge" style="color:#10B981; border-color:#10B981;">08</div>
+              <span class="s5-node-icon">🚀</span>
+              <span class="s5-entity-name" style="color:#A7F3D0;">Deployment</span>
+              <span class="s5-action-text">Implement & Measure Citizen Impact</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom: Technology Architecture Strip -->
+        <div class="s5-tech-card">
+          <div class="s5-tech-header">
+            <span>🛠️ TECHNOLOGY ARCHITECTURE STRIP</span>
+            <span style="font-weight:400; color:var(--text-muted); font-size:11px;">(Engineered for Scalability, Security & Low-Latency Civic Response)</span>
+          </div>
+          <div class="s5-tech-grid">
+            <div class="s5-tech-box">
+              <span class="s5-tech-layer">Frontend</span>
+              <span class="s5-tech-stack">React 18 + Vite</span>
+              <span class="s5-tech-detail">Tailwind CSS • Responsive</span>
+            </div>
+
+            <div class="s5-tech-box">
+              <span class="s5-tech-layer">Backend</span>
+              <span class="s5-tech-stack">APIs + Auth</span>
+              <span class="s5-tech-detail">Node.js • Express • Firebase</span>
+            </div>
+
+            <div class="s5-tech-box">
+              <span class="s5-tech-layer">Database</span>
+              <span class="s5-tech-stack">Supabase / PG</span>
+              <span class="s5-tech-detail">Relational Schema • Audit Logs</span>
+            </div>
+
+            <div class="s5-tech-box">
+              <span class="s5-tech-layer">AI Engine</span>
+              <span class="s5-tech-stack">Gemini NLP</span>
+              <span class="s5-tech-detail">Classification • Severity Score</span>
+            </div>
+
+            <div class="s5-tech-box">
+              <span class="s5-tech-layer">Maps & GIS</span>
+              <span class="s5-tech-stack">Leaflet + GeoJSON</span>
+              <span class="s5-tech-detail">Jharkhand Vector Boundaries</span>
+            </div>
+
+            <div class="s5-tech-box">
+              <span class="s5-tech-layer">Storage</span>
+              <span class="s5-tech-stack">Evidence Vault</span>
+              <span class="s5-tech-detail">Images • EXIF Hashes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 6: IMPACT + WINNING VISION                             -->
+    <!-- ============================================================ -->
+    <section class="slide-viewport" id="slide-6">
+      <div class="slide-header">
+        <div class="header-left">
+          <div class="category-pill">Slide 06 • Impact & Vision</div>
+          <h1 class="slide-title">Turning Community Problems Into Real-World Impact</h1>
+          <p class="slide-subtitle">Bridging grassroots pain points with deployable innovation for a self-reliant India.</p>
+        </div>
+        <div class="header-right">
+          <div class="brand-badge">
+            <div class="brand-logo-icon">C</div>
+            <span class="brand-name">CivicSolve</span>
+            <span class="brand-tag">SIH 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-body slide6-container">
+        <!-- Visual Transformation Graphic: Left -> Center -> Right -->
+        <div class="s6-trans-row">
+          <!-- Left: Problem Side -->
+          <div class="s6-problem-side">
+            <div class="s6-prob-head">
+              <span>🧑🤝🧑</span>
+              <span>REAL COMMUNITY PROBLEM</span>
+            </div>
+            <div class="s6-prob-items">
+              <div class="s6-prob-pill">❌ Unstructured</div>
+              <div class="s6-prob-pill">❌ Unvalidated</div>
+              <div class="s6-prob-pill">❌ Disconnected</div>
+              <div class="s6-prob-pill">❌ Difficult to Solve</div>
+            </div>
+          </div>
+
+          <!-- Center: Platform Catalyst -->
+          <div class="s6-center-catalyst">
+            <span class="s6-catalyst-icon">⚡</span>
+            <span class="s6-catalyst-title">CIVICSOLVE</span>
+            <span class="s6-catalyst-sub">AI Platform Catalyst</span>
+          </div>
+
+          <!-- Right: Outcome Side -->
+          <div class="s6-solution-side">
+            <div class="s6-sol-head">
+              <span>🎯</span>
+              <span>MEASURABLE COMMUNITY IMPACT</span>
+            </div>
+            <div class="s6-sol-items">
+              <div class="s6-sol-pill">🎓 Student Team</div>
+              <div class="s6-sol-pill">🏛️ Government</div>
+              <div class="s6-sol-pill">🏭 Industry</div>
+              <div class="s6-sol-pill">🤖 AI Engine</div>
+              <div class="s6-sol-pill">💡 Prototype</div>
+              <div class="s6-sol-pill">🚀 Deployment</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Large Visual Impact Cards -->
+        <div class="s6-impact-grid">
+          <div class="s6-impact-card">
+            <div class="s6-imp-keyword">FASTER</div>
+            <h4 class="s6-imp-title">Problem Identification</h4>
+            <p class="s6-imp-desc">AI NLP parses and geotags citizen complaints in seconds, slashing manual administrative triage times by over 85%.</p>
+          </div>
+
+          <div class="s6-impact-card">
+            <div class="s6-imp-keyword">SMARTER</div>
+            <h4 class="s6-imp-title">Problem Prioritization</h4>
+            <p class="s6-imp-desc">Algorithmic severity scoring (0–100) and duplicate clustering eliminate municipal backlogs and prioritize high-risk health & water crises.</p>
+          </div>
+
+          <div class="s6-impact-card">
+            <div class="s6-imp-keyword">STRONGER</div>
+            <h4 class="s6-imp-title">Stakeholder Collaboration</h4>
+            <p class="s6-imp-desc">Turns thousands of dormant student capstone projects into accredited municipal solutions funded by corporate CSR grants.</p>
+          </div>
+
+          <div class="s6-impact-card" style="border-color:#10B981;">
+            <div class="s6-imp-keyword" style="color:#10B981;">REAL</div>
+            <h4 class="s6-imp-title">Deployment & Impact</h4>
+            <p class="s6-imp-desc">Not theoretical hackathon slides — tangible field-deployed IoT hardware, monitored water filtration units, and verified citizen outcomes.</p>
+          </div>
+        </div>
+
+        <!-- Bottom Super-Arrow Flow -->
+        <div class="s6-bottom-superflow">
+          <span class="s6-step-node">PROBLEM</span>
+          <span class="s6-super-arrow">➔</span>
+          <span class="s6-step-node">AI</span>
+          <span class="s6-super-arrow">➔</span>
+          <span class="s6-step-node">COLLABORATION</span>
+          <span class="s6-super-arrow">➔</span>
+          <span class="s6-step-node">INNOVATION</span>
+          <span class="s6-super-arrow">➔</span>
+          <span class="s6-step-node">DEPLOYMENT</span>
+          <span class="s6-super-arrow">➔</span>
+          <span class="s6-step-node" style="color:var(--cyan);">IMPACT</span>
+        </div>
+
+        <!-- Final Punchline -->
+        <div class="s6-final-statement">
+          <p>“CivicSolve doesn’t just collect problems. <strong>It creates the pathway to solve them.</strong>”</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Bottom Interactive Presentation Controls -->
+  <div id="controls">
+    <button class="ctrl-btn" id="btn-prev" onclick="changeSlide(-1)">
+      <span>←</span> Previous
+    </button>
+
+    <div class="slide-dots" id="dots-container">
+      <div class="dot active" onclick="goToSlide(0)"></div>
+      <div class="dot" onclick="goToSlide(1)"></div>
+      <div class="dot" onclick="goToSlide(2)"></div>
+      <div class="dot" onclick="goToSlide(3)"></div>
+      <div class="dot" onclick="goToSlide(4)"></div>
+      <div class="dot" onclick="goToSlide(5)"></div>
+    </div>
+
+    <span class="counter-text" id="slide-counter">01 / 06</span>
+
+    <button class="ctrl-btn" id="btn-next" onclick="changeSlide(1)">
+      Next <span>→</span>
+    </button>
+
+    <button class="ctrl-btn" onclick="toggleFullscreen()" title="Press 'F' for Fullscreen">
+      <span>⛶</span> Fullscreen
+    </button>
+
+    <button class="ctrl-btn" onclick="window.print()" style="background:rgba(0,240,255,0.15); border-color:var(--cyan); color:var(--cyan);">
+      <span>🖨️</span> Export PDF
+    </button>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide-viewport');
+    const dots = document.querySelectorAll('.dot');
+    const counter = document.getElementById('slide-counter');
+
+    function updateScale() {
+      const container = document.getElementById('deck-container');
+      const targetWidth = 1920;
+      const targetHeight = 1080;
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+
+      const scale = Math.min(windowWidth / targetWidth, windowHeight / targetHeight) * 0.95;
+
+      slides.forEach(slide => {
+        slide.style.transform = `scale(${scale})`;
+      });
+    }
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= slides.length) index = slides.length - 1;
+
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+
+      currentSlide = index;
+      counter.textContent = `0${index + 1} / 0${slides.length}`;
+    }
+
+    function changeSlide(direction) {
+      showSlide(currentSlide + direction);
+    }
+
+    function goToSlide(index) {
+      showSlide(index);
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        changeSlide(1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        changeSlide(-1);
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      } else if (e.key >= '1' && e.key <= '6') {
+        goToSlide(parseInt(e.key) - 1);
+      }
+    });
+
+    window.addEventListener('resize', updateScale);
+    updateScale();
+  </script>
+</body>
+</html>
