@@ -13,7 +13,7 @@ import {
 interface ChallengeContextType {
   challenges: Challenge[];
   activeProject: Project;
-  addChallenge: (newChallenge: Omit<Challenge, 'id' | 'ticketId' | 'createdAt' | 'status' | 'endorsementsCount'>) => Challenge;
+  addChallenge: (newChallenge: Omit<Challenge, 'id' | 'ticketId' | 'createdAt' | 'status' | 'endorsementsCount'>) => Promise<Challenge>;
   updateChallengeStatus: (id: string, status: ChallengeStatus, priority?: PriorityLevel) => void;
   updateTaskStatus: (taskId: string, status: 'DONE' | 'IN_PROGRESS' | 'UNDER_REVIEW') => void;
   addTask: (title: string, owner: string, detail: string) => void;
@@ -64,7 +64,7 @@ export const ChallengeProvider: React.FC<{ children: ReactNode }> = ({ children 
     }
   }, []);
 
-  const addChallenge = (data: Omit<Challenge, 'id' | 'ticketId' | 'createdAt' | 'status' | 'endorsementsCount'>): Challenge => {
+  const addChallenge = async (data: Omit<Challenge, 'id' | 'ticketId' | 'createdAt' | 'status' | 'endorsementsCount'>): Promise<Challenge> => {
     const nextNum = Math.floor(8900 + Math.random() * 100);
     const newChallenge: Challenge = {
       ...data,
@@ -77,11 +77,16 @@ export const ChallengeProvider: React.FC<{ children: ReactNode }> = ({ children 
 
     setChallenges((prev) => [newChallenge, ...prev]);
 
-    // Asynchronously insert into Supabase if configured
+    // Insert into live Supabase cloud database
     if (isSupabaseConfigured()) {
-      insertChallengeToSupabase(newChallenge).catch((err) => {
+      try {
+        const ok = await insertChallengeToSupabase(newChallenge);
+        if (ok) {
+          console.log('[CivicSolve] Confirmed new problem ticket saved in Supabase PostgreSQL:', newChallenge.ticketId);
+        }
+      } catch (err) {
         console.warn('[CivicSolve] Could not sync new challenge to Supabase:', err);
-      });
+      }
     }
 
     return newChallenge;

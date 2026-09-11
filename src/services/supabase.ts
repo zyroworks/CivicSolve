@@ -10,10 +10,24 @@ import { Challenge, ChallengeStatus, PriorityLevel } from '../types';
  * 2. Run the provided schema in supabase/schema.sql in your Supabase SQL Editor.
  */
 
-const env = (import.meta as any).env || {};
-const rawSupabaseUrl = (env.VITE_SUPABASE_URL || '').trim();
-const SUPABASE_URL = rawSupabaseUrl.replace(/\/rest\/v1\/?$/, '').replace(/\/+$/, '');
-const SUPABASE_ANON_KEY = (env.VITE_SUPABASE_ANON_KEY || '').trim();
+// Safely resolve Supabase credentials with fallback to active project
+const getSupabaseUrl = (): string => {
+  const envUrl = import.meta.env.VITE_SUPABASE_URL;
+  const url = (envUrl && typeof envUrl === 'string' && envUrl.trim().length > 0)
+    ? envUrl.trim()
+    : 'https://jijxswrnqnflzewcknby.supabase.co';
+  return url.replace(/\/rest\/v1\/?$/, '').replace(/\/+$/, '');
+};
+
+const getSupabaseAnonKey = (): string => {
+  const envKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+  return (envKey && typeof envKey === 'string' && envKey.trim().length > 20)
+    ? envKey.trim()
+    : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imppanhzd3JucW5mbHpld2NrbmJ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkxNDA1MzgsImV4cCI6MjEwNDcxNjUzOH0.NSdHBPNwJqCFJmrsyVmR3Ga1WMZ1QXaLdDdyQxp9tHo';
+};
+
+export const SUPABASE_URL = getSupabaseUrl();
+export const SUPABASE_ANON_KEY = getSupabaseAnonKey();
 
 export const isSupabaseConfigured = (): boolean => {
   return Boolean(
@@ -143,11 +157,13 @@ export const fetchChallengesFromSupabase = async (): Promise<Challenge[] | null>
  */
 export const insertChallengeToSupabase = async (challenge: Challenge): Promise<boolean> => {
   if (!isSupabaseConfigured()) {
+    console.warn('[Supabase] Not configured or credentials missing');
     return false;
   }
 
   try {
     const row = mapChallengeToRow(challenge);
+    console.log('[Supabase] Sending problem ticket to cloud PostgreSQL:', row.ticket_id, row.title);
     const res = await fetch(`${SUPABASE_URL}/rest/v1/challenges`, {
       method: 'POST',
       headers: {
@@ -160,13 +176,15 @@ export const insertChallengeToSupabase = async (challenge: Challenge): Promise<b
     });
 
     if (!res.ok) {
-      console.error('Failed to insert challenge into Supabase:', res.status, await res.text());
+      const errText = await res.text();
+      console.error('[Supabase] Failed to insert challenge:', res.status, errText);
       return false;
     }
 
+    console.log('✅ [Supabase] Problem ticket successfully written to PostgreSQL:', row.ticket_id);
     return true;
   } catch (error) {
-    console.error('Error inserting challenge into Supabase:', error);
+    console.error('[Supabase] Error inserting challenge into Supabase:', error);
     return false;
   }
 };

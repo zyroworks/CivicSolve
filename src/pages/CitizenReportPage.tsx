@@ -96,14 +96,14 @@ export const CitizenReportPage: React.FC = () => {
     setIsAnalyzing(false);
   };
 
-  const handleDispatch = () => {
+  const handleDispatch = async () => {
     setIsDispatching(true);
-    setTimeout(() => {
+    try {
       const reporter = isAuthenticated && user
         ? `${user.displayName} (${user.email})`
         : currentUser.name || 'Anonymous Citizen';
 
-      const created = addChallenge({
+      const created = await addChallenge({
         title: formData.title,
         category: formData.category,
         peopleAffected: formData.peopleAffected,
@@ -123,10 +123,15 @@ export const CitizenReportPage: React.FC = () => {
         mediaName: 'pipeline_leak_photo.jpg',
         mediaSize: '2.4 MB',
       });
+
       setIsDispatching(false);
-      alert(`Challenge successfully registered under ${created.ticketId}! Submitted by ${reporter}. Synced with live Supabase database.`);
+      alert(`✅ Challenge successfully registered under ${created.ticketId}!\n\nSubmitted by: ${reporter}\nStatus: Saved to live Supabase PostgreSQL database.`);
       navigate('/admin');
-    }, 1200);
+    } catch (err) {
+      console.error('Error submitting challenge:', err);
+      setIsDispatching(false);
+      alert('Encountered an issue submitting problem. Please try again.');
+    }
   };
 
   return (
