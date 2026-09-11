@@ -3,6 +3,12 @@ import { Challenge, Project, ChallengeStatus, PriorityLevel, AIDiagnosticResult 
 import { INITIAL_CHALLENGES, INITIAL_PROJECT } from '../data/mockData';
 import { JHARKHAND_CHALLENGES } from '../data/jharkhandChallenges';
 import { useAuth } from './AuthContext';
+import { 
+  fetchChallengesFromSupabase, 
+  insertChallengeToSupabase, 
+  updateChallengeStatusInSupabase, 
+  isSupabaseConfigured 
+} from '../services/supabase';
 
 interface ChallengeContextType {
   challenges: Challenge[];
@@ -44,6 +50,20 @@ export const ChallengeProvider: React.FC<{ children: ReactNode }> = ({ children 
     localStorage.setItem('civicsolve_project', JSON.stringify(activeProject));
   }, [activeProject]);
 
+  // Synchronize with live Supabase PostgreSQL database if configured
+  useEffect(() => {
+    if (isSupabaseConfigured()) {
+      fetchChallengesFromSupabase().then((remoteData) => {
+        if (remoteData && remoteData.length > 0) {
+          console.log(`[CivicSolve] Successfully synchronized ${remoteData.length} records from Supabase cloud database.`);
+          setChallenges(remoteData);
+        }
+      }).catch((err) => {
+        console.warn('[CivicSolve] Supabase cloud connection error, retaining local database cache:', err);
+      });
+    }
+  }, []);
+
   const addChallenge = (data: Omit<Challenge, 'id' | 'ticketId' | 'createdAt' | 'status' | 'endorsementsCount'>): Challenge => {
     const nextNum = Math.floor(8900 + Math.random() * 100);
     const newChallenge: Challenge = {
@@ -56,6 +76,14 @@ export const ChallengeProvider: React.FC<{ children: ReactNode }> = ({ children 
     };
 
     setChallenges((prev) => [newChallenge, ...prev]);
+
+    // Asynchronously insert into Supabase if configured
+    if (isSupabaseConfigured()) {
+      insertChallengeToSupabase(newChallenge).catch((err) => {
+        console.warn('[CivicSolve] Could not sync new challenge to Supabase:', err);
+      });
+    }
+
     return newChallenge;
   };
 
@@ -72,6 +100,13 @@ export const ChallengeProvider: React.FC<{ children: ReactNode }> = ({ children 
         return ch;
       })
     );
+
+    // Asynchronously update status in Supabase if configured
+    if (isSupabaseConfigured()) {
+      updateChallengeStatusInSupabase(id, status, priority).catch((err) => {
+        console.warn('[CivicSolve] Could not sync status update to Supabase:', err);
+      });
+    }
   };
 
   const updateTaskStatus = (taskId: string, status: 'DONE' | 'IN_PROGRESS' | 'UNDER_REVIEW') => {
