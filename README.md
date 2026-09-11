@@ -68,12 +68,30 @@ npm run build
 | **University Project Workspace** | `/workspace` | AquaSense (#CS-8921) IoT dashboard, Quad stakeholder mesh, sprint task checklist, telemetry curve visualizer, mentor discussion thread. |
 | **Challenges Repository** | `/challenges` | Searchable national index of verified challenges and citizen endorsements. |
 | **Impact & Social Audit** | `/impact` | Quantified societal impact metrics, SDG distribution, municipal cost savings, and patent disclosures. |
+| **Google Sign-In & Login** | `/login` | Official Google OAuth 2.0 authentication, stakeholder persona onboarding, session persistence, and secure profile management. |
 | **CivicSolve AI Assistant** | Floating widget | Role-aware chatbot on bottom-right: problem intake, structured draft formulating, duplicate challenge check, and non-executive guidance. |
 
 ---
 
-## Multi-Stakeholder Role Switcher
-In the top navigation bar, click any role (**Citizens**, **Govt Admin**, **Universities**, **Industry**) to instantly switch personas, views, and permissions during evaluations and demonstrations.
+## Google Authentication (Firebase Auth)
+CivicSolve is equipped with production-ready Google Authentication:
+- **Zero-Config Developer Mode**: By default, one-click simulated Google authentication is available out-of-the-box for instant local testing and presentations.
+- **Production Live Google OAuth**:
+  1. Create a project in [Firebase Console](https://console.firebase.google.com).
+  2. Navigate to **Authentication > Sign-in method** and enable **Google**.
+  3. Under **Authentication > Settings > Authorized domains**, add `localhost` and your production domain (e.g. `civicsolve.vercel.app`).
+  4. Copy your web app keys to `.env` or Vercel Environment Variables:
+     - `VITE_FIREBASE_API_KEY`
+     - `VITE_FIREBASE_AUTH_DOMAIN`
+     - `VITE_FIREBASE_PROJECT_ID`
+     - `VITE_FIREBASE_STORAGE_BUCKET`
+     - `VITE_FIREBASE_MESSAGING_SENDER_ID`
+     - `VITE_FIREBASE_APP_ID`
+
+---
+
+## Multi-Stakeholder Role Switcher & Profile Drawer
+In the top navigation bar, users can sign in with Google to view their authenticated profile, verified Google badge, and switch active personas (**Citizens**, **Govt Admin**, **Universities**, **Industry**) to view the platform through different stakeholder perspectives. Clicking the user profile pill opens an interactive drawer with profile settings, quick actions, and **Sign Out**.
 
 ---
 

@@ -24,6 +24,9 @@ export default defineConfig({
             if (id.includes('leaflet')) {
               return 'vendor-leaflet';
             }
+            if (id.includes('firebase')) {
+              return 'vendor-firebase';
+            }
             if (id.includes('lucide-react')) {
               return 'vendor-icons';
             }
