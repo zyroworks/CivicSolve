@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"tertiary":"#006056","outline-variant":"#c3c6d7","surface-container-low":"#f2f4f6","tertiary-fixed-dim":"#4fdbc8","primary-fixed-dim":"#b4c5ff","on-secondary-fixed-variant":"#3f465c","secondary-fixed":"#dae2fd","on-error":"#ffffff","on-secondary-fixed":"#131b2e","on-surface":"#191c1e","on-tertiary":"#ffffff","tertiary-fixed":"#71f8e4","surface-container-lowest":"#ffffff","on-secondary-container":"#5c647a","secondary-container":"#dae2fd","error-container":"#ffdad6","primary-fixed":"#dbe1ff","on-secondary":"#ffffff","primary":"#004ac6","surface-variant":"#e0e3e5","on-primary":"#ffffff","on-error-container":"#93000a","error":"#ba1a1a","on-background":"#191c1e","secondary":"#565e74","on-primary-fixed":"#00174b","surface-container-high":"#e6e8ea","surface-dim":"#d8dadc","on-primary-fixed-variant":"#003ea8","inverse-primary":"#b4c5ff","outline":"#737686","surface-bright":"#f7f9fb","on-tertiary-container":"#b1fff1","secondary-fixed-dim":"#bec6e0","tertiary-container":"#007b6e","inverse-on-surface":"#eff1f3","surface-container":"#eceef0","primary-container":"#2563eb","on-primary-container":"#eeefff","on-surface-variant":"#434655","inverse-surface":"#2d3133","on-tertiary-fixed-variant":"#005048","surface-tint":"#0053db","surface":"#f7f9fb","surface-container-highest":"#e0e3e5","on-tertiary-fixed":"#00201c","background":"#f7f9fb"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"container-max":"80rem","space-2xl":"3rem","space-sm":"0.75rem","space-xs":"0.5rem","space-2xs":"0.25rem","space-3xl":"4rem","space-md":"1rem","space-xl":"2rem","gutter-desktop":"1.5rem","gutter-mobile":"1rem","space-lg":"1.5rem"},"fontFamily":{"headline-md":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-xl":["Plus Jakarta Sans"],"body-md":["Inter"],"display-mobile":["Plus Jakarta Sans"],"label-lg":["Inter"],"label-md":["Inter"],"display":["Plus Jakarta Sans"],"body-lg":["Inter"],"headline-sm":["Plus Jakarta Sans"],"body-sm":["Inter"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"]},"fontSize":{"headline-md":["1.375rem",{"lineHeight":"1.875rem","letterSpacing":"-0.01em","fontWeight":"600"}],"label-sm":["0.6875rem",{"lineHeight":"0.875rem","letterSpacing":"0.04em","fontWeight":"700"}],"headline-xl":["2.25rem",{"lineHeight":"2.75rem","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["0.9375rem",{"lineHeight":"1.5rem","letterSpacing":"0em","fontWeight":"400"}],"display-mobile":["2.25rem",{"lineHeight":"2.75rem","letterSpacing":"-0.02em","fontWeight":"800"}],"label-lg":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"0.01em","fontWeight":"600"}],"label-md":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0.02em","fontWeight":"600"}],"display":["3.25rem",{"lineHeight":"3.75rem","letterSpacing":"-0.025em","fontWeight":"800"}],"body-lg":["1.125rem",{"lineHeight":"1.75rem","letterSpacing":"-0.005em","fontWeight":"400"}],"headline-sm":["1.125rem",{"lineHeight":"1.625rem","letterSpacing":"-0.005em","fontWeight":"600"}],"body-sm":["0.8125rem",{"lineHeight":"1.25rem","letterSpacing":"0.005em","fontWeight":"400"}],"headline-xl-mobile":["1.75rem",{"lineHeight":"2.25rem","letterSpacing":"-0.015em","fontWeight":"700"}],"headline-lg":["1.75rem",{"lineHeight":"2.25rem","letterSpacing":"-0.015em","fontWeight":"700"}]}}}}</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-28 w-full max-w-container-max mx-auto px-gutter-desktop flex flex-col justify-between py-space-xs"><div class="flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><img alt="CivicSolve Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W1D9XI8SZPOEaxx-IiZkNKAQzDpFOcDdCRF0jTQkVf47htmQEoDXsZa3E30SAPDelvfZRJasMSRkVjLFCUzWE8vYm_STnFraYjsHOwztxFUfihHQ0p5oONbgu9mck2-eyU0uzWO6dISpCaOJfjnB9rhGlyvHpl4-7noMi5AESFx92SYH_VMiYvechwaS_p2awtxSwmg_3T4vKeMzTLHliHeS7dNocWBLyoa6mXaBYaKudp49vt3xUHCYA"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">CivicSolve</span><span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">SIH'24 Grand Innovation</span></div></div><nav class="hidden lg:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-label-lg rounded-lg"><a aria-current="page" class="px-space-sm py-space-xs transition-colors bg-primary-container text-on-primary-container font-label-lg rounded-lg" data-path="home" href="#">Home</a><a class="px-space-sm py-space-xs rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="challenges" href="#">Challenges</a><a class="px-space-sm py-space-xs rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="innovation-projects" href="#">Innovation Projects</a><a class="px-space-sm py-space-xs rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="impact" href="#">Impact</a><a class="px-space-sm py-space-xs rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="about-sih" href="#">About SIH</a></nav></div><div class="flex items-center gap-space-md"><div class="hidden xl:flex items-center bg-surface-container-low rounded-lg px-space-sm py-space-2xs w-72"><span class="material-symbols-outlined text-on-surface-variant text-base mr-space-xs">search</span><input class="bg-transparent w-full text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:outline-none" placeholder="Search challenges, districts, AI tags..." type="text"/><kbd class="font-label-sm text-label-sm bg-surface-container-lowest text-on-surface-variant px-space-2xs rounded">⌘K</kbd></div><div class="hidden md:flex items-center bg-surface-container-low p-space-2xs rounded-full"><button class="px-space-xs py-0.5 rounded-full font-label-md text-label-md bg-surface-container-lowest text-primary shadow-[0_1px_3px_rgba(0,0,0,0.05)]" type="button">Citizens</button><button class="px-space-xs py-0.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface" type="button">Govt Admin</button><button class="px-space-xs py-0.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface" type="button">Universities</button><button class="px-space-xs py-0.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface" type="button">Industry</button></div><button class="relative p-space-xs rounded-full hover:bg-surface-container-low text-on-surface-variant transition-colors" type="button"><span class="material-symbols-outlined">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 bg-error text-on-error rounded-full font-label-sm text-label-sm flex items-center justify-center">3</span></button><div class="flex items-center gap-space-xs pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm9LJsA_Dc-gdbr3I3d9kHWKZJVUTtd4dS6Bm66Um35qWMVrXkGa8UH7RnyJ3aLdqnARYPyhFgBgTSFnJkKAsQ1m0MAz2GgmpQA220Bu7OgRPhmxU9ZoiZZ6zSwsJxTld61clA84E40D8t8gAlVlynl3vpkxlh4-7WxHteH4FOrVaBFqT_ZON2wK7xRPv3qJ0NDQ7o04kYTgOECif5-avYZC2laILtApd3qf3FDrsThtAFv6kQLAtUjA"/><div class="hidden sm:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Aarav Sharma</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">IIT Delhi • Lead</span></div><span class="material-symbols-outlined text-on-surface-variant text-sm">expand_more</span></div></div></div><div class="overflow-x-auto pt-space-2xs flex items-center gap-space-xs"><div class="flex items-center gap-space-xs font-label-sm text-label-sm whitespace-nowrap"><span class="px-space-xs py-0.5 rounded-full bg-primary-container text-on-primary-container flex items-center gap-1"><span class="material-symbols-outlined text-xs">record_voice_over</span>1. Citizen Problem</span><span class="text-outline-variant font-bold">→</span><span class="px-space-xs py-0.5 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center gap-1"><span class="material-symbols-outlined text-xs">auto_awesome</span>2. AI Analysis</span><span class="text-outline-variant font-bold">→</span><span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-xs">verified_user</span>3. Govt Validation</span><span class="text-outline-variant font-bold">→</span><span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-xs">school</span>4. University Matching</span><span class="text-outline-variant font-bold">→</span><span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-xs">groups</span>5. Team Collaboration</span><span class="text-outline-variant font-bold">→</span><span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-xs">precision_manufacturing</span>6. Prototype</span><span class="text-outline-variant font-bold">→</span><span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-xs">rocket_launch</span>7. Deployment</span><span class="text-outline-variant font-bold">→</span><span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-xs">award_star</span>8. Impact</span></div></div></div></header><main class="w-full pt-28 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- SECTION 1: HERO & LIVE TICKER -->
+<section class="relative w-full overflow-hidden pb-space-2xl pt-space-xl">
+<!-- Ambient backdrops (contained, no borders) -->
+<div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[70rem] h-[28rem] bg-gradient-to-b from-primary-fixed/40 via-tertiary-fixed/20 to-transparent blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute top-48 -right-24 w-96 h-96 bg-tertiary-fixed-dim/20 rounded-full blur-2xl pointer-events-none -z-10"></div>
+<div class="max-w-container-max mx-auto px-gutter-desktop">
+<div class="flex flex-col items-center text-center space-y-space-md max-w-4xl mx-auto">
+<!-- Super badge -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container-lowest shadow-sm">
+<span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">SIH 2024 National Finalist</span>
+<span class="text-outline-variant font-bold">·</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">AI for Societal Good</span>
+<span class="material-symbols-outlined text-sm text-primary">verified</span>
+</div>
+<!-- Headline -->
+<h1 class="font-display text-display text-on-surface tracking-tight leading-[1.08] max-w-3xl">
+          From Community Problems to <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-tertiary">Deployable Solutions</span>
+</h1>
+<!-- Subheadline -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+          A unified digital platform connecting citizens, government bodies, universities, and industry mentors to solve urgent societal challenges through AI-assisted research and engineering.
+        </p>
+<!-- CTAs -->
+<div class="pt-space-xs flex flex-wrap items-center justify-center gap-space-md">
+<button class="group px-space-lg py-space-sm bg-primary text-on-primary rounded-lg font-label-lg text-label-lg shadow-sm hover:bg-primary-container transition-all flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-lg">add_location_alt</span>
+<span>Report a Problem</span>
+<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-0.5">arrow_forward</span>
+</button>
+<a class="px-space-lg py-space-sm bg-surface-container-lowest text-on-surface rounded-lg font-label-lg text-label-lg shadow-sm hover:bg-surface-container-low transition-all flex items-center gap-space-xs" href="#">
+<span class="material-symbols-outlined text-lg text-primary">travel_explore</span>
+<span>Explore Challenges</span>
+</a>
+</div>
+</div>
+<!-- Live Platform Stats Ticker -->
+<div class="mt-space-2xl grid grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Citizen Submissions</span>
+<span class="p-1.5 rounded-lg bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">crisis_alert</span>
+</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-xl text-headline-xl text-on-surface">1,420+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="text-tertiary font-label-sm text-label-sm flex items-center"><span class="material-symbols-outlined text-xs">trending_up</span>+18%</span> this month
+            </div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Active R&amp;D Hubs</span>
+<span class="p-1.5 rounded-lg bg-tertiary-fixed text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">biotech</span>
+</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-xl text-headline-xl text-on-surface">318 Labs</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Across IITs, NITs, &amp; State Univs</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Field Deployments</span>
+<span class="p-1.5 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">rocket_launch</span>
+</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-xl text-headline-xl text-on-surface">84 Ready</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Validated by Municipal Bodies</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Social Footprint</span>
+<span class="p-1.5 rounded-lg bg-primary-fixed-dim text-on-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">groups</span>
+</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-xl text-headline-xl text-on-surface">2.4M+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Citizens Directly Impacted</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: END-TO-END CIVIC LIFECYCLE INTERACTIVE TIMELINE -->
+<section class="w-full py-space-2xl bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-gutter-desktop">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-md">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Innovation Architecture</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-1">The End-to-End Civic Lifecycle</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-xl">
+            How raw citizen pain points transform into municipal infrastructure through SIH-engineered workflows.
+          </p>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-base text-tertiary">touch_app</span> Click stages to preview runtime telemetry
+        </div>
+</div>
+<!-- 8-Stage Interactive Horizontal Stepper -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-space-sm" id="stepper-cards">
+<!-- Step 1 -->
+<button class="lifecycle-card text-left p-space-sm rounded-lg bg-primary-fixed text-on-primary-fixed transition-all" data-step="1" onclick="setLifecycleStep(1)" type="button">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm font-bold opacity-80">STAGE 01</span>
+<span class="material-symbols-outlined text-base">pin_drop</span>
+</div>
+<div class="font-headline-sm text-headline-sm leading-snug">Citizen Problem</div>
+<div class="font-body-sm text-body-sm opacity-90 mt-1">GIS geotag + mobile proof capture</div>
+</button>
+<!-- Step 2 -->
+<button class="lifecycle-card text-left p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high transition-all" data-step="2" onclick="setLifecycleStep(2)" type="button">
+<div class="flex items-center justify-between mb-space-xs text-on-surface-variant">
+<span class="font-label-sm text-label-sm font-bold">STAGE 02</span>
+<span class="material-symbols-outlined text-base text-tertiary">psychology</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-snug">AI Analysis</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">BERT deduplication &amp; severity score</div>
+</button>
+<!-- Step 3 -->
+<button class="lifecycle-card text-left p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high transition-all" data-step="3" onclick="setLifecycleStep(3)" type="button">
+<div class="flex items-center justify-between mb-space-xs text-on-surface-variant">
+<span class="font-label-sm text-label-sm font-bold">STAGE 03</span>
+<span class="material-symbols-outlined text-base text-primary">fact_check</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-snug">Govt Validation</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Ward commissioner endorsement</div>
+</button>
+<!-- Step 4 -->
+<button class="lifecycle-card text-left p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high transition-all" data-step="4" onclick="setLifecycleStep(4)" type="button">
+<div class="flex items-center justify-between mb-space-xs text-on-surface-variant">
+<span class="font-label-sm text-label-sm font-bold">STAGE 04</span>
+<span class="material-symbols-outlined text-base">hub</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-snug">Lab Matching</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Institutional skills vector search</div>
+</button>
+<!-- Step 5 -->
+<button class="lifecycle-card text-left p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high transition-all" data-step="5" onclick="setLifecycleStep(5)" type="button">
+<div class="flex items-center justify-between mb-space-xs text-on-surface-variant">
+<span class="font-label-sm text-label-sm font-bold">STAGE 05</span>
+<span class="material-symbols-outlined text-base">group_work</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-snug">R&amp;D Sprints</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Faculty &amp; student engineering track</div>
+</button>
+<!-- Step 6 -->
+<button class="lifecycle-card text-left p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high transition-all" data-step="6" onclick="setLifecycleStep(6)" type="button">
+<div class="flex items-center justify-between mb-space-xs text-on-surface-variant">
+<span class="font-label-sm text-label-sm font-bold">STAGE 06</span>
+<span class="material-symbols-outlined text-base text-tertiary">handshake</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-snug">Industry CSR</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Corporate cloud &amp; hardware grants</div>
+</button>
+<!-- Step 7 -->
+<button class="lifecycle-card text-left p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high transition-all" data-step="7" onclick="setLifecycleStep(7)" type="button">
+<div class="flex items-center justify-between mb-space-xs text-on-surface-variant">
+<span class="font-label-sm text-label-sm font-bold">STAGE 07</span>
+<span class="material-symbols-outlined text-base text-primary">sensors</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-snug">Field Pilot</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Municipal testbed deployment</div>
+</button>
+<!-- Step 8 -->
+<button class="lifecycle-card text-left p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high transition-all" data-step="8" onclick="setLifecycleStep(8)" type="button">
+<div class="flex items-center justify-between mb-space-xs text-on-surface-variant">
+<span class="font-label-sm text-label-sm font-bold">STAGE 08</span>
+<span class="material-symbols-outlined text-base text-tertiary">social_leaderboard</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-snug">Citizen Impact</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Audit trail &amp; outcome scoring</div>
+</button>
+</div>
+<!-- Dynamic Context Panel -->
+<div class="mt-space-lg p-space-lg rounded-xl bg-surface-container-low flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg">
+<div class="space-y-space-xs max-w-2xl">
+<div class="inline-flex items-center gap-space-2xs px-space-xs py-0.5 rounded bg-tertiary-fixed font-label-sm text-label-sm text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-xs">auto_awesome</span>
+<span id="step-badge">Active Engine: GIS Ingestion API v3.2</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface" id="step-title">Automated Crowdsourced Citizen Reporting</h3>
+<p class="font-body-md text-body-md text-on-surface-variant" id="step-desc">
+              Citizens submit geo-tagged images, audio descriptions in 12 Indian regional languages, and exact coordinates. The platform extracts EXIF data to prevent falsified reports and instantly clusters geographically coincident issues.
+            </p>
+</div>
+<!-- Inline Technical Progress Visualizer (SVG) -->
+<div class="w-full lg:w-72 bg-surface-container-lowest p-space-md rounded-lg shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Pipeline Integrity</span>
+<span class="font-label-md text-label-md text-tertiary font-bold" id="step-stat">99.4% SLA</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" id="step-progress-bar" style="width: 25%;"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant pt-1">
+<span>Avg Latency: <strong class="text-on-surface font-semibold">140ms</strong></span>
+<span>Node: <strong class="text-on-surface font-semibold">SIH-NIC-04</strong></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: HOW IT WORKS - STAKEHOLDER MATRIX -->
+<section class="w-full py-space-3xl">
+<div class="max-w-container-max mx-auto px-gutter-desktop">
+<div class="text-center max-w-2xl mx-auto mb-space-2xl space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Multi-Stakeholder Synergy</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Designed for Every Civic Innovator</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Empowering citizens, administrative bodies, researchers, and corporates through tailor-made operational tooling.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Stakeholder 1: Citizens -->
+<div class="group bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">record_voice_over</span>
+</div>
+<div class="space-y-space-xs">
+<span class="font-label-sm text-label-sm text-primary font-semibold tracking-wide uppercase">Hyperlocal Democracy</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Citizens &amp; Communities</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Crowdsource civic pain points in real-time across water distribution, solid waste, rural mobility, and agrarian crop health with vernacular voice input.
+              </p>
+</div>
+<!-- Interactive capability chips -->
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Photo Geotagging</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">SMS Grievance Sync</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Audit Voting</span>
+</div>
+</div>
+<div class="pt-space-lg">
+<a class="font-label-md text-label-md text-primary flex items-center gap-1 group-hover:gap-2 transition-all" href="#">
+              Submit Neighborhood Issue <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Stakeholder 2: Government & Admin -->
+<div class="group bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">account_balance</span>
+</div>
+<div class="space-y-space-xs">
+<span class="font-label-sm text-label-sm text-tertiary font-semibold tracking-wide uppercase">Institutional Oversight</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Govt &amp; Municipal Admin</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Automated NLP deduplication, severity prioritization, ward-level escalation, and transparent R&amp;D sanction pipelines with full audit logging.
+              </p>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Automated Triage</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Ward Heatmaps</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">R&amp;D Sanction</span>
+</div>
+</div>
+<div class="pt-space-lg">
+<a class="font-label-md text-label-md text-tertiary flex items-center gap-1 group-hover:gap-2 transition-all" href="#">
+              Access Admin Console <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Stakeholder 3: Universities & Students -->
+<div class="group bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<div class="space-y-space-xs">
+<span class="font-label-sm text-label-sm text-secondary font-semibold tracking-wide uppercase">Academic Translation</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Universities &amp; Labs</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Transform verified municipal roadblocks into accredited undergraduate capstones, funded PhD dissertations, and high-impact student hackathon prototypes.
+              </p>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">SIH'24 Fast-Track</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Lab Hardware Routing</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Academic Credits</span>
+</div>
+</div>
+<div class="pt-space-lg">
+<a class="font-label-md text-label-md text-on-surface flex items-center gap-1 group-hover:gap-2 transition-all font-semibold" href="#">
+              Register Research Team <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Stakeholder 4: Industry & MSMEs -->
+<div class="group bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed-dim text-on-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">domain_add</span>
+</div>
+<div class="space-y-space-xs">
+<span class="font-label-sm text-label-sm text-primary font-semibold tracking-wide uppercase">CSR &amp; Scale Grants</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Industry &amp; Enterprise</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Target corporate social responsibility (CSR) capital directly into validated regional solutions, offer cloud computing compute, and provide domain mentorship.
+              </p>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Direct CSR Allocation</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">IP Co-Creation</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Pilot Incubation</span>
+</div>
+</div>
+<div class="pt-space-lg">
+<a class="font-label-md text-label-md text-primary font-semibold flex items-center gap-1 group-hover:gap-2 transition-all" href="#">
+              Partner with Innovators <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: FEATURED LIVE CHALLENGES & PROTOTYPES -->
+<section class="w-full py-space-2xl bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-gutter-desktop">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-space-xl gap-space-sm">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-tertiary font-bold">Field Implementations</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-1">Active Challenges &amp; Live Prototypes</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Real problems undergoing research, prototyping, and municipal testbed trials right now.</p>
+</div>
+<a class="inline-flex items-center gap-space-2xs text-primary font-label-lg text-label-lg hover:underline" href="#">
+          Browse all 1,420 challenges <span class="material-symbols-outlined text-base">arrow_right_alt</span>
+</a>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+<!-- Challenge Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col">
+<div class="relative h-48 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A solar-powered IoT water quality sensor buoy floating inside a rural reservoir in the arid desert of Barmer Rajasthan, bright natural daylight, technical precision engineering, clean aesthetic, ultra-sharp detail, cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-GtoRwQUeg4O_4R1Pslz9SybjjZD5tiVnmwgLGOIU2hr15Wc0hACMyQo-ZR6Wr18bKiwyeHeEAxYEyD8k3X7F0UJNvciu7ClHJcTBwGtk_LR941aMnN0nWZ557hWXwFCWYKI2vJoXUj1W-Hyrf_JiaU4hSkNY6JKfqzW9isbKydKL2DbWGAvd6HIbVBxSEUgpr2NVPEKG5uTnnatBTO6BSU-M3jlqZ6E63v274rsNbM4IeMfhY2KzPA"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-md px-space-xs py-1 rounded-full font-label-sm text-label-sm text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">water_drop</span> SDG 6: Clean Water
+            </div>
+<div class="absolute bottom-3 right-3 bg-surface-container-lowest/95 backdrop-blur-md px-space-xs py-0.5 rounded font-label-sm text-label-sm text-on-surface font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-error">location_on</span> Barmer, Rajasthan
+            </div>
+</div>
+<div class="p-space-lg flex-1 flex flex-col justify-between space-y-space-md">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="px-space-xs py-0.5 rounded bg-tertiary-fixed font-label-sm text-label-sm text-on-tertiary-fixed font-semibold">STAGE 07: Field Pilot</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">CH-RAJ-8812</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight">AI Groundwater Salinity Sensor Network</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 line-clamp-3">
+                Autonomous low-cost LoRaWAN fluorometry sensors reporting sub-surface mineralization spikes directly to district irrigation engineers before crop sowing seasons.
+              </p>
+</div>
+<div class="space-y-space-xs pt-space-xs">
+<div class="p-space-xs rounded-lg bg-surface-container flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-sm">school</span> MNIT Jaipur Lab</span>
+<span class="text-primary font-semibold">Tata Water Mission</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant pt-1">
+<span>Citizen Endorsements: <strong class="text-on-surface">3,240</strong></span>
+<a class="text-primary font-label-md text-label-md hover:underline flex items-center gap-0.5" href="#">
+                  View Data Feed <span class="material-symbols-outlined text-xs">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Challenge Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col">
+<div class="relative h-48 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Transit bus dashboard camera in Bengaluru capturing high-resolution street pavement with AI bounding box overlays highlighting road hazards and cracks, contemporary smart city tech, sleek user interface elements, natural Indian daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY1_OHNpRsE9tVG-uWEdj2ktqC0fI_0JuDVN3xzYi8yCNP2Ej2GgQmmjvA4-QlhlKlP_XXv-RhZaN0OzhUgsbJRwjue8CCgMcAuUHPEGBrg4UCztFcSIkMMKXRU6VM4x5kY77kY9rp_rh8T1l3yT5g8Zi_sc7N5fg0RfBph-I5kCvtIbnlUTDdKUKwzK-X2HrA1_c--Id242i7xz8uYUjyWEwRwQ_v0FadAGKVZDZvQp3LPhYnHx7OHw"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-md px-space-xs py-1 rounded-full font-label-sm text-label-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">traffic</span> SDG 11: Sustainable Cities
+            </div>
+<div class="absolute bottom-3 right-3 bg-surface-container-lowest/95 backdrop-blur-md px-space-xs py-0.5 rounded font-label-sm text-label-sm text-on-surface font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-error">location_on</span> Bengaluru BBMP
+            </div>
+</div>
+<div class="p-space-lg flex-1 flex flex-col justify-between space-y-space-md">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="px-space-xs py-0.5 rounded bg-primary-fixed font-label-sm text-label-sm text-on-primary-fixed font-semibold">STAGE 06: Prototype R&amp;D</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">CH-KA-2041</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Pothole &amp; Road Hazard Detection via Transit Cameras</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 line-clamp-3">
+                Edge-AI YOLOv8 inference running on BMTC city buses to continuously build automated asphalt degradation indexes and auto-dispatch road repair work orders.
+              </p>
+</div>
+<div class="space-y-space-xs pt-space-xs">
+<div class="p-space-xs rounded-lg bg-surface-container flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-sm">school</span> IISc / RVCE Labs</span>
+<span class="text-primary font-semibold">MapMyIndia CSR</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant pt-1">
+<span>Citizen Endorsements: <strong class="text-on-surface">8,910</strong></span>
+<a class="text-primary font-label-md text-label-md hover:underline flex items-center gap-0.5" href="#">
+                  View Demo Model <span class="material-symbols-outlined text-xs">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Challenge Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col">
+<div class="relative h-48 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Solar powered modular cold storage container unit installed beside a sun-drenched vineyard and tomato field in rural Nashik Maharashtra, bright Indian sunlight, agricultural engineering innovation, clean modern functional design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ4urhCqiP34jnvpweA7vA_fWsGfD0cVTwx8VLfP-1oBynBzmTqtzHf_u9xEd8eo96wNHXt6rYJ3AtzYpDd1NvnsYPMiFmwueG7SNMyEKmu3jTZ_4AbfQt9Ke3-_gt84xTkDrg-zAooip7nSUwfEcUcNjXbu5shoZsY5wSucFJ-HZP_blHcBmSvosOSTG4tcuTA7vYNT1U6NdShjavrjji0nGakz_PBNhOW3N-aSza3N4yO4Z_mklnzQ"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-md px-space-xs py-1 rounded-full font-label-sm text-label-sm text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">eco</span> SDG 2: Zero Hunger
+            </div>
+<div class="absolute bottom-3 right-3 bg-surface-container-lowest/95 backdrop-blur-md px-space-xs py-0.5 rounded font-label-sm text-label-sm text-on-surface font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-error">location_on</span> Nashik, MH
+            </div>
+</div>
+<div class="p-space-lg flex-1 flex flex-col justify-between space-y-space-md">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="px-space-xs py-0.5 rounded bg-secondary-fixed font-label-sm text-label-sm text-on-secondary-fixed font-semibold">STAGE 03: Govt Validated</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">CH-MH-4429</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Solar Cold Storage for Perishable Agritech</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 line-clamp-3">
+                Decentralized phase-change material thermal batteries providing 48-hour refrigeration for tomato and grape clusters without relying on erratic rural electrical grids.
+              </p>
+</div>
+<div class="space-y-space-xs pt-space-xs">
+<div class="p-space-xs rounded-lg bg-surface-container flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-sm">school</span> Matching Open Labs</span>
+<span class="text-tertiary font-semibold">Grant Pool: ₹18.5L</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant pt-1">
+<span>Citizen Endorsements: <strong class="text-on-surface">1,490</strong></span>
+<a class="text-primary font-label-md text-label-md hover:underline flex items-center gap-0.5" href="#">
+                  Claim Challenge <span class="material-symbols-outlined text-xs">assignment_turned_in</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: NATIONAL IMPACT & ACCREDITATION CTA BANNER -->
+<section class="w-full py-space-3xl">
+<div class="max-w-container-max mx-auto px-gutter-desktop">
+<div class="relative bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-2xl p-space-xl md:p-space-2xl overflow-hidden shadow-xl">
+<!-- Background accents -->
+<div class="absolute -right-16 -top-16 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -left-16 -bottom-16 w-80 h-80 bg-tertiary-fixed-dim/20 rounded-full blur-2xl pointer-events-none"></div>
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-8 space-y-space-md">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-white/15 backdrop-blur-md text-on-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm text-tertiary-fixed">verified</span>
+              Smart India Hackathon 2024 · Flagship Implementation Network
+            </div>
+<h2 class="font-headline-xl text-headline-xl text-on-primary max-w-2xl leading-tight">
+              Ready to turn grassroots civic problems into national technological breakthroughs?
+            </h2>
+<p class="font-body-lg text-body-lg text-on-primary/90 max-w-xl">
+              Whether you are a municipal commissioner with an unaddressed crisis, an engineering faculty team looking for meaningful capstones, or a corporate CSR officer seeking measurable social ROI.
+            </p>
+<div class="flex flex-wrap gap-space-md pt-space-xs">
+<button class="px-space-lg py-space-sm bg-white text-primary rounded-lg font-label-lg text-label-lg shadow hover:bg-surface-bright transition-all flex items-center gap-space-xs" type="button">
+<span>Join the Innovation Network</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<button class="px-space-lg py-space-sm bg-white/10 text-on-primary hover:bg-white/20 rounded-lg font-label-lg text-label-lg transition-all flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-sm">download</span>
+<span>Download Institutional Whitepaper</span>
+</button>
+</div>
+</div>
+<!-- Impact Metrics Badge Showcase -->
+<div class="lg:col-span-4 bg-white/10 backdrop-blur-lg p-space-lg rounded-xl space-y-space-md">
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-on-primary/80">SIH National Coverage</div>
+<div class="space-y-space-sm">
+<div class="flex justify-between items-center pb-space-xs">
+<span class="font-body-sm text-body-sm text-on-primary/90">Districts Mapped</span>
+<span class="font-headline-sm text-headline-sm text-on-primary font-bold">428 / 766</span>
+</div>
+<div class="w-full bg-white/20 h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-fixed h-full rounded-full" style="width: 56%"></div>
+</div>
+<div class="flex justify-between items-center pb-space-xs pt-2">
+<span class="font-body-sm text-body-sm text-on-primary/90">Funded CSR Commitments</span>
+<span class="font-headline-sm text-headline-sm text-on-primary font-bold">₹14.2 Cr</span>
+</div>
+<div class="w-full bg-white/20 h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary-fixed h-full rounded-full" style="width: 78%"></div>
+</div>
+<div class="flex justify-between items-center pb-space-xs pt-2">
+<span class="font-body-sm text-body-sm text-on-primary/90">Patent Disclosures Filed</span>
+<span class="font-headline-sm text-headline-sm text-on-primary font-bold">42 Patents</span>
+</div>
+<div class="w-full bg-white/20 h-1.5 rounded-full overflow-hidden">
+<div class="bg-white h-full rounded-full" style="width: 42%"></div>
+</div>
+</div>
+<div class="pt-space-xs flex items-center gap-2 text-on-primary/80 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm text-tertiary-fixed">policy</span>
+              Audited by National Innovation Council
+            </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Vanilla JS for interactive lifecycle switcher -->
+<script>
+    const lifecycleSteps = {
+      1: {
+        badge: "Active Engine: GIS Ingestion API v3.2",
+        title: "Automated Crowdsourced Citizen Reporting",
+        desc: "Citizens submit geo-tagged images, audio descriptions in 12 Indian regional languages, and exact coordinates. The platform extracts EXIF data to prevent falsified reports and instantly clusters geographically coincident issues.",
+        stat: "99.4% SLA",
+        width: "12%"
+      },
+      2: {
+        badge: "AI Inference: BERT Multi-lingual Triage",
+        title: "NLP Classification & Priority Scoring",
+        desc: "Natural Language Processing algorithms analyze submissions for urgency, categorize into municipal domains (water, power, sanitation, transit), and score civic impact against historical density records.",
+        stat: "0.28s Latency",
+        width: "25%"
+      },
+      3: {
+        badge: "Govt Gateway: JanSamwad Ward Sync",
+        title: "Municipal Validation & Budget Sanction",
+        desc: "Ward administrators and district collectors verify issues against local maintenance tenders. Approved problems receive formal administrative clearance and a unique government tracking token.",
+        stat: "142 Wards Linked",
+        width: "37%"
+      },
+      4: {
+        badge: "Lab Router: Semantic Vector Matching",
+        title: "Automated Academic Skill & Lab Routing",
+        desc: "Cosine similarity algorithms match validated problem constraints with specialized university laboratories, available instrumentation (e.g. spectrographs, drone bays), and faculty subject-matter publications.",
+        stat: "318 Labs Ready",
+        width: "50%"
+      },
+      5: {
+        badge: "R&D Track: SIH 2024 Sprints",
+        title: "Student & Faculty Collaborative Engineering",
+        desc: "Multi-disciplinary teams undergo 6-8 week design sprints with embedded industry mentors, utilizing civic sandbox APIs, synthetic datasets, and remote test harness environments.",
+        stat: "2,400+ Students",
+        width: "63%"
+      },
+      6: {
+        badge: "Grant Escrow: Smart Contract CSR",
+        title: "Industry Mentorship & Cloud Hardware Grants",
+        desc: "Participating corporates provide micro-grants for raw materials, sensor rigs, and cloud compute. Corporate mentors conduct weekly code and hardware feasibility reviews.",
+        stat: "₹14.2 Cr Granted",
+        width: "75%"
+      },
+      7: {
+        badge: "Field Test: Ward Pilot Deployment",
+        title: "Real-World Municipal Sandboxing",
+        desc: "Prototypes are installed in designated local testing zones for empirical evaluation. Real-world telemetry is live-streamed to CivicSolve analytics boards for efficacy assessment.",
+        stat: "84 Live Pilots",
+        width: "88%"
+      },
+      8: {
+        badge: "Social Audit: Open Transparency Register",
+        title: "Quantified Citizen Outcome Verification",
+        desc: "Direct metrics like reduction in water salinity, automated pothole repair cycle times, or farmer cold-storage loss reductions are published for citizen and council verification.",
+        stat: "2.4M Beneficiaries",
+        width: "100%"
+      }
+    };
+
+    function setLifecycleStep(stepNum) {
+      const data = lifecycleSteps[stepNum];
+      if (!data) return;
+
+      document.getElementById('step-badge').textContent = data.badge;
+      document.getElementById('step-title').textContent = data.title;
+      document.getElementById('step-desc').textContent = data.desc;
+      document.getElementById('step-stat').textContent = data.stat;
+      document.getElementById('step-progress-bar').style.width = data.width;
+
+      const cards = document.querySelectorAll('.lifecycle-card');
+      cards.forEach(card => {
+        const cardStep = parseInt(card.getAttribute('data-step'), 10);
+        if (cardStep === stepNum) {
+          card.className = "lifecycle-card text-left p-space-sm rounded-lg bg-primary-fixed text-on-primary-fixed transition-all";
+        } else {
+          card.className = "lifecycle-card text-left p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-all";
+        }
+      });
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] mt-space-3xl"><div class="max-w-container-max mx-auto px-gutter-desktop py-space-2xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-space-xl pb-space-xl"><div class="space-y-space-sm md:col-span-1"><div class="flex items-center gap-space-xs"><img alt="CivicSolve Brand Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W1D9XI8SZPOEaxx-IiZkNKAQzDpFOcDdCRF0jTQkVf47htmQEoDXsZa3E30SAPDelvfZRJasMSRkVjLFCUzWE8vYm_STnFraYjsHOwztxFUfihHQ0p5oONbgu9mck2-eyU0uzWO6dISpCaOJfjnB9rhGlyvHpl4-7noMi5AESFx92SYH_VMiYvechwaS_p2awtxSwmg_3T4vKeMzTLHliHeS7dNocWBLyoa6mXaBYaKudp49vt3xUHCYA"/><span class="font-headline-sm text-headline-sm text-primary">CivicSolve</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">National Open Civic Innovation Sandbox bridging academic researchers, municipal leaders, and civil society under the aegis of Smart India Hackathon.</p><div class="inline-flex items-center gap-space-xs px-space-xs py-1 rounded-full bg-surface-container-high font-label-sm text-label-sm text-on-surface"><span class="material-symbols-outlined text-sm text-tertiary">account_balance</span>Endorsed by Ministry of Education</div></div><div class="space-y-space-xs"><h4 class="font-label-lg text-label-lg text-on-surface">Innovation Lifecycle</h4><ul class="space-y-space-2xs font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-primary transition-colors" href="#">Citizen Issue Submissions</a></li><li><a class="hover:text-primary transition-colors" href="#">AI Problem Clustering</a></li><li><a class="hover:text-primary transition-colors" href="#">District R&amp;D Sandbox</a></li><li><a class="hover:text-primary transition-colors" href="#">Open Datasets &amp; APIs</a></li></ul></div><div class="space-y-space-xs"><h4 class="font-label-lg text-label-lg text-on-surface">UN SDG Alignments</h4><div class="flex flex-wrap gap-space-xs pt-space-2xs"><span class="px-space-xs py-1 bg-surface-container-high rounded-lg font-label-sm text-label-sm text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-xs text-primary">water_drop</span>SDG 6: Clean Water</span><span class="px-space-xs py-1 bg-surface-container-high rounded-lg font-label-sm text-label-sm text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-xs text-primary">factory</span>SDG 9: Industry &amp; Infra</span><span class="px-space-xs py-1 bg-surface-container-high rounded-lg font-label-sm text-label-sm text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-xs text-primary">location_city</span>SDG 11: Sustainable Cities</span></div></div><div class="space-y-space-xs"><h4 class="font-label-lg text-label-lg text-on-surface">Platform &amp; Governance</h4><ul class="space-y-space-2xs font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-primary transition-colors" href="#">SIH'24 Problem Statements</a></li><li><a class="hover:text-primary transition-colors" href="#">Data Protection Policy</a></li><li><a class="hover:text-primary transition-colors" href="#">Institutional Verification Guide</a></li><li><a class="hover:text-primary transition-colors" href="#">Grievance Redressal</a></li></ul></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md"><span class="font-body-sm text-body-sm text-on-surface-variant">© 2024 CivicSolve Platform • Smart India Hackathon Innovation Pipeline. All rights reserved.</span><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-2xs font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface" type="button"><span class="material-symbols-outlined text-base">accessibility_new</span>Accessibility Options</button><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface" href="#">Helpdesk</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface" href="#">Terms &amp; Privacy</a></div></div></div></footer></body></html>

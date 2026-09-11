@@ -1,0 +1,98 @@
+{
+  "Bokaro": {
+    "lat": 23.6893,
+    "lng": 86.0151
+  },
+  "Chatra": {
+    "lat": 24.107,
+    "lng": 84.9483
+  },
+  "Deoghar": {
+    "lat": 24.3146,
+    "lng": 86.7684
+  },
+  "Dhanbad": {
+    "lat": 23.837,
+    "lng": 86.3839
+  },
+  "Dumka": {
+    "lat": 24.2843,
+    "lng": 87.2537
+  },
+  "Garhwa": {
+    "lat": 24.0736,
+    "lng": 83.7045
+  },
+  "Giridih": {
+    "lat": 24.2623,
+    "lng": 86.0827
+  },
+  "Godda": {
+    "lat": 24.8277,
+    "lng": 87.3043
+  },
+  "Gumla": {
+    "lat": 23.0785,
+    "lng": 84.5505
+  },
+  "Hazaribag": {
+    "lat": 24.0751,
+    "lng": 85.4383
+  },
+  "Jamtara": {
+    "lat": 23.9838,
+    "lng": 86.9302
+  },
+  "Kodarma": {
+    "lat": 24.5199,
+    "lng": 85.6726
+  },
+  "Latehar": {
+    "lat": 23.7207,
+    "lng": 84.4951
+  },
+  "Lohardaga": {
+    "lat": 23.4884,
+    "lng": 84.6633
+  },
+  "Pakur": {
+    "lat": 24.556,
+    "lng": 87.6953
+  },
+  "Palamu": {
+    "lat": 24.2056,
+    "lng": 84.1704
+  },
+  "Pashchimi Singhbhum": {
+    "lat": 22.3994,
+    "lng": 85.541
+  },
+  "Purba Singhbhum": {
+    "lat": 22.5867,
+    "lng": 86.5038
+  },
+  "Ranchi": {
+    "lat": 23.2674,
+    "lng": 85.3553
+  },
+  "Sahibganj": {
+    "lat": 24.9942,
+    "lng": 87.6455
+  },
+  "Saraikela-Kharsawan": {
+    "lat": 22.8394,
+    "lng": 85.8952
+  },
+  "Simdega": {
+    "lat": 22.6088,
+    "lng": 84.5908
+  },
+  "Khunti": {
+    "lat": 22.9839,
+    "lng": 85.2698
+  },
+  "Ramgarh": {
+    "lat": 23.6618,
+    "lng": 85.5729
+  }
+}
