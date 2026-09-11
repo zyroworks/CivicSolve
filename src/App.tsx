@@ -11,6 +11,7 @@ import { UniversityWorkspacePage } from './pages/UniversityWorkspacePage';
 import { ChallengesListPage } from './pages/ChallengesListPage';
 import { ImpactAnalyticsPage } from './pages/ImpactAnalyticsPage';
 import { LoginPage } from './pages/LoginPage';
+import { PresentationPage } from './pages/PresentationPage';
 import { CivicChatbot } from './components/chat/CivicChatbot';
 
 const ScrollToTop = () => {
@@ -44,6 +45,8 @@ export const AppContent: React.FC = () => {
           <Route path="/admin" element={<GovernmentDashboardPage />} />
           <Route path="/workspace" element={<UniversityWorkspacePage />} />
           <Route path="/impact" element={<ImpactAnalyticsPage />} />
+          <Route path="/presentation" element={<PresentationPage />} />
+          <Route path="/deck" element={<Navigate to="/presentation" replace />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signin" element={<Navigate to="/login" replace />} />
           <Route path="*" element={<LandingPage />} />

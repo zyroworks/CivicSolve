@@ -44,6 +44,7 @@ export const Navbar: React.FC = () => {
     { path: '/workspace', label: 'Innovation Projects' },
     { path: '/admin', label: 'Govt Portal' },
     { path: '/impact', label: 'Impact' },
+    { path: '/presentation', label: '⚡ SIH Pitch Deck' },
   ];
 
   const sampleNotifications = [
@@ -121,6 +122,15 @@ export const Navbar: React.FC = () => {
           {/* Right Area: Role Switcher, Notifications & Auth State */}
           <div className="flex items-center gap-space-sm">
             
+            {/* SIH Pitch Deck Quick Button */}
+            <Link
+              to="/presentation"
+              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-blue-600 via-primary to-cyan-500 text-white font-bold text-xs shadow-md shadow-cyan-500/20 hover:scale-105 hover:shadow-cyan-500/40 transition-all border border-cyan-400/30"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-200 animate-ping" />
+              <span>SIH Pitch Deck</span>
+            </Link>
+
             {/* Quick Stakeholder Persona Switcher */}
             <div className="hidden lg:flex items-center bg-surface-container-low p-1 rounded-full shadow-inner border border-surface-container-high/40">
               {roles.map(({ role, label }) => {

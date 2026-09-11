@@ -11,8 +11,9 @@ import { Challenge, ChallengeStatus, PriorityLevel } from '../types';
  */
 
 const env = (import.meta as any).env || {};
-const SUPABASE_URL = env.VITE_SUPABASE_URL || '';
-const SUPABASE_ANON_KEY = env.VITE_SUPABASE_ANON_KEY || '';
+const rawSupabaseUrl = (env.VITE_SUPABASE_URL || '').trim();
+const SUPABASE_URL = rawSupabaseUrl.replace(/\/rest\/v1\/?$/, '').replace(/\/+$/, '');
+const SUPABASE_ANON_KEY = (env.VITE_SUPABASE_ANON_KEY || '').trim();
 
 export const isSupabaseConfigured = (): boolean => {
   return Boolean(
