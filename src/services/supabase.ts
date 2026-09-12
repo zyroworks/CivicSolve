@@ -23,7 +23,7 @@ const getSupabaseAnonKey = (): string => {
   const envKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
   return (envKey && typeof envKey === 'string' && envKey.trim().length > 20)
     ? envKey.trim()
-    : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imppanhzd3JucW5mbHpld2NrbmJ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkxNDA1MzgsImV4cCI6MjEwNDcxNjUzOH0.NSdHBPNwJqCFJmrsyVmR3Ga1WMZ1QXaLdDdyQxp9tHo';
+    : 'sb_publishable_5KRhsFbUot6rCRXKd1-aQw_lfyO-sZO';
 };
 
 export const SUPABASE_URL = getSupabaseUrl();
