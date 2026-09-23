@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { UserRole } from '../types';
+import { Card } from '../components/common/Card';
+import { Badge } from '../components/common/Badge';
+import { Button } from '../components/common/Button';
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -14,34 +17,36 @@ export const LoginPage: React.FC = () => {
   // If already authenticated, allow quick redirect
   if (isAuthenticated && user) {
     return (
-      <div className="min-h-[80vh] flex items-center justify-center px-4">
-        <div className="max-w-md w-full p-8 bg-surface-container-lowest rounded-3xl border border-surface-container-high shadow-xl text-center space-y-6">
+      <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
+        <Card className="max-w-md w-full p-8 text-center space-y-6">
           <div className="w-16 h-16 mx-auto rounded-full ring-4 ring-primary/20 overflow-hidden">
             <img src={user.photoURL} alt={user.displayName} className="w-full h-full object-cover" />
           </div>
           <div>
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 mb-2">
-              <span className="material-symbols-outlined text-xs">verified</span>
+            <Badge variant="emerald" size="sm" className="mb-2">
+              <span className="material-symbols-outlined text-xs mr-1">verified</span>
               Signed In with Google
-            </span>
-            <h2 className="text-xl font-bold text-on-surface">{user.displayName}</h2>
-            <p className="text-sm text-on-surface-variant">{user.email}</p>
+            </Badge>
+            <h2 className="text-xl font-bold text-slate-900">{user.displayName}</h2>
+            <p className="text-xs text-slate-500 mt-0.5">{user.email}</p>
           </div>
-          <div className="pt-4 flex flex-col gap-3">
-            <button
+          <div className="pt-2 flex flex-col gap-2.5">
+            <Button
+              variant="primary"
+              className="w-full justify-center"
               onClick={() => navigate('/')}
-              className="w-full py-3 px-4 bg-primary text-on-primary font-bold rounded-xl shadow-md hover:bg-primary/90 transition-colors"
             >
               Continue to Home Dashboard
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="secondary"
+              className="w-full justify-center"
               onClick={() => navigate('/report')}
-              className="w-full py-3 px-4 bg-surface-container-high text-on-surface font-semibold rounded-xl hover:bg-surface-container-highest transition-colors text-sm"
             >
               Report a Civic Problem
-            </button>
+            </Button>
           </div>
-        </div>
+        </Card>
       </div>
     );
   }
@@ -102,97 +107,95 @@ export const LoginPage: React.FC = () => {
 
   return (
     <div className="min-h-[85vh] flex items-center justify-center px-4 py-12">
-      <div className="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <div className="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         
         {/* Left Side: Platform Hero & Security Assurances */}
-        <div className="lg:col-span-5 bg-gradient-to-br from-primary via-primary/95 to-slate-900 rounded-3xl p-8 text-white flex flex-col justify-between shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none" />
-          
+        <div className="lg:col-span-5 bg-slate-900 rounded-2xl p-8 text-white flex flex-col justify-between border border-slate-800 shadow-xl relative overflow-hidden">
           <div className="space-y-6 relative z-10">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
-                <span className="material-symbols-outlined text-2xl text-white">hub</span>
+            <div className="flex items-center gap-2.5">
+              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-xs">
+                <span className="material-symbols-outlined text-2xl">hub</span>
               </div>
               <div>
-                <span className="font-bold text-lg tracking-tight text-white">Civic<span className="text-emerald-400">Solve</span></span>
-                <p className="text-[10px] text-white/70 uppercase tracking-widest font-bold">Societal Innovation Platform</p>
+                <span className="font-bold text-lg tracking-tight text-white">Civic<span className="text-teal-400">Solve</span></span>
+                <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Societal Innovation Platform</p>
               </div>
             </div>
 
             <div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+              <h1 className="text-2xl font-extrabold text-white leading-tight">
                 Empowering Citizens & Innovators Across Jharkhand
               </h1>
-              <p className="text-sm text-white/80 mt-3 leading-relaxed">
+              <p className="text-xs text-slate-400 mt-3 leading-relaxed">
                 Connect directly with municipal administrators, university engineering labs, and industry mentors to solve urgent societal challenges.
               </p>
             </div>
 
             {/* Value Pillars */}
-            <div className="space-y-3 pt-2">
-              <div className="flex items-center gap-3 p-3 bg-white/10 rounded-2xl backdrop-blur-md border border-white/10">
-                <span className="material-symbols-outlined text-emerald-400 text-xl">verified_user</span>
+            <div className="space-y-2.5 pt-2">
+              <div className="flex items-center gap-3 p-3 bg-slate-800/70 rounded-xl border border-slate-700/60">
+                <span className="material-symbols-outlined text-teal-400 text-xl">verified_user</span>
                 <div>
                   <p className="text-xs font-bold text-white">Google OAuth 2.0 Security</p>
-                  <p className="text-[11px] text-white/70">Instant, passwordless verification</p>
+                  <p className="text-[11px] text-slate-400">Instant, passwordless verification</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-3 bg-white/10 rounded-2xl backdrop-blur-md border border-white/10">
-                <span className="material-symbols-outlined text-sky-300 text-xl">map</span>
+              <div className="flex items-center gap-3 p-3 bg-slate-800/70 rounded-xl border border-slate-700/60">
+                <span className="material-symbols-outlined text-blue-400 text-xl">map</span>
                 <div>
                   <p className="text-xs font-bold text-white">Jharkhand GIS Map Triage</p>
-                  <p className="text-[11px] text-white/70">24 Districts geo-tagged problem tracker</p>
+                  <p className="text-[11px] text-slate-400">24 Districts geo-tagged problem tracker</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-3 bg-white/10 rounded-2xl backdrop-blur-md border border-white/10">
-                <span className="material-symbols-outlined text-amber-300 text-xl">handshake</span>
+              <div className="flex items-center gap-3 p-3 bg-slate-800/70 rounded-xl border border-slate-700/60">
+                <span className="material-symbols-outlined text-amber-400 text-xl">handshake</span>
                 <div>
                   <p className="text-xs font-bold text-white">Multi-Stakeholder Bridge</p>
-                  <p className="text-[11px] text-white/70">Government, Academia, & Industry aligned</p>
+                  <p className="text-[11px] text-slate-400">Government, Academia, & Industry aligned</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="pt-8 mt-4 border-t border-white/10 text-xs text-white/60 relative z-10 flex items-center justify-between">
+          <div className="pt-6 mt-6 border-t border-slate-800 text-[11px] text-slate-400 relative z-10 flex items-center justify-between">
             <span>Official Societal Platform</span>
-            <span className="flex items-center gap-1 text-emerald-400 font-bold">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <span className="flex items-center gap-1 text-teal-400 font-semibold">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
               Secure 256-Bit SSL
             </span>
           </div>
         </div>
 
         {/* Right Side: Google Login & Role Selector Form */}
-        <div className="lg:col-span-7 bg-surface-container-lowest p-8 sm:p-10 rounded-3xl border border-surface-container-high shadow-xl flex flex-col justify-between">
+        <Card className="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-between">
           <div className="space-y-6">
             
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-primary">Single Sign-On</span>
-              <h2 className="text-2xl sm:text-3xl font-black text-on-surface tracking-tight mt-1">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-primary">Single Sign-On</span>
+              <h2 className="text-2xl font-bold text-slate-900 tracking-tight mt-0.5">
                 Sign in to your Account
               </h2>
-              <p className="text-xs sm:text-sm text-on-surface-variant mt-1">
+              <p className="text-xs text-slate-500 mt-1">
                 Use your official Google account for secure, one-click access.
               </p>
             </div>
 
             {/* Error banner if any */}
             {errorMessage && (
-              <div className="p-3.5 bg-error/10 border border-error/20 rounded-2xl flex items-start gap-2.5 text-error text-xs">
-                <span className="material-symbols-outlined text-base mt-0.5">error</span>
+              <div className="p-3 bg-red-50 border border-red-200 rounded-xl flex items-start gap-2.5 text-red-800 text-xs">
+                <span className="material-symbols-outlined text-base mt-0.5 text-red-600">error</span>
                 <div>
                   <p className="font-bold">Authentication Issue</p>
-                  <p className="mt-0.5 text-error/90 leading-normal">{errorMessage}</p>
+                  <p className="mt-0.5 leading-normal">{errorMessage}</p>
                 </div>
               </div>
             )}
 
             {/* Role Selection */}
             <div>
-              <label className="block text-xs font-bold text-on-surface mb-2">
+              <label className="block text-xs font-bold text-slate-700 mb-2">
                 1. Select your Primary Civic Persona
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -203,21 +206,21 @@ export const LoginPage: React.FC = () => {
                       key={opt.role}
                       type="button"
                       onClick={() => setSelectedRole(opt.role)}
-                      className={`p-3 rounded-2xl border text-left transition-all relative ${
+                      className={`p-3 rounded-xl border text-left transition-all relative cursor-pointer ${
                         isSelected
-                          ? 'border-primary bg-primary-container/20 ring-2 ring-primary/20'
-                          : 'border-surface-container-high hover:border-surface-container-highest bg-surface-container-low/50 hover:bg-surface-container-low'
+                          ? 'border-primary bg-blue-50/50 ring-2 ring-primary/20'
+                          : 'border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50/50'
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <span className={`material-symbols-outlined text-lg ${isSelected ? 'text-primary' : 'text-on-surface-variant'}`}>
+                        <span className={`material-symbols-outlined text-lg ${isSelected ? 'text-primary' : 'text-slate-500'}`}>
                           {opt.icon}
                         </span>
-                        <span className={`text-xs font-bold ${isSelected ? 'text-primary' : 'text-on-surface'}`}>
+                        <span className={`text-xs font-bold ${isSelected ? 'text-primary' : 'text-slate-800'}`}>
                           {opt.title}
                         </span>
                       </div>
-                      <p className="text-[11px] text-on-surface-variant mt-1 line-clamp-2 leading-tight">
+                      <p className="text-[11px] text-slate-500 mt-1 line-clamp-2 leading-tight">
                         {opt.desc}
                       </p>
                       {isSelected && (
@@ -233,14 +236,14 @@ export const LoginPage: React.FC = () => {
 
             {/* Primary Google Login Button */}
             <div>
-              <label className="block text-xs font-bold text-on-surface mb-2">
+              <label className="block text-xs font-bold text-slate-700 mb-2">
                 2. Authenticate with Google
               </label>
               <button
                 type="button"
                 onClick={handleGoogleSignIn}
                 disabled={loading}
-                className="w-full flex items-center justify-center gap-3 py-3.5 px-6 rounded-2xl bg-white hover:bg-neutral-50 text-neutral-800 font-bold text-sm shadow-md hover:shadow-lg border border-neutral-300 transition-all active:scale-[0.99] disabled:opacity-60 cursor-pointer group"
+                className="w-full flex items-center justify-center gap-3 py-3 px-6 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-semibold text-xs sm:text-sm shadow-xs border border-slate-300 transition-all active:scale-[0.99] disabled:opacity-60 cursor-pointer"
               >
                 {/* Authentic 4-color Google G Icon */}
                 <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
@@ -265,23 +268,23 @@ export const LoginPage: React.FC = () => {
               </button>
 
               {/* Status indicator */}
-              <div className="mt-2.5 flex items-center justify-between text-[11px] text-on-surface-variant">
-                <span className="flex items-center gap-1">
+              <div className="mt-2.5 flex items-center justify-between text-[11px] text-slate-500">
+                <span className="flex items-center gap-1.5">
                   <span className={`w-2 h-2 rounded-full ${isFirebaseLive ? 'bg-emerald-500' : 'bg-amber-500'}`} />
                   {isFirebaseLive ? 'Live Firebase Google Auth Active' : 'Ready for Firebase Credentials (Dev Mode)'}
                 </span>
-                <span className="text-[10px] text-outline font-medium">OAuth 2.0 SSL</span>
+                <span className="text-[10px] text-slate-400 font-medium">OAuth 2.0 SSL</span>
               </div>
             </div>
 
             {/* Quick Demo Login Option */}
-            <div className="pt-2 border-t border-surface-container-high/60">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-[11px] text-on-surface-variant">Quick Presentation Access:</span>
+            <div className="pt-2 border-t border-slate-100">
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-slate-500">Quick Presentation Access:</span>
                 <button
                   type="button"
                   onClick={handleDemoSignIn}
-                  className="text-xs text-primary font-bold hover:underline inline-flex items-center gap-1"
+                  className="text-xs text-primary font-semibold hover:underline inline-flex items-center gap-1 cursor-pointer"
                 >
                   <span className="material-symbols-outlined text-sm">bolt</span>
                   1-Click Verified Demo Sign-In
@@ -292,13 +295,13 @@ export const LoginPage: React.FC = () => {
           </div>
 
           {/* Footer Back Link */}
-          <div className="pt-6 mt-6 border-t border-surface-container-high/60 text-center text-xs text-on-surface-variant">
+          <div className="pt-6 mt-6 border-t border-slate-100 text-center text-xs text-slate-500">
             <span>Want to browse first? </span>
-            <Link to="/" className="text-primary font-bold hover:underline">
+            <Link to="/" className="text-primary font-semibold hover:underline">
               Return to Homepage
             </Link>
           </div>
-        </div>
+        </Card>
 
       </div>
     </div>

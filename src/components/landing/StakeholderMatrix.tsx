@@ -1,122 +1,118 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Card } from '../common/Card';
+import { Badge } from '../common/Badge';
 
 export const StakeholderMatrix: React.FC = () => {
+  const stakeholders = [
+    {
+      role: 'Citizens & Communities',
+      tag: 'Hyperlocal Voice',
+      desc: 'Crowdsource civic pain points in real-time across water distribution, solid waste, transit, and public health with AI validation.',
+      icon: 'record_voice_over',
+      iconBg: 'bg-blue-50 text-blue-600',
+      pills: ['Geotagged Proof', 'Ward SMS Tracking', 'Audit Voting'],
+      linkText: 'Submit Issue',
+      linkPath: '/report',
+    },
+    {
+      role: 'Govt & Municipal Admin',
+      tag: 'Institutional Oversight',
+      desc: 'Automated NLP deduplication, severity prioritization, ward escalation, and transparent R&D sanction pipelines with full audit logging.',
+      icon: 'account_balance',
+      iconBg: 'bg-teal-50 text-teal-600',
+      pills: ['Automated Triage', 'Ward Heatmaps', 'R&D Sanction'],
+      linkText: 'Admin Portal',
+      linkPath: '/admin',
+    },
+    {
+      role: 'Universities & Labs',
+      tag: 'Academic Translation',
+      desc: 'Transform verified municipal roadblocks into accredited capstones, funded PhD research, and high-impact student engineering prototypes.',
+      icon: 'school',
+      iconBg: 'bg-indigo-50 text-indigo-600',
+      pills: ['Lab Vector Matching', 'Field Prototypes', 'Academic Credits'],
+      linkText: 'Open Workspace',
+      linkPath: '/workspace',
+    },
+    {
+      role: 'Industry & CSR Mentors',
+      tag: 'Scale & Grants',
+      desc: 'Deploy corporate social responsibility grants, supply micro-controller hardware, and mentor engineering squads toward municipal pilot deployment.',
+      icon: 'corporate_fare',
+      iconBg: 'bg-amber-50 text-amber-700',
+      pills: ['Hardware Grants', 'Mentorship Tracks', 'Social ROI Audits'],
+      linkText: 'Impact Metrics',
+      linkPath: '/impact',
+    },
+  ];
+
   return (
-    <section className="w-full py-space-3xl">
-      <div className="max-w-container-max mx-auto px-gutter-desktop">
-        <div className="text-center max-w-2xl mx-auto mb-space-2xl space-y-space-xs">
-          <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Multi-Stakeholder Synergy</span>
-          <h2 className="font-headline-xl text-headline-xl text-on-surface font-bold">Designed for Every Civic Innovator</h2>
-          <p className="font-body-lg text-body-lg text-on-surface-variant">
+    <section className="w-full py-16 lg:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <Badge variant="blue" size="sm">
+            Ecosystem Synergy
+          </Badge>
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-2">
+            Designed for Every Civic Stakeholder
+          </h2>
+          <p className="text-sm text-slate-500 mt-2 leading-relaxed">
             Empowering citizens, administrative bodies, researchers, and corporates through tailor-made operational tooling.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
-          {/* Citizens */}
-          <div className="group bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between border border-surface-container-high">
-            <div className="space-y-space-md">
-              <div className="w-12 h-12 rounded-xl bg-primary-fixed text-primary flex items-center justify-center">
-                <span className="material-symbols-outlined text-2xl">record_voice_over</span>
-              </div>
-              <div className="space-y-space-xs">
-                <span className="font-label-sm text-label-sm text-primary font-semibold tracking-wide uppercase">Hyperlocal Voice</span>
-                <h3 className="font-headline-sm text-headline-sm text-on-surface font-bold">Citizens & Communities</h3>
-                <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-                  Crowdsource civic pain points in real-time across water distribution, solid waste, transit, and public health with AI EXIF validation.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-1.5 pt-space-xs">
-                <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Photo Geotagging</span>
-                <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">SMS Grievance Sync</span>
-                <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Audit Voting</span>
-              </div>
-            </div>
-            <div className="pt-space-lg">
-              <Link to="/report" className="font-label-md text-label-md text-primary flex items-center gap-1 group-hover:gap-2 transition-all font-semibold">
-                Submit Neighborhood Issue <span className="material-symbols-outlined text-sm">arrow_forward</span>
-              </Link>
-            </div>
-          </div>
+        {/* 4 Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {stakeholders.map((s) => (
+            <Card
+              key={s.role}
+              className="flex flex-col justify-between hover:shadow-md transition-shadow p-6"
+            >
+              <div className="space-y-4">
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${s.iconBg}`}>
+                  <span className="material-symbols-outlined text-xl">{s.icon}</span>
+                </div>
 
-          {/* Govt Admin */}
-          <div className="group bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between border border-surface-container-high">
-            <div className="space-y-space-md">
-              <div className="w-12 h-12 rounded-xl bg-tertiary-fixed text-tertiary flex items-center justify-center">
-                <span className="material-symbols-outlined text-2xl">account_balance</span>
-              </div>
-              <div className="space-y-space-xs">
-                <span className="font-label-sm text-label-sm text-tertiary font-semibold tracking-wide uppercase">Institutional Oversight</span>
-                <h3 className="font-headline-sm text-headline-sm text-on-surface font-bold">Govt & Municipal Admin</h3>
-                <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-                  Automated NLP deduplication, severity prioritization, ward-level escalation, and transparent R&D sanction pipelines with full audit logging.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-1.5 pt-space-xs">
-                <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Automated Triage</span>
-                <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Ward Heatmaps</span>
-                <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">R&D Sanction</span>
-              </div>
-            </div>
-            <div className="pt-space-lg">
-              <Link to="/admin" className="font-label-md text-label-md text-tertiary flex items-center gap-1 group-hover:gap-2 transition-all font-semibold">
-                Access Admin Console <span className="material-symbols-outlined text-sm">arrow_forward</span>
-              </Link>
-            </div>
-          </div>
+                <div>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block mb-1">
+                    {s.tag}
+                  </span>
+                  <h3 className="text-base font-bold text-slate-900">
+                    {s.role}
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+                    {s.desc}
+                  </p>
+                </div>
 
-          {/* Universities */}
-          <div className="group bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between border border-surface-container-high">
-            <div className="space-y-space-md">
-              <div className="w-12 h-12 rounded-xl bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
-                <span className="material-symbols-outlined text-2xl">school</span>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {s.pills.map((pill) => (
+                    <span
+                      key={pill}
+                      className="px-2 py-0.5 rounded bg-slate-50 text-slate-600 text-[11px] font-medium border border-slate-100"
+                    >
+                      {pill}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="space-y-space-xs">
-                <span className="font-label-sm text-label-sm text-secondary font-semibold tracking-wide uppercase">Academic Translation</span>
-                <h3 className="font-headline-sm text-headline-sm text-on-surface font-bold">Universities & Labs</h3>
-                <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-                  Transform verified municipal roadblocks into accredited capstones, funded PhD research, and high-impact student engineering prototypes.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-1.5 pt-space-xs">
-                <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Fast-Track Innovation</span>
-                <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Hardware Routing</span>
-                <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Academic Credits</span>
-              </div>
-            </div>
-            <div className="pt-space-lg">
-              <Link to="/workspace" className="font-label-md text-label-md text-on-surface flex items-center gap-1 group-hover:gap-2 transition-all font-semibold">
-                Open Project Workspace <span className="material-symbols-outlined text-sm">arrow_forward</span>
-              </Link>
-            </div>
-          </div>
 
-          {/* Industry */}
-          <div className="group bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between border border-surface-container-high">
-            <div className="space-y-space-md">
-              <div className="w-12 h-12 rounded-xl bg-primary-fixed-dim text-on-primary-fixed flex items-center justify-center">
-                <span className="material-symbols-outlined text-2xl">domain_add</span>
+              <div className="pt-5 mt-5 border-t border-slate-100">
+                <Link
+                  to={s.linkPath}
+                  className="text-xs font-semibold text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 group"
+                >
+                  <span>{s.linkText}</span>
+                  <span className="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">
+                    arrow_forward
+                  </span>
+                </Link>
               </div>
-              <div className="space-y-space-xs">
-                <span className="font-label-sm text-label-sm text-primary font-semibold tracking-wide uppercase">CSR & Scale Grants</span>
-                <h3 className="font-headline-sm text-headline-sm text-on-surface font-bold">Industry & Enterprise</h3>
-                <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-                  Target corporate social responsibility capital directly into verified regional solutions, offer cloud computing compute, and mentor solvers.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-1.5 pt-space-xs">
-                <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Direct CSR Allocation</span>
-                <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">IP Co-Creation</span>
-                <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Pilot Incubation</span>
-              </div>
-            </div>
-            <div className="pt-space-lg">
-              <Link to="/workspace" className="font-label-md text-label-md text-primary font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
-                Partner with Innovators <span className="material-symbols-outlined text-sm">arrow_forward</span>
-              </Link>
-            </div>
-          </div>
+            </Card>
+          ))}
         </div>
       </div>
     </section>

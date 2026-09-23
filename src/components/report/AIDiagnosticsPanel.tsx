@@ -1,4 +1,7 @@
 import React from 'react';
+import { Card } from '../common/Card';
+import { Button } from '../common/Button';
+import { Badge } from '../common/Badge';
 import { AIDiagnosticResult } from '../../types';
 
 interface AIDiagnosticsPanelProps {
@@ -13,59 +16,70 @@ export const AIDiagnosticsPanel: React.FC<AIDiagnosticsPanelProps> = ({
   isDispatching,
 }) => {
   return (
-    <aside className="lg:col-span-5 flex flex-col gap-space-md lg:sticky lg:top-28">
-      {/* Main AI Card */}
-      <div className="bg-surface-container-lowest rounded-2xl p-space-lg shadow-lg relative overflow-hidden border border-surface-container-high">
-        <div className="absolute -top-12 -right-12 w-48 h-48 bg-tertiary/10 rounded-full blur-2xl pointer-events-none"></div>
-        <div className="absolute -bottom-16 -left-16 w-52 h-52 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-
+    <aside className="lg:col-span-5 flex flex-col gap-4 lg:sticky lg:top-20">
+      <Card className="space-y-5">
         {/* Header */}
-        <div className="relative z-10 flex items-center justify-between mb-space-md pb-space-sm border-b border-surface-container-high/60">
-          <div className="inline-flex items-center gap-space-2xs px-space-sm py-1 bg-surface-container-low rounded-full">
-            <span className="w-2.5 h-2.5 rounded-full bg-tertiary animate-pulse"></span>
-            <span className="font-label-sm text-label-sm text-tertiary font-bold tracking-tight">CivicSolve Neural Engine v2.4</span>
+        <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+            <h3 className="text-sm font-bold text-slate-900">AI Diagnostic Triage</h3>
           </div>
-          <span className="font-label-sm text-label-sm bg-surface-container-high text-on-surface px-space-xs py-0.5 rounded font-bold">
-            Active Live
-          </span>
+          <Badge variant="teal" size="sm">Active Engine</Badge>
         </div>
 
         {/* Domain Classification with Gauge */}
-        <div className="relative z-10 bg-surface-container-low p-space-md rounded-xl mb-space-md shadow-sm border border-surface-container-high/60">
-          <div className="flex items-start justify-between gap-space-xs">
+        <div className="p-4 bg-slate-50 border border-slate-200/80 rounded-xl space-y-3">
+          <div className="flex items-start justify-between gap-3">
             <div>
-              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block font-bold">
-                Detected Domain & Classification
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block">
+                Classified Domain
               </span>
-              <p className="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">
+              <p className="text-base font-bold text-slate-900 mt-0.5">
                 {diagnostics.detectedDomain}
               </p>
-              <p className="font-body-sm text-body-sm text-on-surface-variant">
+              <p className="text-xs text-slate-500 mt-0.5">
                 Sub-sector: {diagnostics.subSector}
               </p>
             </div>
 
             {/* Circular Gauge */}
-            <div className="flex flex-col items-center flex-shrink-0">
-              <div className="relative w-14 h-14">
+            <div className="flex flex-col items-center shrink-0">
+              <div className="relative w-12 h-12">
                 <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                  <path className="text-surface-container-highest" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3.5" />
-                  <path className="text-tertiary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeDasharray={`${diagnostics.confidence}, 100`} strokeLinecap="round" strokeWidth="3.5" />
+                  <path
+                    className="text-slate-200"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3.5"
+                  />
+                  <path
+                    className="text-blue-600"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeDasharray={`${diagnostics.confidence}, 100`}
+                    strokeLinecap="round"
+                    strokeWidth="3.5"
+                  />
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-label-sm text-label-sm text-tertiary font-extrabold">{diagnostics.confidence}%</span>
+                  <span className="text-xs font-bold text-blue-700">{diagnostics.confidence}%</span>
                 </div>
               </div>
-              <span className="font-label-sm text-label-sm text-on-surface-variant mt-0.5 text-xs font-semibold">Confidence</span>
+              <span className="text-[10px] text-slate-500 mt-0.5 font-medium">Confidence</span>
             </div>
           </div>
 
           {/* Semantic Tags */}
-          <div className="mt-space-sm pt-space-xs border-t border-surface-container-high/60">
-            <span className="font-label-sm text-label-sm text-on-surface-variant block mb-1 font-semibold">Extracted Semantic Keywords</span>
+          <div className="pt-2 border-t border-slate-200/60">
+            <span className="text-[11px] font-semibold text-slate-400 block mb-1.5">Semantic Entities</span>
             <div className="flex flex-wrap gap-1.5">
               {diagnostics.semanticTags.map((tag, idx) => (
-                <span key={idx} className="px-2 py-0.5 rounded-md bg-surface-container-lowest text-on-surface font-label-sm text-label-sm border border-surface-container-high font-medium">
+                <span
+                  key={idx}
+                  className="px-2 py-0.5 rounded bg-white text-slate-700 text-[11px] font-medium border border-slate-200"
+                >
                   {tag}
                 </span>
               ))}
@@ -74,100 +88,73 @@ export const AIDiagnosticsPanel: React.FC<AIDiagnosticsPanelProps> = ({
         </div>
 
         {/* Severity Banner */}
-        <div className="relative z-10 bg-error-container/40 p-space-sm rounded-xl flex items-center justify-between mb-space-md border border-error/20">
-          <div className="flex items-center gap-space-xs">
-            <div className="w-10 h-10 rounded-lg bg-error text-on-error flex items-center justify-center shadow-sm">
-              <span className="material-symbols-outlined text-xl">warning</span>
+        <div className="p-3.5 bg-red-50/70 border border-red-200/80 rounded-xl flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-lg bg-red-600 text-white flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-lg">warning</span>
             </div>
             <div>
-              <span className="font-label-sm text-label-sm text-on-error-container uppercase font-bold block">Severity Assessment</span>
-              <span className="font-headline-sm text-headline-sm text-on-surface font-bold">{diagnostics.severityScore} / 100</span>
+              <span className="text-[11px] font-semibold uppercase text-red-800 block">Severity Score</span>
+              <span className="text-sm font-bold text-red-950">{diagnostics.severityScore} / 100</span>
             </div>
           </div>
-          <span className="px-space-xs py-1 rounded-full bg-error text-on-error font-label-sm text-label-sm font-bold tracking-tight uppercase">
-            {diagnostics.priority === 'P1' ? 'Critical (P1)' : 'High (P2)'}
-          </span>
+          <Badge variant="red" size="sm">
+            {diagnostics.priority === 'P1' ? 'Priority P1 (Urgent)' : 'Priority P2 (High)'}
+          </Badge>
         </div>
 
-        {/* Spatial Cluster Deduplication */}
+        {/* Duplicate Cluster Warning */}
         {diagnostics.duplicateWarning && (
-          <div className="relative z-10 bg-secondary-container/40 p-space-sm rounded-xl flex items-start gap-space-xs mb-space-md border border-secondary-container">
-            <span className="material-symbols-outlined text-primary text-lg mt-0.5">hub</span>
-            <div className="space-y-0.5">
-              <span className="font-label-md text-label-md text-on-secondary-container font-bold">Cluster Deduplication Merged</span>
-              <p className="font-body-sm text-body-sm text-on-secondary-container text-xs">
-                {diagnostics.duplicateWarning}
-              </p>
+          <div className="p-3 bg-blue-50 border border-blue-200/80 rounded-xl text-xs space-y-1">
+            <div className="flex items-center gap-1.5 text-blue-900 font-semibold">
+              <span className="material-symbols-outlined text-base text-blue-600">hub</span>
+              <span>Duplicate Spatial Cluster Identified</span>
             </div>
+            <p className="text-blue-800 leading-relaxed pl-5">
+              {diagnostics.duplicateWarning}
+            </p>
           </div>
         )}
 
-        {/* Actions & Recommendations */}
-        <div className="relative z-10 space-y-space-sm mb-space-lg">
-          <div className="bg-surface-container-low p-space-sm rounded-xl space-y-1 border border-surface-container-high/60">
-            <div className="flex items-center gap-1.5 text-on-surface">
-              <span className="material-symbols-outlined text-base text-primary">account_balance</span>
-              <span className="font-label-md text-label-md font-bold">Recommended Government Action</span>
-            </div>
-            <p className="font-body-sm text-body-sm text-on-surface-variant text-xs">
+        {/* Recommended Actions */}
+        <div className="space-y-3 pt-1 text-xs">
+          <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block">
+              Automated Municipal Escalation
+            </span>
+            <p className="text-slate-700 leading-relaxed font-medium">
               {diagnostics.recommendedAction}
             </p>
           </div>
 
-          <div className="bg-surface-container-low p-space-sm rounded-xl space-y-1 border border-surface-container-high/60">
-            <div className="flex items-center gap-1.5 text-on-surface">
-              <span className="material-symbols-outlined text-base text-tertiary">school</span>
-              <span className="font-label-md text-label-md font-bold">Academic Research Match Suggestion</span>
-            </div>
-            <p className="font-body-sm text-body-sm text-on-surface-variant text-xs">
-              <span className="text-tertiary font-bold">{diagnostics.recommendedSolverMatch}</span> — Notified for sandbox pilot prototype.
+          <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block">
+              University R&D Lab Match
+            </span>
+            <p className="text-slate-700 leading-relaxed font-medium">
+              {diagnostics.recommendedSolverMatch}
             </p>
           </div>
         </div>
 
-        {/* Confirm & Dispatch Button */}
-        <div className="relative z-10 space-y-space-xs">
-          <button
+        {/* Dispatch Button */}
+        <div className="pt-2">
+          <Button
             type="button"
+            variant="primary"
+            size="lg"
+            className="w-full"
             onClick={onDispatch}
-            disabled={isDispatching}
-            className="w-full py-space-sm px-space-md bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg rounded-xl shadow-md active:scale-95 transition-all flex items-center justify-center gap-space-xs font-bold"
+            isLoading={isDispatching}
+            leftIcon={<span className="material-symbols-outlined text-base">verified</span>}
           >
-            <span className={`material-symbols-outlined text-lg ${isDispatching ? 'animate-spin' : ''}`}>
-              {isDispatching ? 'sync' : 'verified_user'}
-            </span>
-            <span>{isDispatching ? 'Dispatching to District Collector...' : 'Confirm & Dispatch to District Admin'}</span>
-          </button>
-          <p className="font-body-sm text-body-sm text-on-surface-variant text-center px-space-xs text-xs">
-            By dispatching, you certify under the Civic Citizen Accord that this issue directly impacts local welfare. An official ticket ID will be issued instantly.
+            Confirm & Dispatch to District Admin
+          </Button>
+          <p className="text-[11px] text-slate-400 text-center mt-2 leading-relaxed">
+            By dispatching, this submission receives an official tracking ticket and synchronizes with municipal and university queues.
           </p>
         </div>
-      </div>
-
-      {/* Notification Matrix */}
-      <div className="bg-surface-container-lowest p-space-md rounded-2xl shadow-sm space-y-space-xs border border-surface-container-high">
-        <div className="flex items-center justify-between">
-          <span className="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Automated Notification Matrix</span>
-          <span className="material-symbols-outlined text-sm text-on-surface-variant">info</span>
-        </div>
-        <div className="grid grid-cols-3 gap-space-xs pt-1 text-center">
-          <div className="bg-surface-container-low p-2 rounded-xl">
-            <span className="material-symbols-outlined text-base text-primary block mx-auto">domain</span>
-            <span className="font-label-sm text-label-sm text-on-surface font-semibold block mt-1">DJB Central</span>
-            <span className="font-body-sm text-body-sm text-on-surface-variant text-xs">Pings in 15m</span>
-          </div>
-          <div className="bg-surface-container-low p-2 rounded-xl">
-            <span className="material-symbols-outlined text-base text-tertiary block mx-auto">biotech</span>
-            <span className="font-label-sm text-label-sm text-on-surface font-semibold block mt-1">R&D Teams</span>
-            <span className="font-body-sm text-body-sm text-on-surface-variant text-xs">Live Feed</span>
-          </div>
-          <div className="bg-surface-container-low p-2 rounded-xl">
-            <span className="material-symbols-outlined text-base text-on-surface block mx-auto">sms</span>
-            <span className="font-label-sm text-label-sm text-on-surface font-semibold block mt-1">Ward Citizen</span>
-            <span className="font-body-sm text-body-sm text-on-surface-variant text-xs">SMS Tracker</span>
-          </div>
-        </div>
-      </div>
+      </Card>
     </aside>
   );
 };

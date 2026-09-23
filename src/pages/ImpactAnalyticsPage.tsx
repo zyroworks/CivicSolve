@@ -1,67 +1,98 @@
-﻿import React from 'react';
+import React from 'react';
+import { PageHeader } from '../components/common/PageHeader';
+import { StatCard } from '../components/common/StatCard';
+import { Card } from '../components/common/Card';
+import { Badge } from '../components/common/Badge';
 
 export const ImpactAnalyticsPage: React.FC = () => {
   return (
-    <div className="max-w-container-max mx-auto px-gutter-desktop py-space-xl space-y-space-xl w-full">
-      <div>
-        <span className="text-xs uppercase font-bold text-primary tracking-wider">National Telemetry</span>
-        <h1 className="font-headline-xl text-headline-xl font-bold text-on-surface mt-1">Impact Analytics & Social Audit</h1>
-        <p className="text-on-surface-variant text-sm mt-1 max-w-2xl">
-          Real-time metrics auditing societal transformation, municipal budget savings, and academic IP generation across 428 districts.
-        </p>
-      </div>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 w-full">
+      <PageHeader
+        badge={<Badge variant="blue" size="sm">National Telemetry</Badge>}
+        title="Impact Analytics & Social Audit"
+        description="Real-time metrics auditing societal transformation, municipal budget savings, and academic IP generation across 428 districts."
+      />
 
       {/* Metrics strip */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-space-md">
-        <div className="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm border border-surface-container-high">
-          <span className="text-xs uppercase text-on-surface-variant font-bold">Total Beneficiaries</span>
-          <div className="text-3xl font-extrabold text-on-surface mt-1">2,410,800+</div>
-          <p className="text-xs text-tertiary font-bold mt-1">Direct citizens serviced</p>
-        </div>
-        <div className="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm border border-surface-container-high">
-          <span className="text-xs uppercase text-on-surface-variant font-bold">Municipal Cost Saved</span>
-          <div className="text-3xl font-extrabold text-primary mt-1">₹38.4 Cr</div>
-          <p className="text-xs text-on-surface-variant mt-1">Via student prototypes</p>
-        </div>
-        <div className="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm border border-surface-container-high">
-          <span className="text-xs uppercase text-on-surface-variant font-bold">CSR Capital Disbursed</span>
-          <div className="text-3xl font-extrabold text-tertiary mt-1">₹14.2 Cr</div>
-          <p className="text-xs text-on-surface-variant mt-1">From 48 corporate partners</p>
-        </div>
-        <div className="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm border border-surface-container-high">
-          <span className="text-xs uppercase text-on-surface-variant font-bold">Patents & IPs Filed</span>
-          <div className="text-3xl font-extrabold text-secondary mt-1">42 Patents</div>
-          <p className="text-xs text-on-surface-variant mt-1">Joint university-govt ownership</p>
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard
+          title="Total Beneficiaries"
+          value="2,410,800+"
+          subtitle="Direct citizens serviced"
+          trend={{ value: '+12.4%', isPositive: true }}
+          icon={<span className="material-symbols-outlined text-primary text-xl">groups</span>}
+        />
+        <StatCard
+          title="Municipal Cost Saved"
+          value="₹38.4 Cr"
+          subtitle="Via student prototypes"
+          trend={{ value: '₹12.1 Cr this FY', isPositive: true }}
+          icon={<span className="material-symbols-outlined text-primary text-xl">savings</span>}
+        />
+        <StatCard
+          title="CSR Capital Disbursed"
+          value="₹14.2 Cr"
+          subtitle="From 48 corporate partners"
+          trend={{ value: '48 Active Grants', isPositive: true }}
+          icon={<span className="material-symbols-outlined text-teal-600 text-xl">payments</span>}
+        />
+        <StatCard
+          title="Patents & IPs Filed"
+          value="42 Patents"
+          subtitle="Joint university-govt ownership"
+          trend={{ value: '10 Granted', isPositive: true }}
+          icon={<span className="material-symbols-outlined text-purple-600 text-xl">workspace_premium</span>}
+        />
       </div>
 
       {/* SDG Alignment Matrix */}
-      <div className="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm border border-surface-container-high space-y-4">
-        <h3 className="font-headline-sm text-headline-sm font-bold text-on-surface">United Nations Sustainable Development Goals Breakdown</h3>
+      <Card className="p-6 space-y-5">
+        <div className="pb-3 border-b border-slate-100">
+          <h3 className="text-base font-bold text-slate-900">United Nations Sustainable Development Goals Breakdown</h3>
+          <p className="text-xs text-slate-500 mt-0.5">Automated telemetry classification aligned with UN 2030 targets</p>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-4 rounded-xl bg-blue-50 border border-blue-200">
+          <div className="p-5 rounded-xl bg-blue-50/50 border border-blue-200/80 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-blue-900 uppercase">SDG 6: Clean Water</span>
-              <span className="text-sm font-extrabold text-blue-700">42%</span>
+              <span className="text-xs font-bold text-blue-900 uppercase tracking-wide">SDG 6: Clean Water</span>
+              <span className="text-base font-extrabold text-blue-700">42%</span>
             </div>
-            <p className="text-xs text-blue-800 mt-2">612 challenges solved across drinking water pipeline maintenance and groundwater fluorometry.</p>
+            <div className="w-full bg-blue-200/60 rounded-full h-1.5 overflow-hidden">
+              <div className="bg-blue-600 h-1.5 rounded-full" style={{ width: '42%' }}></div>
+            </div>
+            <p className="text-xs text-slate-700 leading-relaxed">
+              612 challenges solved across drinking water pipeline maintenance and groundwater fluorometry.
+            </p>
           </div>
-          <div className="p-4 rounded-xl bg-amber-50 border border-amber-200">
+
+          <div className="p-5 rounded-xl bg-amber-50/50 border border-amber-200/80 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-amber-900 uppercase">SDG 11: Sustainable Cities</span>
-              <span className="text-sm font-extrabold text-amber-700">36%</span>
+              <span className="text-xs font-bold text-amber-900 uppercase tracking-wide">SDG 11: Sustainable Cities</span>
+              <span className="text-base font-extrabold text-amber-700">36%</span>
             </div>
-            <p className="text-xs text-amber-800 mt-2">524 challenges resolved in pothole detection, smart transit, and automated solid waste collection.</p>
+            <div className="w-full bg-amber-200/60 rounded-full h-1.5 overflow-hidden">
+              <div className="bg-amber-500 h-1.5 rounded-full" style={{ width: '36%' }}></div>
+            </div>
+            <p className="text-xs text-slate-700 leading-relaxed">
+              524 challenges resolved in pothole detection, smart transit, and automated solid waste collection.
+            </p>
           </div>
-          <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200">
+
+          <div className="p-5 rounded-xl bg-emerald-50/50 border border-emerald-200/80 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-emerald-900 uppercase">SDG 2: Zero Hunger</span>
-              <span className="text-sm font-extrabold text-emerald-700">22%</span>
+              <span className="text-xs font-bold text-emerald-900 uppercase tracking-wide">SDG 2: Zero Hunger</span>
+              <span className="text-base font-extrabold text-emerald-700">22%</span>
             </div>
-            <p className="text-xs text-emerald-800 mt-2">284 challenges in solar cold storage and decentralized agrarian crop protection.</p>
+            <div className="w-full bg-emerald-200/60 rounded-full h-1.5 overflow-hidden">
+              <div className="bg-emerald-600 h-1.5 rounded-full" style={{ width: '22%' }}></div>
+            </div>
+            <p className="text-xs text-slate-700 leading-relaxed">
+              284 challenges in solar cold storage and decentralized agrarian crop protection.
+            </p>
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

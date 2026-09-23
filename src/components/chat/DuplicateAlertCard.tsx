@@ -26,23 +26,23 @@ export const DuplicateAlertCard: React.FC<DuplicateAlertCardProps> = ({ matches,
   };
 
   return (
-    <div className="my-2.5 p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs space-y-2">
+    <div className="my-2.5 p-3.5 rounded-xl bg-amber-50/80 border border-amber-200 text-xs space-y-2.5">
       {/* Alert Header */}
-      <div className="flex items-center gap-1.5 text-amber-800 font-bold">
+      <div className="flex items-center gap-1.5 text-amber-900 font-bold">
         <span className="material-symbols-outlined text-base text-amber-600">warning</span>
         <span>Duplicate Challenge Notice ({matches.length} similar)</span>
       </div>
 
-      <p className="text-on-surface-variant text-[11px] leading-relaxed">
+      <p className="text-slate-600 text-[11px] leading-relaxed">
         Similar issues already exist in CivicSolve. You can endorse existing tickets or review them below. <em>Reports are not auto-merged without your consent.</em>
       </p>
 
       {/* Matches List */}
-      <div className="space-y-1.5 pt-1">
+      <div className="space-y-2 pt-0.5">
         {matches.map((match) => (
           <div
             key={match.id}
-            className="p-2 rounded-lg bg-surface-container-lowest border border-amber-500/20 shadow-2xs space-y-1"
+            className="p-2.5 rounded-lg bg-white border border-amber-200/60 shadow-2xs space-y-1"
           >
             <div className="flex items-start justify-between gap-1.5">
               <span className="font-bold text-primary text-[11px]">{match.ticketId}</span>
@@ -56,13 +56,13 @@ export const DuplicateAlertCard: React.FC<DuplicateAlertCardProps> = ({ matches,
               </div>
             </div>
 
-            <p className="font-semibold text-on-surface text-[11px] leading-snug line-clamp-1">
+            <p className="font-semibold text-slate-800 text-[11px] leading-snug line-clamp-1">
               {match.title}
             </p>
 
-            <div className="flex items-center justify-between text-[10px] text-on-surface-variant pt-0.5">
+            <div className="flex items-center justify-between text-[10px] text-slate-500 pt-0.5">
               <span className="flex items-center gap-1 truncate max-w-[190px]">
-                <span className="material-symbols-outlined text-xs text-outline">location_on</span>
+                <span className="material-symbols-outlined text-xs text-slate-400">location_on</span>
                 {match.location}
               </span>
               <button
@@ -71,7 +71,7 @@ export const DuplicateAlertCard: React.FC<DuplicateAlertCardProps> = ({ matches,
                   navigate('/challenges');
                   if (onClose) onClose();
                 }}
-                className="font-bold text-primary hover:underline"
+                className="font-bold text-primary hover:underline cursor-pointer"
               >
                 Inspect &rarr;
               </button>

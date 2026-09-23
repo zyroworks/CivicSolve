@@ -1,5 +1,8 @@
 import React from 'react';
 import { Project } from '../../types';
+import { Card } from '../common/Card';
+import { Badge } from '../common/Badge';
+import { Button } from '../common/Button';
 
 interface ProjectHeaderProps {
   project: Project;
@@ -7,77 +10,86 @@ interface ProjectHeaderProps {
 
 export const ProjectHeader: React.FC<ProjectHeaderProps> = ({ project }) => {
   return (
-    <section className="bg-surface-container-lowest rounded-2xl shadow-sm p-space-xl relative overflow-hidden border border-surface-container-high">
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
-        <div className="space-y-space-xs max-w-3xl">
-          <div className="flex flex-wrap items-center gap-space-xs">
-            <span className="inline-flex items-center gap-1 bg-surface-container-low text-primary px-space-xs py-0.5 rounded-full font-label-sm text-label-sm font-bold tracking-wide">
-              <span className="material-symbols-outlined text-sm text-primary">dataset</span>
+    <Card className="p-6 lg:p-8">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        
+        {/* Left Information */}
+        <div className="space-y-3 max-w-3xl">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-mono text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
               {project.ticketId}
             </span>
-            <span className="font-label-sm text-label-sm text-on-surface-variant font-medium">Drinking Water Turbidity • Ward 14</span>
-            <span className="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-space-xs py-0.5 rounded-full font-bold">
-              <span className="material-symbols-outlined text-xs">verified</span> Pilot Prototype Stage
-            </span>
-            <span className="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-space-xs py-0.5 rounded-full font-bold">
-              TRL Level: {project.trlLevel} (Validated)
-            </span>
+            <Badge variant="blue" size="sm">
+              Drinking Water Turbidity • Ward 14
+            </Badge>
+            <Badge variant="emerald" size="sm">
+              Pilot Prototype Stage
+            </Badge>
+            <Badge variant="slate" size="sm">
+              TRL Level: {project.trlLevel}
+            </Badge>
           </div>
 
-          <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight font-bold">
+          <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 tracking-tight">
             {project.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-space-md text-on-surface-variant pt-space-2xs text-xs">
-            <div className="flex items-center gap-1 font-label-md text-label-md text-primary font-bold">
+          <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 pt-1">
+            <div className="flex items-center gap-1.5 font-semibold text-blue-600">
               <span className="material-symbols-outlined text-base">school</span>
-              Lead Institute: {project.leadInstitute}
+              <span>Lead Institute: {project.leadInstitute}</span>
             </div>
-            <span className="text-outline-variant font-mono">•</span>
-            <div className="flex items-center gap-1 font-label-md text-label-md">
-              <span className="material-symbols-outlined text-base text-tertiary">light</span>
-              Sampling: {project.telemetry.samplingRate}
+            <span className="text-slate-300">•</span>
+            <div className="flex items-center gap-1">
+              <span className="material-symbols-outlined text-base text-teal-600">sensors</span>
+              <span>Sampling: {project.telemetry.samplingRate}</span>
             </div>
-            <span className="text-outline-variant font-mono">•</span>
-            <div className="flex items-center gap-1 font-label-md text-label-md">
-              <span className="material-symbols-outlined text-base text-tertiary">water_drop</span>
-              Turbidity Error: &lt;1.2 NTU
+            <span className="text-slate-300">•</span>
+            <div className="flex items-center gap-1">
+              <span className="material-symbols-outlined text-base text-teal-600">water_drop</span>
+              <span>Turbidity Tolerance: &lt;1.2 NTU</span>
             </div>
           </div>
         </div>
 
-        {/* Live Lab Rig Quick Status */}
-        <div className="flex flex-row sm:flex-col lg:items-end justify-between sm:justify-center gap-space-sm bg-surface-container-low p-space-md rounded-xl self-stretch sm:self-auto min-w-[240px] border border-surface-container-high/60">
-          <div className="flex items-center gap-space-xs">
-            <div className="w-3 h-3 rounded-full bg-tertiary animate-pulse"></div>
-            <span className="font-label-sm text-label-sm font-bold text-tertiary tracking-wide uppercase">
-              {project.telemetry.status}
+        {/* Live Lab Rig Quick Status Card */}
+        <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 min-w-[240px] space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-teal-700">
+              <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
+              <span>{project.telemetry.status}</span>
             </span>
+            <span className="text-[10px] text-slate-400 font-mono">NODE #2</span>
           </div>
-          <div className="space-y-0.5 lg:text-right">
-            <p className="font-headline-sm text-headline-sm text-on-surface font-bold">
-              {project.telemetry.turbidityNTU} NTU <span className="font-label-sm text-label-sm font-normal text-on-surface-variant">/ {project.telemetry.pressureBar} Bar</span>
-            </p>
-            <p className="font-label-sm text-label-sm text-on-surface-variant text-xs">Active Test Tank Node #2</p>
+
+          <div>
+            <div className="text-2xl font-bold text-slate-900 tracking-tight">
+              {project.telemetry.turbidityNTU} NTU{' '}
+              <span className="text-xs font-normal text-slate-400">/ {project.telemetry.pressureBar} Bar</span>
+            </div>
+            <p className="text-[11px] text-slate-500 mt-0.5">Active Fluidics Test Tank</p>
           </div>
-          <div className="flex items-center gap-space-xs pt-space-2xs">
-            <button
-              type="button"
+
+          <div className="flex items-center gap-2 pt-1">
+            <Button
+              variant="primary"
+              size="sm"
               onClick={() => alert('Flashing STM32 Microcontroller firmware over OTA channel...')}
-              className="bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md px-3 py-1.5 rounded-lg shadow-sm transition-all flex items-center gap-1 font-bold text-xs"
+              leftIcon={<span className="material-symbols-outlined text-sm">terminal</span>}
             >
-              <span className="material-symbols-outlined text-base">terminal</span> Flash Firmware
-            </button>
-            <button
-              type="button"
+              Flash Firmware
+            </Button>
+            <Button
+              variant="secondary"
+              size="sm"
               onClick={() => alert('Project shareable telemetry link copied to clipboard!')}
-              className="bg-surface-container-lowest text-on-surface hover:bg-surface-container font-label-md text-label-md px-2.5 py-1.5 rounded-lg shadow-sm transition-all border border-surface-container-high"
+              title="Share Telemetry"
             >
-              <span className="material-symbols-outlined text-base text-on-surface-variant">share</span>
-            </button>
+              <span className="material-symbols-outlined text-sm">share</span>
+            </Button>
           </div>
         </div>
       </div>
-    </section>
+    </Card>
   );
 };

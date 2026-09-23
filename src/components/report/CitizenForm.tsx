@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { Card } from '../common/Card';
+import { Button } from '../common/Button';
+import { Input } from '../common/Input';
+import { Select } from '../common/Select';
+import { Badge } from '../common/Badge';
 
 interface CitizenFormProps {
   formData: {
@@ -28,217 +33,150 @@ export const CitizenForm: React.FC<CitizenFormProps> = ({
   const [fileAttached, setFileAttached] = useState(true);
 
   return (
-    <section className="lg:col-span-7 flex flex-col gap-space-lg">
-      {/* Progress Card */}
-      <div className="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm border border-surface-container-high">
-        <div className="flex items-center justify-between mb-space-sm">
-          <div className="flex items-center gap-space-xs">
-            <span className="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold">1</span>
-            <span className="font-headline-sm text-headline-sm text-on-surface font-semibold">Step 1 of 2: Submission Parameters</span>
+    <section className="lg:col-span-7 space-y-6">
+      <Card className="space-y-5">
+        <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+          <div>
+            <h2 className="text-base font-bold text-slate-900">1. Problem Parameters</h2>
+            <p className="text-xs text-slate-500 mt-0.5">
+              Provide clear, localized details to help AI categorize and match with engineering solvers.
+            </p>
           </div>
-          <span className="font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed px-space-xs py-0.5 rounded-full uppercase tracking-wider font-bold">
-            Form Active
-          </span>
+          <Badge variant="emerald" size="sm">Form Ready</Badge>
         </div>
-        <div className="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
-          <div className="bg-primary h-full rounded-full transition-all duration-500 w-1/2"></div>
-        </div>
-        <p className="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
-          Complete high-fidelity problem parameters to maximize university research matching accuracy and grant eligibility.
-        </p>
-      </div>
 
-      {/* Problem Input Card */}
-      <div className="bg-surface-container-lowest p-space-xl rounded-2xl shadow-sm space-y-space-lg border border-surface-container-high">
         {/* Title */}
-        <div className="space-y-space-2xs">
-          <label className="flex items-center justify-between font-label-lg text-label-lg text-on-surface font-semibold" htmlFor="problem-title">
-            <span>Problem Title <span className="text-error">*</span></span>
-            <span className="font-label-sm text-label-sm text-on-surface-variant font-normal">Max 120 chars</span>
-          </label>
-          <input
-            id="problem-title"
-            type="text"
-            value={formData.title}
-            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-            placeholder="Concise, factual title of the issue..."
-            className="w-full h-11 px-space-md rounded-xl bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm border border-surface-container-high transition-all"
+        <Input
+          label="Problem Title *"
+          id="problem-title"
+          value={formData.title}
+          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+          placeholder="Brief, factual title of the issue..."
+          helperText="Max 120 characters describing the core issue"
+        />
+
+        {/* Category & People Affected */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <Select
+            label="Domain Category *"
+            id="problem-category"
+            value={formData.category}
+            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+            options={[
+              { value: 'Water Management & Sanitation', label: 'Water Management & Sanitation' },
+              { value: 'Environment & AQI', label: 'Environment & AQI' },
+              { value: 'Road Safety & Transit', label: 'Road Safety & Transit' },
+              { value: 'Healthcare Access', label: 'Healthcare Access' },
+              { value: 'Agriculture / Agritech', label: 'Agriculture / Agritech' },
+              { value: 'Solid Waste Management', label: 'Solid Waste Management' },
+            ]}
+          />
+
+          <Input
+            label="Estimated People Impacted *"
+            id="people-affected"
+            value={formData.peopleAffected}
+            onChange={(e) => setFormData({ ...formData, peopleAffected: e.target.value })}
+            placeholder="e.g. 5,000+ residents"
+            helperText="Approximation of affected households"
           />
         </div>
 
-        {/* Category & Affected People */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
-          <div className="space-y-space-2xs">
-            <label className="font-label-lg text-label-lg text-on-surface font-semibold" htmlFor="problem-category">
-              Broad Category <span className="text-error">*</span>
-            </label>
-            <div className="relative">
-              <select
-                id="problem-category"
-                value={formData.category}
-                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full h-11 px-space-md pr-10 rounded-xl bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary appearance-none shadow-sm border border-surface-container-high cursor-pointer"
-              >
-                <option>Water Management & Sanitation</option>
-                <option>Environment & AQI</option>
-                <option>Road Safety & Transit</option>
-                <option>Healthcare Access</option>
-                <option>Agriculture / Agritech</option>
-                <option>Solid Waste Management</option>
-              </select>
-              <span className="material-symbols-outlined absolute right-3 top-2.5 pointer-events-none text-on-surface-variant">expand_more</span>
-            </div>
-          </div>
+        {/* Ward & District */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <Input
+            label="Ward / Locality *"
+            id="problem-ward"
+            value={formData.ward}
+            onChange={(e) => setFormData({ ...formData, ward: e.target.value })}
+            placeholder="e.g. Ward 14, Sangam Vihar"
+          />
 
-          <div className="space-y-space-2xs">
-            <label className="font-label-lg text-label-lg text-on-surface font-semibold" htmlFor="people-affected">
-              Estimated People Affected
-            </label>
-            <div className="relative">
-              <input
-                id="people-affected"
-                type="text"
-                value={formData.peopleAffected}
-                onChange={(e) => setFormData({ ...formData, peopleAffected: e.target.value })}
-                className="w-full h-11 pl-10 pr-space-md rounded-xl bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm border border-surface-container-high"
-              />
-              <span className="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-lg">groups</span>
-            </div>
-          </div>
+          <Input
+            label="District *"
+            id="problem-district"
+            value={formData.district}
+            onChange={(e) => setFormData({ ...formData, district: e.target.value })}
+            placeholder="e.g. South East Delhi / Ranchi"
+          />
         </div>
 
-        {/* GIS Selector / Interactive Map Card */}
-        <div className="space-y-space-xs">
-          <div className="flex items-center justify-between">
-            <label className="font-label-lg text-label-lg text-on-surface flex items-center gap-1 font-semibold">
-              <span className="material-symbols-outlined text-base text-primary">distance</span>
-              <span>Geo-Tagged Location / Ward Boundary</span>
-            </label>
-            <span className="font-label-sm text-label-sm text-tertiary font-bold flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
-              GPS Locked
-            </span>
-          </div>
-
-          <div className="bg-surface-container-low rounded-xl p-space-sm space-y-space-sm shadow-sm border border-surface-container-high">
-            <div className="w-full h-44 rounded-lg bg-surface-variant relative overflow-hidden flex items-end p-space-sm bg-gradient-to-tr from-slate-900 via-slate-800 to-primary/40">
-              <div className="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-transparent"></div>
-              
-              {/* Map Pin HUD Overlay */}
-              <div className="relative z-10 bg-surface-container-lowest/95 backdrop-blur-md px-space-sm py-space-2xs rounded-lg shadow-md flex items-center gap-space-sm border border-surface-container-high">
-                <div className="w-7 h-7 rounded-full bg-error flex items-center justify-center text-on-error">
-                  <span className="material-symbols-outlined text-sm">fmd_bad</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-label-sm text-label-sm text-on-surface font-bold">28.5033° N, 77.2482° E</span>
-                  <span className="font-body-sm text-body-sm text-on-surface-variant text-xs">{formData.ward} • {formData.district}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-between gap-space-xs pt-1">
-              <div className="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant text-xs">
-                <span className="material-symbols-outlined text-sm text-primary">verified</span>
-                <span>MCD Spatial Polygon Verified • Zone South-II</span>
-              </div>
-              <button
-                type="button"
-                onClick={() => alert('GPS coordinates re-calibrated successfully using browser geolocation.')}
-                className="font-label-sm text-label-sm text-primary hover:underline flex items-center gap-1 font-semibold"
-              >
-                <span className="material-symbols-outlined text-xs">my_location</span>
-                Re-calibrate pin
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Detailed Description */}
-        <div className="space-y-space-2xs">
-          <label className="flex items-center justify-between font-label-lg text-label-lg text-on-surface font-semibold" htmlFor="problem-desc">
-            <span>Detailed Observational Description <span className="text-error">*</span></span>
-            <span className="font-label-sm text-label-sm text-on-surface-variant font-normal">Min. 60 words for AI analysis</span>
+        {/* Description */}
+        <div className="space-y-1.5">
+          <label htmlFor="problem-desc" className="block text-xs font-semibold text-slate-700">
+            Factual Description & Observed Symptoms *
           </label>
           <textarea
             id="problem-desc"
             rows={4}
             value={formData.description}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-            className="w-full p-space-md rounded-xl bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm border border-surface-container-high leading-relaxed"
-          ></textarea>
+            placeholder="Provide context: when did the issue start, severity, localized symptoms..."
+            className="w-full text-sm rounded-lg border border-slate-200 bg-white text-slate-900 p-3 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors leading-relaxed"
+          />
+          <p className="text-xs text-slate-500">
+            Include specific timeline, street names, and any prior complaints logged with municipal bodies.
+          </p>
         </div>
 
-        {/* Media / Evidence Dropzone */}
-        <div className="space-y-space-xs">
-          <label className="font-label-lg text-label-lg text-on-surface font-semibold">
-            Photographic / Telemetry Evidence ({fileAttached ? '1 file attached' : '0 files'})
+        {/* Media / Photo Upload Dropzone */}
+        <div className="space-y-1.5 pt-2">
+          <label className="block text-xs font-semibold text-slate-700">
+            Verifiable Evidence (Photos / Telemetry)
           </label>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
-            {fileAttached && (
-              <div className="bg-surface-container-low p-space-xs rounded-xl flex items-center gap-space-sm shadow-sm relative group border border-surface-container-high">
-                <img
-                  className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
-                  src="https://images.unsplash.com/photo-1584467735815-f778f274e296?w=200&auto=format&fit=crop&q=80"
-                  alt="Proof"
-                />
-                <div className="flex flex-col min-w-0 pr-6">
-                  <span className="font-label-md text-label-md text-on-surface truncate font-semibold">pipeline_leak_photo.jpg</span>
-                  <span className="font-body-sm text-body-sm text-on-surface-variant text-xs">2.4 MB • Image/JPEG</span>
-                  <span className="font-label-sm text-label-sm text-tertiary flex items-center gap-0.5 mt-0.5 font-bold">
-                    <span className="material-symbols-outlined text-xs">check_circle</span> EXIF Geo Match
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setFileAttached(false)}
-                  className="absolute top-2 right-2 text-outline hover:text-error transition-colors p-1"
-                  title="Remove file"
-                >
-                  <span className="material-symbols-outlined text-base">close</span>
-                </button>
+          <div className="border border-dashed border-slate-200 hover:border-slate-300 rounded-xl p-4 transition-colors bg-slate-50/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                <span className="material-symbols-outlined text-xl">image</span>
               </div>
-            )}
-            <button
+              <div className="text-xs">
+                <p className="font-semibold text-slate-800">
+                  {fileAttached ? 'pipeline_leak_evidence.jpg' : 'Upload photo or video proof'}
+                </p>
+                <p className="text-slate-500 mt-0.5">
+                  {fileAttached ? '2.4 MB • GPS EXIF metadata verified' : 'PNG, JPG, MP4 up to 25MB'}
+                </p>
+              </div>
+            </div>
+
+            <Button
               type="button"
-              onClick={() => setFileAttached(true)}
-              className="bg-surface-container rounded-xl p-space-sm flex flex-col items-center justify-center text-center hover:bg-surface-container-high transition-colors group cursor-pointer border border-dashed border-surface-container-highest"
+              variant="outline"
+              size="sm"
+              onClick={() => setFileAttached(!fileAttached)}
             >
-              <span className="material-symbols-outlined text-primary mb-1 group-hover:scale-110 transition-transform">add_a_photo</span>
-              <span className="font-label-md text-label-md text-on-surface font-semibold">Add more documents / video</span>
-              <span className="font-body-sm text-body-sm text-on-surface-variant text-xs">PDF, MP4, PNG up to 25MB</span>
-            </button>
+              {fileAttached ? 'Replace File' : 'Browse File'}
+            </Button>
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div className="pt-space-sm flex flex-col sm:flex-row items-center justify-between gap-space-md border-t border-surface-container-high/60">
-          <button
+        <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <Button
             type="button"
+            variant="secondary"
+            size="md"
             onClick={onTriggerAI}
-            disabled={isAnalyzing}
-            className="w-full sm:w-auto px-space-md py-space-sm bg-tertiary-container hover:bg-tertiary text-on-tertiary font-label-md text-label-md rounded-xl shadow-sm active:scale-95 transition-all flex items-center justify-center gap-space-xs font-semibold"
+            isLoading={isAnalyzing}
+            leftIcon={<span className="material-symbols-outlined text-base text-blue-600">auto_awesome</span>}
           >
-            <span className={`material-symbols-outlined text-base ${isAnalyzing ? 'animate-spin' : ''}`}>
-              {isAnalyzing ? 'sync' : 'auto_awesome'}
-            </span>
-            <span>{isAnalyzing ? 'Analyzing...' : '1. Run AI Diagnostics'}</span>
-          </button>
+            Run AI Pre-Validation
+          </Button>
 
           {onDispatch && (
-            <button
+            <Button
               type="button"
+              variant="primary"
+              size="md"
               onClick={onDispatch}
-              disabled={isDispatching}
-              className="w-full sm:w-auto px-space-lg py-space-sm bg-primary hover:bg-primary/90 text-on-primary font-label-lg text-label-lg rounded-xl shadow-md active:scale-95 transition-all flex items-center justify-center gap-space-xs font-bold"
+              isLoading={isDispatching}
+              rightIcon={<span className="material-symbols-outlined text-base">send</span>}
             >
-              <span className={`material-symbols-outlined text-lg ${isDispatching ? 'animate-spin' : ''}`}>
-                {isDispatching ? 'sync' : 'cloud_upload'}
-              </span>
-              <span>{isDispatching ? 'Saving to Database...' : '2. Submit Problem to Database'}</span>
-            </button>
+              Confirm & Submit
+            </Button>
           )}
         </div>
-      </div>
+      </Card>
     </section>
   );
 };

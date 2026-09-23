@@ -4,6 +4,8 @@ import { useChallenges } from '../context/ChallengeContext';
 import { useAuth } from '../context/AuthContext';
 import { CitizenForm } from '../components/report/CitizenForm';
 import { AIDiagnosticsPanel } from '../components/report/AIDiagnosticsPanel';
+import { PageHeader } from '../components/common/PageHeader';
+import { Badge } from '../components/common/Badge';
 import { AIDiagnosticResult } from '../types';
 
 export const CitizenReportPage: React.FC = () => {
@@ -135,68 +137,49 @@ export const CitizenReportPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-container-max mx-auto px-gutter-desktop py-space-xl w-full">
-      {/* Breadcrumb & Workflow Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-xl">
-        <div className="space-y-space-2xs">
-          <div className="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
-            <span className="text-tertiary font-bold">CivicSolve Citizen Intake</span>
-            <span>/</span>
-            <span>District Urban Hub</span>
-            <span>/</span>
-            <span className="text-on-surface font-semibold">Triage Sandbox #DL-8842</span>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6 w-full">
+      {/* Page Header */}
+      <PageHeader
+        badge={
+          <Badge variant="blue" size="sm">
+            Citizen Intake · Capacity Connect
+          </Badge>
+        }
+        title="Report a Community Challenge"
+        description="Submit verified grassroots problems directly to municipal authorities and university engineering labs. AI automatically validates GIS coordinates, identifies duplicate clusters, and calculates priority ranking."
+        actions={
+          <div className="hidden sm:flex items-center gap-3 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-600">
+            <span className="flex items-center gap-1 font-semibold text-slate-900">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              Live Ingestion Active
+            </span>
+            <span className="text-slate-300">|</span>
+            <span>Median Triage: <strong>1.4s</strong></span>
           </div>
-          <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight font-bold">
-            Citizen Problem Intake & AI Diagnostics
-          </h1>
-          <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl">
-            Submit verifiable localized societal bottlenecks. Our neural parsing pipeline instantly verifies GIS coordinates, cross-references historical municipal data, and drafts immediate mitigation pathways.
-          </p>
-        </div>
+        }
+      />
 
-        {/* Quick Metrics Strip */}
-        <div className="flex items-center gap-space-sm bg-surface-container p-space-xs rounded-xl shadow-sm border border-surface-container-high">
-          <div className="px-space-sm py-1 bg-surface-container-lowest rounded-lg flex flex-col items-center">
-            <span className="font-label-sm text-label-sm text-on-surface-variant font-semibold">Live Clusters</span>
-            <span className="font-headline-sm text-headline-sm text-primary font-bold">142</span>
-          </div>
-          <div className="px-space-sm py-1 bg-surface-container-lowest rounded-lg flex flex-col items-center">
-            <span className="font-label-sm text-label-sm text-on-surface-variant font-semibold">Median Triage</span>
-            <span className="font-headline-sm text-headline-sm text-tertiary font-bold">1.4s</span>
-          </div>
-          <div className="px-space-sm py-1 bg-surface-container-lowest rounded-lg flex flex-col items-center">
-            <span className="font-label-sm text-label-sm text-on-surface-variant font-semibold">AI Accuracy</span>
-            <span className="font-headline-sm text-headline-sm text-on-surface font-bold">98.2%</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Draft Applied Banner */}
+      {/* AI Draft Applied Notice */}
       {draftAppliedNotice && (
-        <div className="mb-space-lg p-space-md rounded-2xl bg-primary/10 border border-primary/30 flex items-center justify-between gap-space-sm text-on-surface animate-fade-in shadow-sm">
-          <div className="flex items-center gap-space-sm">
-            <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-xs">
-              <span className="material-symbols-outlined text-lg">auto_awesome</span>
-            </div>
-            <div>
-              <h4 className="font-bold text-sm text-primary">Challenge Draft Loaded from CivicSolve AI</h4>
-              <p className="text-xs text-on-surface-variant">
-                We have populated the parameters from your assistant conversation. You can review the details and click <strong>Run AI Pre-Validation</strong> or <strong>Dispatch</strong>.
-              </p>
+        <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-between gap-3 text-slate-800">
+          <div className="flex items-center gap-3">
+            <span className="material-symbols-outlined text-blue-600 text-xl">auto_awesome</span>
+            <div className="text-xs">
+              <p className="font-bold text-blue-900">Pre-filled from CivicSolve AI Assistant</p>
+              <p className="text-blue-700 mt-0.5">Parameters have been auto-populated from your conversation. Review and dispatch when ready.</p>
             </div>
           </div>
           <button
-            type="button"
             onClick={() => setDraftAppliedNotice(false)}
-            className="p-1 text-on-surface-variant hover:text-on-surface"
+            className="text-slate-400 hover:text-slate-600 p-1"
           >
-            <span className="material-symbols-outlined text-base">close</span>
+            <span className="material-symbols-outlined text-sm">close</span>
           </button>
         </div>
       )}
 
-      {/* Main Two-Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+      {/* Two Column Layout: Form (Left) & Diagnostics (Right) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <CitizenForm
           formData={formData}
           setFormData={setFormData}

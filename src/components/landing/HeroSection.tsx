@@ -1,46 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { StatCard } from '../common/StatCard';
+import { Button } from '../common/Button';
+import { Badge } from '../common/Badge';
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative w-full overflow-hidden pb-space-2xl pt-space-xl">
-      <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[70rem] h-[28rem] bg-gradient-to-b from-primary-fixed/40 via-tertiary-fixed/20 to-transparent blur-3xl pointer-events-none -z-10"></div>
-      <div className="absolute top-48 -right-24 w-96 h-96 bg-tertiary-fixed-dim/20 rounded-full blur-2xl pointer-events-none -z-10"></div>
+    <section className="relative w-full overflow-hidden pt-12 pb-16 lg:pt-16 lg:pb-20 border-b border-slate-200/80 bg-white">
+      {/* Subtle background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-blue-50/60 via-slate-50/30 to-transparent pointer-events-none -z-10" />
 
-      <div className="max-w-container-max mx-auto px-gutter-desktop">
-        <div className="flex flex-col items-center text-center space-y-space-md max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container-lowest shadow-sm border border-surface-container-high">
-            <span className="inline-flex items-center justify-center w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
-            <span className="font-label-sm text-label-sm text-tertiary uppercase tracking-wider font-bold">
-              National Innovation Initiative
-            </span>
-            <span className="text-outline-variant font-bold">·</span>
-            <span className="font-label-sm text-label-sm text-on-surface-variant font-medium">
-              AI for Societal Good
-            </span>
-            <span className="material-symbols-outlined text-sm text-primary">verified</span>
-          </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto space-y-6">
+          
+          {/* Subtle Platform Pill */}
+          <Badge variant="blue" size="md" icon={<span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />}>
+            National Open Innovation · Capacity Connect
+          </Badge>
 
-          <h1 className="font-display text-display text-on-surface tracking-tight leading-[1.1] max-w-3xl">
-            From Community Problems to{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-container to-tertiary">
-              Deployable Solutions
-            </span>
+          {/* Heading */}
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
+            From Grassroots Problems to{' '}
+            <span className="text-blue-600">Deployable Solutions</span>
           </h1>
 
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
-            A unified digital platform connecting citizens, government bodies, universities, and industry mentors to solve urgent societal challenges through AI-assisted research and engineering.
+          {/* Subtext */}
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+            A unified digital platform connecting citizens, municipal administrations, academic R&D labs, and industry mentors to solve urgent community challenges through validated engineering.
           </p>
 
-          <div className="pt-space-xs flex flex-wrap items-center justify-center gap-space-md">
-            <Link
-              to="/report"
-              className="group px-space-lg py-space-sm bg-primary hover:bg-primary-container text-on-primary rounded-xl font-label-lg text-label-lg shadow-md hover:shadow-lg transition-all flex items-center gap-space-xs font-semibold"
-            >
-              <span className="material-symbols-outlined text-lg">add_location_alt</span>
-              <span>Report a Problem</span>
-              <span className="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+          {/* Action CTAs */}
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+            <Link to="/report">
+              <Button
+                variant="primary"
+                size="lg"
+                leftIcon={<span className="material-symbols-outlined text-lg">add_location_alt</span>}
+                rightIcon={<span className="material-symbols-outlined text-base">arrow_forward</span>}
+              >
+                Report a Problem
+              </Button>
             </Link>
+
             <a
               href="#challenges-map"
               onClick={(e) => {
@@ -52,71 +53,49 @@ export const HeroSection: React.FC = () => {
                   window.location.href = '/#challenges-map';
                 }
               }}
-              className="px-space-lg py-space-sm bg-surface-container-lowest hover:bg-surface-container-low text-on-surface rounded-xl font-label-lg text-label-lg shadow-sm hover:shadow transition-all flex items-center gap-space-xs border border-surface-container-high font-semibold cursor-pointer"
             >
-              <span className="material-symbols-outlined text-lg text-primary">map</span>
-              <span>Explore Jharkhand Map</span>
+              <Button
+                variant="secondary"
+                size="lg"
+                leftIcon={<span className="material-symbols-outlined text-lg text-blue-600">map</span>}
+              >
+                Explore Jharkhand Map
+              </Button>
             </a>
           </div>
         </div>
 
-        {/* Live Platform Stats Ticker */}
-        <div className="mt-space-2xl grid grid-cols-2 lg:grid-cols-4 gap-space-md">
-          <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-surface-container-high/60 flex flex-col justify-between">
-            <div className="flex items-center justify-between">
-              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Citizen Submissions</span>
-              <span className="p-2 rounded-lg bg-primary-fixed text-primary flex items-center justify-center">
-                <span className="material-symbols-outlined text-lg">crisis_alert</span>
-              </span>
-            </div>
-            <div className="mt-space-sm">
-              <div className="font-headline-xl text-headline-xl text-on-surface font-bold">1,428+</div>
-              <div className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-                <span className="text-tertiary font-label-sm text-label-sm flex items-center font-bold">
-                  <span className="material-symbols-outlined text-xs">trending_up</span>+18%
-                </span> this month
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-surface-container-high/60 flex flex-col justify-between">
-            <div className="flex items-center justify-between">
-              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Active R&D Hubs</span>
-              <span className="p-2 rounded-lg bg-tertiary-fixed text-tertiary flex items-center justify-center">
-                <span className="material-symbols-outlined text-lg">biotech</span>
-              </span>
-            </div>
-            <div className="mt-space-sm">
-              <div className="font-headline-xl text-headline-xl text-on-surface font-bold">318 Labs</div>
-              <div className="font-body-sm text-body-sm text-on-surface-variant">Across IITs, NITs & State Univs</div>
-            </div>
-          </div>
-
-          <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-surface-container-high/60 flex flex-col justify-between">
-            <div className="flex items-center justify-between">
-              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Field Deployments</span>
-              <span className="p-2 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
-                <span className="material-symbols-outlined text-lg">rocket_launch</span>
-              </span>
-            </div>
-            <div className="mt-space-sm">
-              <div className="font-headline-xl text-headline-xl text-on-surface font-bold">84 Ready</div>
-              <div className="font-body-sm text-body-sm text-on-surface-variant">Validated by Municipal Bodies</div>
-            </div>
-          </div>
-
-          <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-surface-container-high/60 flex flex-col justify-between">
-            <div className="flex items-center justify-between">
-              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Social Footprint</span>
-              <span className="p-2 rounded-lg bg-primary-fixed-dim text-on-primary-fixed flex items-center justify-center">
-                <span className="material-symbols-outlined text-lg">groups</span>
-              </span>
-            </div>
-            <div className="mt-space-sm">
-              <div className="font-headline-xl text-headline-xl text-on-surface font-bold">2.4M+</div>
-              <div className="font-body-sm text-body-sm text-on-surface-variant">Citizens Directly Impacted</div>
-            </div>
-          </div>
+        {/* 4 Clean Key StatCards */}
+        <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <StatCard
+            title="Citizen Reports"
+            value="1,428+"
+            trend={{ value: "+18%", isPositive: true }}
+            subtitle="this month"
+            icon={<span className="material-symbols-outlined text-xl">crisis_alert</span>}
+            iconBg="bg-blue-50 text-blue-600"
+          />
+          <StatCard
+            title="Active R&D Hubs"
+            value="318 Labs"
+            subtitle="Across top universities"
+            icon={<span className="material-symbols-outlined text-xl">biotech</span>}
+            iconBg="bg-teal-50 text-teal-600"
+          />
+          <StatCard
+            title="Field Deployments"
+            value="84 Ready"
+            subtitle="Validated by municipal bodies"
+            icon={<span className="material-symbols-outlined text-xl">verified</span>}
+            iconBg="bg-slate-100 text-slate-700"
+          />
+          <StatCard
+            title="Citizens Impacted"
+            value="2.4M+"
+            subtitle="Across 24 districts"
+            icon={<span className="material-symbols-outlined text-xl">groups</span>}
+            iconBg="bg-indigo-50 text-indigo-600"
+          />
         </div>
       </div>
     </section>

@@ -1,65 +1,106 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useChallenges } from '../../context/ChallengeContext';
+import { Card } from '../common/Card';
+import { Badge } from '../common/Badge';
 
 export const FeaturedChallenges: React.FC = () => {
   const { challenges } = useChallenges();
 
   return (
-    <section className="w-full py-space-2xl bg-surface-container-low border-t border-surface-container-high/60">
-      <div className="max-w-container-max mx-auto px-gutter-desktop">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-space-xl gap-space-sm">
+    <section className="w-full py-16 bg-slate-50 border-t border-slate-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
           <div>
-            <span className="font-label-sm text-label-sm uppercase tracking-widest text-tertiary font-bold">Field Implementations</span>
-            <h2 className="font-headline-xl text-headline-xl text-on-surface mt-1 font-bold">Active Challenges & Live Prototypes</h2>
-            <p className="font-body-md text-body-md text-on-surface-variant mt-1">Real problems undergoing research, prototyping, and municipal testbed trials right now.</p>
+            <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">
+              Field Implementations
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1">
+              Active Challenges & Live Prototypes
+            </h2>
+            <p className="text-sm text-slate-500 mt-1">
+              Verified problems undergoing academic research, prototyping, and municipal testbed trials.
+            </p>
           </div>
-          <Link to="/challenges" className="inline-flex items-center gap-space-2xs text-primary font-label-lg text-label-lg hover:underline font-semibold">
-            Browse all {challenges.length} live challenges <span className="material-symbols-outlined text-base">arrow_right_alt</span>
+          <Link
+            to="/challenges"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+          >
+            <span>Browse all {challenges.length} challenges</span>
+            <span className="material-symbols-outlined text-base">arrow_forward</span>
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+        {/* 3-Column Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {challenges.slice(0, 3).map((ch) => (
-            <div key={ch.id} className="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col border border-surface-container-high">
-              <div className="relative h-48 w-full bg-surface-container">
-                <img src={ch.mediaUrl} alt={ch.title} className="w-full h-full object-cover" />
-                <div className="absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-md px-space-xs py-1 rounded-full font-label-sm text-label-sm text-tertiary font-semibold flex items-center gap-1">
-                  <span className="material-symbols-outlined text-xs">verified</span> {ch.category}
+            <Card
+              key={ch.id}
+              padding="none"
+              className="overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow"
+            >
+              {/* Image & Header Tags */}
+              <div className="relative h-44 w-full bg-slate-100">
+                <img
+                  src={ch.mediaUrl}
+                  alt={ch.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute top-3 left-3">
+                  <Badge variant="slate" size="sm">
+                    {ch.category}
+                  </Badge>
                 </div>
-                <div className="absolute bottom-3 right-3 bg-surface-container-lowest/95 backdrop-blur-md px-space-xs py-0.5 rounded font-label-sm text-label-sm text-on-surface font-medium flex items-center gap-1">
-                  <span className="material-symbols-outlined text-xs text-error">location_on</span> {ch.location.ward}, {ch.location.district}
+                <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-xs px-2.5 py-0.5 rounded text-[11px] font-medium text-slate-700 flex items-center gap-1 shadow-xs">
+                  <span className="material-symbols-outlined text-xs text-red-500">location_on</span>
+                  <span>{ch.location.ward}, {ch.location.district}</span>
                 </div>
               </div>
-              <div className="p-space-lg flex-1 flex flex-col justify-between space-y-space-md">
+
+              {/* Content */}
+              <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="px-space-xs py-0.5 rounded bg-tertiary-fixed font-label-sm text-label-sm text-on-tertiary-fixed font-semibold">
-                      {ch.status.replace('_', ' ')}
-                    </span>
-                    <span className="font-label-sm text-label-sm text-on-surface-variant font-mono font-semibold">{ch.ticketId}</span>
+                    <Badge variant="blue" size="sm">
+                      {ch.status.replace(/_/g, ' ')}
+                    </Badge>
+                    <span className="text-xs font-mono text-slate-400 font-semibold">{ch.ticketId}</span>
                   </div>
-                  <h3 className="font-headline-sm text-headline-sm text-on-surface leading-tight font-bold">{ch.title}</h3>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant mt-2 line-clamp-3">
+                  <h3 className="text-base font-bold text-slate-900 leading-snug line-clamp-2">
+                    {ch.title}
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-2 line-clamp-3 leading-relaxed">
                     {ch.description}
                   </p>
                 </div>
-                <div className="space-y-space-xs pt-space-xs border-t border-surface-container-high/60">
-                  <div className="p-space-xs rounded-lg bg-surface-container flex items-center justify-between font-label-sm text-label-sm">
-                    <span className="text-on-surface-variant flex items-center gap-1">
-                      <span className="material-symbols-outlined text-sm">school</span> {ch.assignedLab || 'Open for solvers'}
+
+                {/* Footer Metrics */}
+                <div className="pt-3 border-t border-slate-100 space-y-2 text-xs">
+                  <div className="flex items-center justify-between text-slate-600">
+                    <span className="flex items-center gap-1">
+                      <span className="material-symbols-outlined text-sm text-blue-600">school</span>
+                      <span className="truncate max-w-[160px]">{ch.assignedLab || 'Open for solvers'}</span>
                     </span>
-                    <span className="text-primary font-semibold">Severity: {ch.aiDiagnostics.severityScore}/100</span>
+                    <span className="font-semibold text-blue-600">
+                      Severity: {ch.aiDiagnostics.severityScore}/100
+                    </span>
                   </div>
-                  <div className="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant pt-1">
-                    <span>Endorsements: <strong className="text-on-surface">{ch.endorsementsCount}</strong></span>
-                    <Link to="/workspace" className="text-primary font-label-md text-label-md hover:underline flex items-center gap-0.5 font-semibold">
-                      View Workspace <span className="material-symbols-outlined text-xs">open_in_new</span>
+
+                  <div className="flex items-center justify-between pt-1 text-slate-500">
+                    <span>Endorsements: <strong className="text-slate-800">{ch.endorsementsCount}</strong></span>
+                    <Link
+                      to="/workspace"
+                      className="font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-0.5"
+                    >
+                      <span>View Workspace</span>
+                      <span className="material-symbols-outlined text-xs">open_in_new</span>
                     </Link>
                   </div>
                 </div>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
       </div>

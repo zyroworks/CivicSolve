@@ -1,72 +1,100 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from '../common/Button';
+import { Badge } from '../common/Badge';
 
 export const ImpactBanner: React.FC = () => {
   return (
-    <section className="w-full py-space-3xl">
-      <div className="max-w-container-max mx-auto px-gutter-desktop">
-        <div className="relative bg-gradient-to-br from-primary via-primary-container to-tertiary text-on-primary rounded-3xl p-space-xl md:p-space-2xl overflow-hidden shadow-xl">
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
-            <div className="lg:col-span-8 space-y-space-md">
-              <div className="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-white/15 backdrop-blur-md text-on-primary font-label-sm text-label-sm font-semibold">
-                <span className="material-symbols-outlined text-sm text-tertiary-fixed">verified</span>
-                National Flagship Civic Innovation Network
-              </div>
-              <h2 className="font-headline-xl text-headline-xl text-on-primary max-w-2xl leading-tight font-bold">
-                Ready to turn grassroots civic problems into deployable breakthroughs?
+    <section className="w-full py-16 bg-slate-50 border-t border-slate-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative bg-slate-900 text-white rounded-2xl p-8 sm:p-12 overflow-hidden shadow-md border border-slate-800">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* Left Content */}
+            <div className="lg:col-span-7 space-y-4">
+              <Badge
+                variant="teal"
+                size="sm"
+                icon={<span className="material-symbols-outlined text-xs">verified</span>}
+              >
+                National Flagship Initiative · Capacity Connect
+              </Badge>
+
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
+                Ready to turn community bottlenecks into deployable solutions?
               </h2>
-              <p className="font-body-lg text-body-lg text-on-primary/90 max-w-xl leading-relaxed">
-                Connect as a municipal commissioner with an unaddressed crisis, an engineering faculty team looking for accredited capstones, or an industry partner seeking measurable social ROI.
+
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
+                Connect as a municipal commissioner with an unaddressed crisis, an engineering faculty team looking for accredited capstones, or an industry partner seeking measurable social impact.
               </p>
-              <div className="flex flex-wrap gap-space-md pt-space-xs">
-                <Link
-                  to="/report"
-                  className="px-space-lg py-space-sm bg-white text-primary rounded-xl font-label-lg text-label-lg shadow hover:bg-surface-bright transition-all flex items-center gap-space-xs font-bold"
-                >
-                  <span>Submit Civic Problem</span>
-                  <span className="material-symbols-outlined text-sm">arrow_forward</span>
+
+              <div className="pt-2 flex flex-wrap gap-3">
+                <Link to="/report">
+                  <Button
+                    variant="primary"
+                    size="md"
+                    rightIcon={<span className="material-symbols-outlined text-sm">arrow_forward</span>}
+                  >
+                    Submit Civic Problem
+                  </Button>
                 </Link>
-                <Link
-                  to="/workspace"
-                  className="px-space-lg py-space-sm bg-white/15 text-on-primary hover:bg-white/25 rounded-xl font-label-lg text-label-lg transition-all flex items-center gap-space-xs font-semibold backdrop-blur-md border border-white/20"
-                >
-                  <span className="material-symbols-outlined text-sm">hub</span>
-                  <span>Access Innovation Sandbox</span>
+
+                <Link to="/workspace">
+                  <Button
+                    variant="secondary"
+                    size="md"
+                    leftIcon={<span className="material-symbols-outlined text-base text-blue-600">hub</span>}
+                  >
+                    Access R&D Workspace
+                  </Button>
                 </Link>
               </div>
             </div>
 
-            <div className="lg:col-span-4 bg-white/10 backdrop-blur-lg p-space-lg rounded-2xl space-y-space-md border border-white/20">
-              <div className="font-label-sm text-label-sm uppercase tracking-wider text-on-primary/80 font-bold">National Platform Coverage</div>
-              <div className="space-y-space-sm">
-                <div className="flex justify-between items-center">
-                  <span className="font-body-sm text-body-sm text-on-primary/90">Districts Mapped</span>
-                  <span className="font-headline-sm text-headline-sm text-on-primary font-bold">428 / 766</span>
-                </div>
-                <div className="w-full bg-white/20 h-2 rounded-full overflow-hidden">
-                  <div className="bg-tertiary-fixed h-full rounded-full" style={{ width: '56%' }}></div>
+            {/* Right Telemetry Card */}
+            <div className="lg:col-span-5 bg-slate-800/80 rounded-xl p-6 border border-slate-700 space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-700/60">
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  National Platform Telemetry
+                </span>
+                <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+              </div>
+
+              <div className="space-y-3.5">
+                <div>
+                  <div className="flex justify-between items-center text-xs mb-1.5">
+                    <span className="text-slate-300 font-medium">Districts Mapped</span>
+                    <span className="font-bold text-white">428 / 766</span>
+                  </div>
+                  <div className="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-blue-500 h-full rounded-full" style={{ width: '56%' }} />
+                  </div>
                 </div>
 
-                <div className="flex justify-between items-center pt-2">
-                  <span className="font-body-sm text-body-sm text-on-primary/90">Funded CSR Commitments</span>
-                  <span className="font-headline-sm text-headline-sm text-on-primary font-bold">₹14.2 Cr</span>
-                </div>
-                <div className="w-full bg-white/20 h-2 rounded-full overflow-hidden">
-                  <div className="bg-secondary-fixed h-full rounded-full" style={{ width: '78%' }}></div>
+                <div>
+                  <div className="flex justify-between items-center text-xs mb-1.5">
+                    <span className="text-slate-300 font-medium">Funded CSR Commitments</span>
+                    <span className="font-bold text-teal-400">₹14.2 Cr</span>
+                  </div>
+                  <div className="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-teal-500 h-full rounded-full" style={{ width: '78%' }} />
+                  </div>
                 </div>
 
-                <div className="flex justify-between items-center pt-2">
-                  <span className="font-body-sm text-body-sm text-on-primary/90">Patent Disclosures Filed</span>
-                  <span className="font-headline-sm text-headline-sm text-on-primary font-bold">42 Patents</span>
-                </div>
-                <div className="w-full bg-white/20 h-2 rounded-full overflow-hidden">
-                  <div className="bg-white h-full rounded-full" style={{ width: '42%' }}></div>
+                <div>
+                  <div className="flex justify-between items-center text-xs mb-1.5">
+                    <span className="text-slate-300 font-medium">Patent Disclosures Filed</span>
+                    <span className="font-bold text-white">42 Patents</span>
+                  </div>
+                  <div className="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-indigo-400 h-full rounded-full" style={{ width: '42%' }} />
+                  </div>
                 </div>
               </div>
 
-              <div className="pt-space-xs flex items-center gap-2 text-on-primary/80 font-label-sm text-label-sm">
-                <span className="material-symbols-outlined text-sm text-tertiary-fixed">policy</span>
-                Audited by National Innovation Council
+              <div className="pt-2 text-xs text-slate-400 flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-sm text-teal-400">policy</span>
+                <span>Verified under National Innovation Framework</span>
               </div>
             </div>
           </div>

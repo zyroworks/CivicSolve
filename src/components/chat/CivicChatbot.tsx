@@ -266,9 +266,9 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
   return (
     <>
       {/* Floating Toggle Button */}
-      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2">
+      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5">
         {!isOpen && (
-          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-lowest/90 backdrop-blur-md text-on-surface border border-surface-container-high rounded-full shadow-md text-xs font-semibold animate-fade-in">
+          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-white/95 backdrop-blur-md text-slate-800 border border-slate-200 rounded-full shadow-md text-xs font-semibold">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             <span>CivicSolve AI Assistant</span>
           </div>
@@ -280,10 +280,10 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
             setIsOpen(!isOpen);
             setIsMinimized(false);
           }}
-          className={`w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 cursor-pointer active:scale-95 ${
+          className={`w-13 h-13 rounded-full shadow-lg flex items-center justify-center transition-all duration-200 cursor-pointer active:scale-95 ${
             isOpen
               ? 'bg-slate-900 text-white hover:bg-slate-800'
-              : 'bg-gradient-to-tr from-primary to-primary-container text-on-primary hover:shadow-primary/30 hover:scale-105'
+              : 'bg-primary text-white hover:bg-blue-700 shadow-blue-500/20'
           }`}
           title="CivicSolve AI Assistant"
           aria-label="Toggle CivicSolve AI Assistant"
@@ -299,19 +299,19 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
         <div
           className={`fixed z-50 transition-all duration-300 ${
             isMinimized
-              ? 'bottom-24 right-6 w-80 h-14 bg-surface-container-lowest border border-surface-container-high rounded-2xl shadow-xl flex items-center justify-between px-4'
-              : 'bottom-24 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[420px] h-[600px] max-h-[calc(100vh-7.5rem)] bg-surface-container-lowest border border-surface-container-high rounded-2xl shadow-2xl flex flex-col overflow-hidden'
+              ? 'bottom-22 right-6 w-80 h-14 bg-white border border-slate-200 rounded-2xl shadow-xl flex items-center justify-between px-4'
+              : 'bottom-22 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[420px] h-[600px] max-h-[calc(100vh-7rem)] bg-white border border-slate-200 rounded-2xl shadow-2xl flex flex-col overflow-hidden'
           }`}
         >
           {/* Minimized Bar */}
           {isMinimized ? (
             <div className="flex items-center justify-between w-full">
-              <div className="flex items-center gap-2 cursor-pointer" onClick={() => setIsMinimized(false)}>
-                <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary text-xs">
+              <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => setIsMinimized(false)}>
+                <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white text-xs">
                   <span className="material-symbols-outlined text-sm">smart_toy</span>
                 </div>
                 <div>
-                  <h4 className="font-bold text-xs text-on-surface">CivicSolve AI</h4>
+                  <h4 className="font-bold text-xs text-slate-900">CivicSolve AI</h4>
                   <span className="text-[10px] text-primary font-medium">Click to expand chat</span>
                 </div>
               </div>
@@ -319,7 +319,7 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
                 <button
                   type="button"
                   onClick={() => setIsMinimized(false)}
-                  className="p-1 text-on-surface-variant hover:text-on-surface"
+                  className="p-1 text-slate-400 hover:text-slate-700 cursor-pointer"
                   title="Expand"
                 >
                   <span className="material-symbols-outlined text-base">expand_less</span>
@@ -327,7 +327,7 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="p-1 text-on-surface-variant hover:text-error"
+                  className="p-1 text-slate-400 hover:text-red-600 cursor-pointer"
                   title="Close"
                 >
                   <span className="material-symbols-outlined text-base">close</span>
@@ -337,29 +337,29 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
           ) : (
             <>
               {/* Full Header */}
-              <div className="px-4 py-3 bg-gradient-to-r from-primary to-primary-container text-on-primary flex items-center justify-between shadow-sm">
+              <div className="px-4 py-3 bg-slate-900 text-white flex items-center justify-between shadow-sm">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-white/15 backdrop-blur-md flex items-center justify-center text-white border border-white/20 shadow-xs">
+                  <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-xs">
                     <span className="material-symbols-outlined text-lg">smart_toy</span>
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <h3 className="font-bold text-sm text-white leading-tight">CivicSolve AI</h3>
-                      <span className={`px-1.5 py-0.2 rounded-full text-[9px] font-bold border ${activeRoleBadge.bg} bg-white text-primary border-white/40`}>
+                      <h3 className="font-bold text-xs text-white leading-tight">CivicSolve AI</h3>
+                      <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-800 text-teal-400 border border-slate-700">
                         {activeRoleBadge.label}
                       </span>
                     </div>
-                    <p className="text-[11px] text-white/80 leading-none mt-0.5">
+                    <p className="text-[10px] text-slate-400 leading-none mt-0.5">
                       National Neural Innovation Copilot
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-0.5">
+                <div className="flex items-center gap-1">
                   <button
                     type="button"
                     onClick={handleResetChat}
-                    className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                    className="p-1 rounded text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
                     title="Reset conversation"
                   >
                     <span className="material-symbols-outlined text-base">restart_alt</span>
@@ -367,7 +367,7 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
                   <button
                     type="button"
                     onClick={() => setIsMinimized(true)}
-                    className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                    className="p-1 rounded text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
                     title="Minimize"
                   >
                     <span className="material-symbols-outlined text-base">remove</span>
@@ -375,7 +375,7 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
                   <button
                     type="button"
                     onClick={() => setIsOpen(false)}
-                    className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                    className="p-1 rounded text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
                     title="Close"
                   >
                     <span className="material-symbols-outlined text-base">close</span>
@@ -384,7 +384,7 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
               </div>
 
               {/* Messages Area */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-3.5 bg-surface-container-lowest text-on-surface">
+              <div className="flex-1 overflow-y-auto p-4 space-y-3.5 bg-slate-50/50 text-slate-800">
                 {messages.map((msg) => (
                   <div
                     key={msg.id}
@@ -393,10 +393,10 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
                     <div
                       className={`max-w-[88%] rounded-2xl px-3.5 py-2.5 shadow-2xs ${
                         msg.role === 'user'
-                          ? 'bg-primary text-on-primary rounded-tr-xs'
+                          ? 'bg-primary text-white rounded-tr-xs'
                           : msg.isError
                           ? 'bg-red-50 text-red-900 border border-red-200 rounded-tl-xs'
-                          : 'bg-surface-container-low text-on-surface border border-surface-container-high rounded-tl-xs'
+                          : 'bg-white text-slate-800 border border-slate-200 rounded-tl-xs'
                       }`}
                     >
                       {msg.role === 'assistant' ? (
@@ -417,7 +417,7 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
 
                       {/* Suggested Action Chips */}
                       {msg.suggestedActions && msg.suggestedActions.length > 0 && (
-                        <div className="mt-2.5 pt-2 border-t border-surface-container-high/60 flex flex-wrap gap-1.5">
+                        <div className="mt-2.5 pt-2 border-t border-slate-100 flex flex-wrap gap-1.5">
                           {msg.suggestedActions.map((action, aIdx) => (
                             <button
                               key={aIdx}
@@ -439,7 +439,7 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
                                   handleSendMessage(action);
                                 }
                               }}
-                              className="px-2 py-1 rounded-md bg-surface-container-lowest border border-surface-container-high hover:border-primary text-primary text-[11px] font-semibold transition-all hover:shadow-2xs active:scale-95"
+                              className="px-2.5 py-1 rounded-lg bg-white border border-slate-200 hover:border-primary text-primary text-[11px] font-semibold transition-all hover:bg-slate-50 cursor-pointer shadow-2xs active:scale-95"
                             >
                               {action}
                             </button>
@@ -448,7 +448,7 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
                       )}
                     </div>
 
-                    <span className="text-[10px] text-outline mt-1 px-1">
+                    <span className="text-[10px] text-slate-400 mt-1 px-1">
                       {msg.timestamp}
                     </span>
                   </div>
@@ -456,7 +456,7 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
 
                 {/* Loading / Thinking Indicator */}
                 {isLoading && (
-                  <div className="flex items-center gap-2 text-on-surface-variant text-xs py-2 px-3 bg-surface-container-low rounded-2xl w-fit border border-surface-container-high animate-pulse">
+                  <div className="flex items-center gap-2 text-slate-500 text-xs py-2 px-3 bg-white rounded-xl w-fit border border-slate-200 animate-pulse">
                     <span className="material-symbols-outlined text-sm text-primary animate-spin">
                       progress_activity
                     </span>
@@ -468,8 +468,8 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
               </div>
 
               {/* Role-Aware Starter Prompt Pills */}
-              <div className="px-3 py-2 bg-surface-container-low border-t border-surface-container-high overflow-x-auto scrollbar-none flex items-center gap-1.5 flex-nowrap">
-                <span className="text-[10px] font-bold text-outline uppercase tracking-wider whitespace-nowrap pl-1">
+              <div className="px-3 py-2 bg-slate-50 border-t border-slate-200 overflow-x-auto scrollbar-none flex items-center gap-1.5 flex-nowrap">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider whitespace-nowrap pl-1">
                   Ideas:
                 </span>
                 {currentPrompts.map((p, idx) => (
@@ -477,7 +477,7 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
                     key={idx}
                     type="button"
                     onClick={() => handleSendMessage(p.prompt)}
-                    className="px-2 py-1 rounded-full bg-surface-container-lowest border border-surface-container-high hover:border-primary text-on-surface text-[11px] whitespace-nowrap transition-colors flex-shrink-0 flex items-center gap-1 font-medium hover:bg-surface-container"
+                    className="px-2.5 py-1 rounded-full bg-white border border-slate-200 hover:border-primary text-slate-700 text-[11px] whitespace-nowrap transition-colors flex-shrink-0 flex items-center gap-1 font-medium hover:bg-slate-50 cursor-pointer"
                   >
                     <span>{p.label}</span>
                   </button>
@@ -485,7 +485,7 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
               </div>
 
               {/* Input Area */}
-              <div className="p-3 bg-surface-container-lowest border-t border-surface-container-high">
+              <div className="p-3 bg-white border-t border-slate-200">
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
@@ -505,18 +505,18 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
                       }
                     }}
                     placeholder={`Ask CivicSolve AI as ${activeRoleBadge.label}...`}
-                    className="flex-1 max-h-24 p-2.5 text-xs bg-surface-container-low text-on-surface rounded-xl border border-surface-container-high focus:outline-none focus:ring-2 focus:ring-primary resize-none placeholder:text-outline"
+                    className="flex-1 max-h-24 p-2.5 text-xs bg-slate-50 text-slate-900 rounded-xl border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none placeholder:text-slate-400"
                   />
                   <button
                     type="submit"
                     disabled={isLoading || !inputValue.trim()}
-                    className="h-9 w-9 rounded-xl bg-primary hover:bg-primary-container text-on-primary flex items-center justify-center transition-all disabled:opacity-40 disabled:cursor-not-allowed flex-shrink-0 cursor-pointer shadow-xs active:scale-95"
+                    className="h-9 w-9 rounded-xl bg-primary hover:bg-blue-700 text-white flex items-center justify-center transition-all disabled:opacity-40 disabled:cursor-not-allowed flex-shrink-0 cursor-pointer shadow-xs active:scale-95"
                     title="Send message"
                   >
                     <span className="material-symbols-outlined text-lg">send</span>
                   </button>
                 </form>
-                <p className="text-[9px] text-outline text-center mt-1.5 leading-tight">
+                <p className="text-[9px] text-slate-400 text-center mt-1.5 leading-tight">
                   CivicSolve AI assists and drafts challenges. Official triage is performed by authorized municipal nodal officers.
                 </p>
               </div>

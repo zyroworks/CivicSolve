@@ -66,7 +66,7 @@ export const PresentationPage: React.FC = () => {
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
             <span className="text-xs font-bold tracking-wider text-cyan-400 uppercase">
-              SIH 2026 Winning Pitch Deck (6 Slides)
+              CivicSolve Executive Presentation (6 Slides)
             </span>
           </div>
         </div>
@@ -74,7 +74,7 @@ export const PresentationPage: React.FC = () => {
         {/* Quick actions */}
         <div className="flex items-center gap-3">
           <a
-            href="/CivicSolve_SIH_6Slides_Presentation.pptx"
+            href="/CivicSolve_Presentation.pptx"
             download
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-slate-950 font-bold text-xs shadow-lg shadow-cyan-500/20 transition-all"
           >

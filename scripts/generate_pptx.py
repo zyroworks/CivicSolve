@@ -52,7 +52,7 @@ def create_presentation():
         brand_box = slide.shapes.add_textbox(Inches(10.2), Inches(0.4), Inches(2.4), Inches(0.4))
         tf_b = brand_box.text_frame
         p_b = tf_b.paragraphs[0]
-        p_b.text = "CivicSolve | SIH 2026"
+        p_b.text = "CivicSolve 2026"
         p_b.font.size = Pt(11)
         p_b.font.bold = True
         p_b.font.color.rgb = WHITE
@@ -722,7 +722,7 @@ def create_presentation():
     p_st.font.color.rgb = WHITE
     p_st.alignment = PP_ALIGN.CENTER
 
-    output_pptx = "CivicSolve_SIH_6Slides_Presentation.pptx"
+    output_pptx = "CivicSolve_Presentation.pptx"
     prs.save(output_pptx)
     print(f"Presentation saved successfully to {output_pptx}!")
 
