@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { useChallenges } from '../context/ChallengeContext';
 import { PageHeader, Button, Card, Badge, Input, Select, EmptyState } from '../components/common';
 
 export const ChallengesListPage: React.FC = () => {
+  const { isAuthenticated } = useAuth();
   const { challenges } = useChallenges();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -32,7 +34,10 @@ export const ChallengesListPage: React.FC = () => {
         title="Civic Challenges & Verified Tenders"
         description="Explore verified citizen-reported problems, priority-ranked by AI and validated by district collectors for academic prototype sandboxing."
         actions={
-          <Link to="/report">
+          <Link
+            to={isAuthenticated ? "/report" : "/login?redirect=/report"}
+            state={{ from: '/report', message: 'Please log in to report a community problem.' }}
+          >
             <Button
               variant="primary"
               size="md"

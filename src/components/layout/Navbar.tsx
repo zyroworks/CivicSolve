@@ -254,12 +254,14 @@ export const Navbar: React.FC = () => {
 
           {/* Prominent Report a Problem CTA Button */}
           <Link
-            to="/report"
+            to={isAuthenticated ? "/report" : "/login?redirect=/report"}
+            state={{ from: '/report', message: 'Please log in to report a community problem.' }}
             className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs transition-colors"
           >
             <span className="material-symbols-outlined text-base">add_location_alt</span>
             <span>Report a Problem</span>
           </Link>
+
 
           {/* Authentication Section */}
           {isAuthenticated && user ? (
@@ -358,13 +360,15 @@ export const Navbar: React.FC = () => {
         <div className="lg:hidden bg-white border-b border-slate-200 px-4 py-3 shadow-lg space-y-3">
           {/* Prominent Mobile CTA */}
           <Link
-            to="/report"
+            to={isAuthenticated ? "/report" : "/login?redirect=/report"}
+            state={{ from: '/report', message: 'Please log in to report a community problem.' }}
             onClick={() => setMobileMenuOpen(false)}
             className="flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-xl bg-blue-600 text-white text-sm font-semibold shadow-xs"
           >
             <span className="material-symbols-outlined text-lg">add_location_alt</span>
             <span>Report a Problem</span>
           </Link>
+
 
           <div className="grid grid-cols-2 gap-1.5 p-1.5 bg-slate-50 rounded-lg">
             {roles.map(({ role, label, icon }) => (

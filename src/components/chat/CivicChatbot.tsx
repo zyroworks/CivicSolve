@@ -34,7 +34,7 @@ const ROLE_PROMPTS: Record<string, RoleQuickPrompt[]> = {
 
 export const CivicChatbot: React.FC = () => {
   const navigate = useNavigate();
-  const { currentRole, currentUser } = useAuth();
+  const { currentRole, currentUser, isAuthenticated } = useAuth();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
@@ -149,7 +149,13 @@ You can still freely browse verified challenges, submit new civic reports, or in
     sessionStorage.setItem('civicsolve_ai_draft', JSON.stringify(draft));
     window.dispatchEvent(new CustomEvent('civicsolve_fill_draft', { detail: draft }));
     setIsMinimized(true);
-    navigate('/report');
+    if (!isAuthenticated) {
+      navigate('/login?redirect=/report', {
+        state: { from: '/report', message: 'Please log in to report a community problem.' },
+      });
+    } else {
+      navigate('/report');
+    }
   };
 
   const handleResetChat = () => {
@@ -424,7 +430,13 @@ How can I assist your civic innovation efforts as **${currentUser.title}**?`,
                               type="button"
                               onClick={() => {
                                 if (action === 'Report a Problem') {
-                                  navigate('/report');
+                                  if (!isAuthenticated) {
+                                    navigate('/login?redirect=/report', {
+                                      state: { from: '/report', message: 'Please log in to report a community problem.' },
+                                    });
+                                  } else {
+                                    navigate('/report');
+                                  }
                                   setIsOpen(false);
                                 } else if (action === 'Find Challenges' || action === 'Browse Open Challenges') {
                                   navigate('/challenges');

@@ -11,9 +11,20 @@ import { AIDiagnosticResult } from '../types';
 export const CitizenReportPage: React.FC = () => {
   const navigate = useNavigate();
   const { addChallenge, analyzeProblemWithAI } = useChallenges();
-  const { user, currentUser, isAuthenticated } = useAuth();
+  const { user, currentUser, isAuthenticated, isLoading } = useAuth();
+
+  // Route protection safety check: redirect unauthenticated users to login
+  useEffect(() => {
+    if (!isLoading && (!isAuthenticated || !user)) {
+      navigate('/login?redirect=/report', {
+        replace: true,
+        state: { from: '/report', message: 'Please log in to report a community problem.' }
+      });
+    }
+  }, [isAuthenticated, user, isLoading, navigate]);
 
   const [formData, setFormData] = useState({
+
     title: 'Contaminated tap water and recurring pipeline leaks in Ward 14, Sangam Vihar',
     category: 'Water Management & Sanitation',
     peopleAffected: '5,000+ residents',
@@ -99,11 +110,19 @@ export const CitizenReportPage: React.FC = () => {
   };
 
   const handleDispatch = async () => {
+    // Security check: An unauthenticated user must not be able to submit a problem directly
+    if (!isAuthenticated || !user) {
+      alert('⚠️ Authentication required: Please log in before submitting a community problem.');
+      navigate('/login?redirect=/report', {
+        replace: true,
+        state: { from: '/report', message: 'Please log in to report a community problem.' }
+      });
+      return;
+    }
+
     setIsDispatching(true);
     try {
-      const reporter = isAuthenticated && user
-        ? `${user.displayName} (${user.email})`
-        : currentUser.name || 'Anonymous Citizen';
+      const reporter = `${user.displayName} (${user.email})`;
 
       const created = await addChallenge({
         title: formData.title,
@@ -135,6 +154,7 @@ export const CitizenReportPage: React.FC = () => {
       alert(`⚠️ Issue submitting to database: ${err?.message || 'Please check your connection and try again.'}`);
     }
   };
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6 w-full">

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { UserRole } from '../types';
 import { Card } from '../components/common/Card';
@@ -8,14 +8,32 @@ import { Button } from '../components/common/Button';
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
-  const { signInWithGoogle, signInSimulatedGoogle, isFirebaseLive, isAuthenticated, user } = useAuth();
+  const location = useLocation();
+  const { signInWithGoogle, signInSimulatedGoogle, isFirebaseLive, isAuthenticated, user, isLoading } = useAuth();
   
+  // Extract redirect target and optional message from URL query params or router state
+  const searchParams = new URLSearchParams(location.search);
+  const redirectParam = searchParams.get('redirect');
+  const stateFrom = (location.state as any)?.from;
+  const stateMessage = (location.state as any)?.message;
+  const redirectTarget = redirectParam || stateFrom || '/';
+  const isFromReport = redirectTarget === '/report' || redirectParam === '/report' || stateFrom === '/report';
+
   const [selectedRole, setSelectedRole] = useState<UserRole>('CITIZEN');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // If already authenticated, allow quick redirect
-  if (isAuthenticated && user) {
+  // If already authenticated and intended destination is provided (e.g. /report), redirect immediately
+  useEffect(() => {
+    if (isAuthenticated && user && !isLoading) {
+      if (redirectTarget !== '/') {
+        navigate(redirectTarget, { replace: true });
+      }
+    }
+  }, [isAuthenticated, user, isLoading, redirectTarget, navigate]);
+
+  // If already authenticated and no specific target, show the active profile card
+  if (isAuthenticated && user && redirectTarget === '/') {
     return (
       <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
         <Card className="max-w-md w-full p-8 text-center space-y-6">
@@ -83,7 +101,8 @@ export const LoginPage: React.FC = () => {
       setLoading(true);
       setErrorMessage(null);
       await signInWithGoogle(selectedRole);
-      navigate('/');
+      // Automatically redirect to intended destination (e.g. /report)
+      navigate(redirectTarget, { replace: true });
     } catch (err: any) {
       console.error('Google Sign-in failed:', err);
       setErrorMessage(err.message || 'Failed to sign in with Google. Please try again.');
@@ -97,7 +116,8 @@ export const LoginPage: React.FC = () => {
       setLoading(true);
       setErrorMessage(null);
       await signInSimulatedGoogle('Dr. Ananya Sen', 'ananya.sen@jharkhand-gov.in', selectedRole);
-      navigate('/');
+      // Automatically redirect to intended destination (e.g. /report)
+      navigate(redirectTarget, { replace: true });
     } catch (err: any) {
       setErrorMessage(err.message || 'Demo sign-in failed.');
     } finally {
@@ -181,6 +201,14 @@ export const LoginPage: React.FC = () => {
                 Use your official Google account for secure, one-click access.
               </p>
             </div>
+
+            {/* Clear message when redirected from /report */}
+            {(isFromReport || stateMessage) && (
+              <div className="p-3.5 bg-blue-50 border border-blue-200 rounded-xl flex items-center gap-2.5 text-blue-900 text-xs font-semibold">
+                <span className="material-symbols-outlined text-blue-600 text-lg">info</span>
+                <span>{stateMessage || 'Please log in to report a community problem.'}</span>
+              </div>
+            )}
 
             {/* Error banner if any */}
             {errorMessage && (

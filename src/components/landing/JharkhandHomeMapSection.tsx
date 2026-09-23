@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { useChallenges } from '../../context/ChallengeContext';
 import { Challenge } from '../../types';
 import { JharkhandMap } from '../map/JharkhandMap';
@@ -8,6 +9,7 @@ import { JHARKHAND_DISTRICTS } from '../../data/jharkhandChallenges';
 import { Search, RotateCcw, SlidersHorizontal, X } from 'lucide-react';
 
 export const JharkhandHomeMapSection: React.FC = () => {
+  const { isAuthenticated } = useAuth();
   const { challenges } = useChallenges();
 
   // Filters State
@@ -319,7 +321,11 @@ export const JharkhandHomeMapSection: React.FC = () => {
 
         {/* REPORT A PROBLEM BUTTON - DIRECTLY BELOW THE MAP */}
         <div className="mt-3.5 sm:mt-4 text-center">
-          <Link to="/report" className="inline-block">
+          <Link
+            to={isAuthenticated ? "/report" : "/login?redirect=/report"}
+            state={{ from: '/report', message: 'Please log in to report a community problem.' }}
+            className="inline-block"
+          >
             <button className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-[#2563EB] hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-xs sm:text-sm shadow-sm hover:shadow transition-all group cursor-pointer">
               <span className="material-symbols-outlined text-base sm:text-lg">add_location_alt</span>
               <span>+ Report a Problem</span>

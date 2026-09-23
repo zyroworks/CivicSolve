@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { MapPin, Sparkles, ArrowRight, ShieldCheck, Flame, Layers, Eye, Cpu } from 'lucide-react';
 import { JHARKHAND_CHALLENGES } from '../../data/jharkhandChallenges';
 
 export const JharkhandMapPreviewSection: React.FC = () => {
+  const { isAuthenticated } = useAuth();
   // Take 3 top priority challenges for the preview cards
   const previewItems = JHARKHAND_CHALLENGES.slice(0, 3);
 
@@ -96,7 +98,8 @@ export const JharkhandMapPreviewSection: React.FC = () => {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                to="/report"
+                to={isAuthenticated ? "/report" : "/login?redirect=/report"}
+                state={{ from: '/report', message: 'Please log in to report a community problem.' }}
                 className="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-semibold text-sm rounded-xl border border-slate-700 transition-colors"
               >
                 Submit Citizen Report

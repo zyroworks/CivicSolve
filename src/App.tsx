@@ -13,6 +13,7 @@ import { ImpactAnalyticsPage } from './pages/ImpactAnalyticsPage';
 import { LoginPage } from './pages/LoginPage';
 import { PresentationPage } from './pages/PresentationPage';
 import { CivicChatbot } from './components/chat/CivicChatbot';
+import { ProtectedRoute } from './components/auth/ProtectedRoute';
 
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
@@ -40,8 +41,16 @@ export const AppContent: React.FC = () => {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/map" element={<Navigate to="/#challenges-map" replace />} />
-          <Route path="/report" element={<CitizenReportPage />} />
+          <Route 
+            path="/report" 
+            element={
+              <ProtectedRoute redirectMessage="Please log in to report a community problem.">
+                <CitizenReportPage />
+              </ProtectedRoute>
+            } 
+          />
           <Route path="/challenges" element={<ChallengesListPage />} />
+
           <Route path="/admin" element={<GovernmentDashboardPage />} />
           <Route path="/workspace" element={<UniversityWorkspacePage />} />
           <Route path="/impact" element={<ImpactAnalyticsPage />} />

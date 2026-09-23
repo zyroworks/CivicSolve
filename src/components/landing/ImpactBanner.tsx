@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { Button } from '../common/Button';
 import { Badge } from '../common/Badge';
 
 export const ImpactBanner: React.FC = () => {
+  const { isAuthenticated } = useAuth();
   return (
     <section className="w-full py-16 bg-slate-50 border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,7 +31,10 @@ export const ImpactBanner: React.FC = () => {
               </p>
 
               <div className="pt-2 flex flex-wrap gap-3">
-                <Link to="/report">
+                <Link
+                  to={isAuthenticated ? "/report" : "/login?redirect=/report"}
+                  state={{ from: '/report', message: 'Please log in to report a community problem.' }}
+                >
                   <Button
                     variant="primary"
                     size="md"

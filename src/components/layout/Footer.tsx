@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 export const Footer: React.FC = () => {
+  const { isAuthenticated } = useAuth();
   return (
     <footer className="w-full bg-white border-t border-slate-200 mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -31,7 +33,11 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-xs text-slate-600">
               <li>
-                <Link to="/report" className="hover:text-blue-600 transition-colors">
+                <Link
+                  to={isAuthenticated ? "/report" : "/login?redirect=/report"}
+                  state={{ from: '/report', message: 'Please log in to report a community problem.' }}
+                  className="hover:text-blue-600 transition-colors"
+                >
                   Citizen Problem Intake
                 </Link>
               </li>

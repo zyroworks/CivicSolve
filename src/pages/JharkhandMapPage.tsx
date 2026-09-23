@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { useChallenges } from '../context/ChallengeContext';
 import { Challenge } from '../types';
 import { JharkhandMap } from '../components/map/JharkhandMap';
@@ -14,6 +15,7 @@ import {
 } from 'lucide-react';
 
 export const JharkhandMapPage: React.FC = () => {
+  const { isAuthenticated } = useAuth();
   const { challenges } = useChallenges();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -212,7 +214,8 @@ export const JharkhandMapPage: React.FC = () => {
 
           {/* Submit New Problem Link */}
           <Link
-            to="/report"
+            to={isAuthenticated ? "/report" : "/login?redirect=/report"}
+            state={{ from: '/report', message: 'Please log in to report a community problem.' }}
             className="px-3.5 py-1.5 bg-primary-600 hover:bg-primary-700 text-white rounded-xl text-xs font-semibold shadow-sm flex items-center gap-1.5 transition-all"
           >
             <span>Report Problem</span>

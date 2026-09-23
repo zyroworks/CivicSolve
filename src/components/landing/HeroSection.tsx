@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { Button } from '../common/Button';
 
 export const HeroSection: React.FC = () => {
+  const { isAuthenticated } = useAuth();
   return (
     <section className="relative w-full pt-10 pb-8 sm:pt-14 sm:pb-10 bg-white border-b border-slate-200/80">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -26,7 +28,10 @@ export const HeroSection: React.FC = () => {
 
         {/* Call to Actions (compact buttons) */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-          <Link to="/report">
+          <Link
+            to={isAuthenticated ? "/report" : "/login?redirect=/report"}
+            state={{ from: '/report', message: 'Please log in to report a community problem.' }}
+          >
             <Button
               variant="primary"
               size="md"

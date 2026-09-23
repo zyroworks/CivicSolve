@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 export const AboutCivicSolve: React.FC = () => {
+  const { isAuthenticated } = useAuth();
   return (
     <section id="about" className="w-full py-16 lg:py-20 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,7 +66,10 @@ export const AboutCivicSolve: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <Link to="/report">
+            <Link
+              to={isAuthenticated ? "/report" : "/login?redirect=/report"}
+              state={{ from: '/report', message: 'Please log in to report a community problem.' }}
+            >
               <button className="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl transition-colors flex items-center gap-1.5 shadow-xs">
                 <span className="material-symbols-outlined text-base">add_location_alt</span>
                 <span>Report Problem</span>
