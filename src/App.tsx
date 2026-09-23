@@ -36,7 +36,7 @@ export const AppContent: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-background text-on-surface">
       <ScrollToTop />
       <Navbar />
-      <main className="flex-1 pt-16">
+      <main className="flex-1 pt-14">
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/map" element={<Navigate to="/#challenges-map" replace />} />

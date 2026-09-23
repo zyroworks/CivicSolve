@@ -56,7 +56,7 @@ export const FeaturedChallenges: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {challenges.slice(0, 6).map((ch) => {
             const statusInfo = getStatusDisplay(ch.status);
-            const imgUrl = ch.mediaUrl || ch.media?.[0]?.file_url || 'https://images.unsplash.com/photo-1584467735815-f778f274e296?w=600&auto=format&fit=crop&q=80';
+            const uploadedImg = ch.mediaUrl || ch.media?.[0]?.file_url;
             const reportedDate = ch.createdAt
               ? new Date(ch.createdAt).toLocaleDateString('en-IN', {
                   month: 'short',
@@ -73,15 +73,21 @@ export const FeaturedChallenges: React.FC = () => {
               >
                 {/* Photo & Overlays */}
                 <div className="relative h-48 w-full bg-slate-100 overflow-hidden">
-                  <img
-                    src={imgUrl}
-                    alt={ch.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src =
-                        'https://images.unsplash.com/photo-1584467735815-f778f274e296?w=600&auto=format&fit=crop&q=80';
-                    }}
-                  />
+                  {uploadedImg ? (
+                    <img
+                      src={uploadedImg}
+                      alt={ch.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-slate-100 text-slate-400 gap-1.5 p-4 text-center">
+                      <span className="material-symbols-outlined text-3xl text-slate-300">image_not_supported</span>
+                      <span className="text-[11px] font-medium text-slate-500">Problem Photo Filed with Report</span>
+                    </div>
+                  )}
                   <div className="absolute top-3 left-3">
                     <span className="px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-900/80 text-white backdrop-blur-xs uppercase tracking-wide">
                       {ch.category}
@@ -93,6 +99,7 @@ export const FeaturedChallenges: React.FC = () => {
                     </Badge>
                   </div>
                 </div>
+
 
                 {/* Content */}
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-4">

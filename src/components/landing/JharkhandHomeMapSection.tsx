@@ -5,7 +5,7 @@ import { Challenge } from '../../types';
 import { JharkhandMap } from '../map/JharkhandMap';
 import { ChallengeDetailPanel } from '../map/ChallengeDetailPanel';
 import { JHARKHAND_DISTRICTS } from '../../data/jharkhandChallenges';
-import { Search, RotateCcw, ArrowRight } from 'lucide-react';
+import { Search, RotateCcw, SlidersHorizontal, X } from 'lucide-react';
 
 export const JharkhandHomeMapSection: React.FC = () => {
   const { challenges } = useChallenges();
@@ -15,6 +15,9 @@ export const JharkhandHomeMapSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
   const [selectedStatus, setSelectedStatus] = useState('ALL');
   const [selectedDistrict, setSelectedDistrict] = useState('ALL');
+
+  // Mobile Filter Drawer Toggle
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   // Selected Challenge for Detail Drawer
   const [selectedChallenge, setSelectedChallenge] = useState<Challenge | null>(null);
@@ -103,48 +106,42 @@ export const JharkhandHomeMapSection: React.FC = () => {
   return (
     <section 
       id="challenges-map" 
-      className="py-12 sm:py-16 bg-slate-50 border-b border-slate-200"
+      className="w-full bg-[#F8FAFC] pt-3 pb-6 sm:pt-4 sm:pb-8 border-b border-slate-200"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-semibold mb-3">
-            <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-            <span>Interactive State Problem Map</span>
-          </div>
-
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+        {/* Compact Map Heading */}
+        <div className="text-center max-w-2xl mx-auto mb-2.5 sm:mb-3 px-2">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#0F172A] tracking-tight leading-tight">
             Community Problems Across Jharkhand
-          </h2>
-
-          <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
-            Explore reported challenges and discover problems that need solutions. Click pins or districts to inspect ground-truth photos and location details.
+          </h1>
+          <p className="mt-0.5 text-xs sm:text-sm text-slate-500 leading-normal">
+            Explore real community challenges and discover where help is needed.
           </p>
         </div>
 
-        {/* Minimal, Non-Intrusive Filter Toolbar */}
-        <div className="bg-white border border-slate-200 rounded-xl p-3 sm:p-4 mb-5 shadow-xs flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+        {/* Jharkhand Map Container - Occupies 70-80% of Viewport on Desktop */}
+        <div className="relative w-full h-[54vh] sm:h-[62vh] lg:h-[calc(100vh-210px)] min-h-[420px] max-h-[660px] rounded-2xl overflow-hidden shadow-sm border border-slate-200/90 bg-slate-900">
           
-          {/* Search Box */}
-          <div className="relative flex-1 min-w-[220px]">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search problems, keywords, or wards..."
-              className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
-            />
-          </div>
+          {/* Floating Minimal Filter Bar on Desktop (Top-Left) */}
+          <div className="absolute top-3 left-3 z-20 hidden md:flex items-center gap-2 bg-white/95 backdrop-blur-md p-1.5 rounded-xl border border-slate-200 shadow-md">
+            {/* Search */}
+            <div className="relative w-44 lg:w-56">
+              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search problems..."
+                className="w-full pl-8 pr-2.5 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:bg-white transition-all"
+              />
+            </div>
 
-          {/* Minimal Dropdowns */}
-          <div className="flex flex-wrap items-center gap-2.5">
-            {/* Category */}
+            {/* Category Dropdown */}
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+              className="px-2.5 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer max-w-[130px]"
             >
               <option value="ALL">All Categories</option>
               {categories.map((cat) => (
@@ -152,25 +149,25 @@ export const JharkhandHomeMapSection: React.FC = () => {
               ))}
             </select>
 
-            {/* District */}
+            {/* District Dropdown */}
             <select
               value={selectedDistrict}
               onChange={(e) => setSelectedDistrict(e.target.value)}
-              className="px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+              className="px-2.5 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer max-w-[130px]"
             >
-              <option value="ALL">All 24 Districts</option>
+              <option value="ALL">All Districts</option>
               {JHARKHAND_DISTRICTS.map((dist) => (
                 <option key={dist} value={dist}>{dist}</option>
               ))}
             </select>
 
-            {/* Status */}
+            {/* Status Dropdown */}
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+              className="px-2.5 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer"
             >
-              <option value="ALL">All Statuses</option>
+              <option value="ALL">All Status</option>
               <option value="REPORTED">Reported</option>
               <option value="IN_PROGRESS">In Progress</option>
               <option value="SOLVED">Solved</option>
@@ -181,23 +178,31 @@ export const JharkhandHomeMapSection: React.FC = () => {
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="px-3 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors flex items-center gap-1"
+                className="p-1.5 text-slate-500 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
                 title="Reset filters"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Reset</span>
               </button>
             )}
+
+            {/* Count Badge */}
+            <span className="px-2 py-1 text-[11px] font-bold bg-blue-50 text-blue-700 rounded-md border border-blue-100">
+              {filteredChallenges.length}
+            </span>
           </div>
 
-          {/* Count Indicator */}
-          <div className="shrink-0 text-xs font-semibold text-slate-500 pl-1 self-center">
-            Showing <strong className="text-slate-900">{filteredChallenges.length}</strong> of {jharkhandChallenges.length}
+          {/* Floating Mobile Filter Trigger Button (Top-Left on Mobile) */}
+          <div className="absolute top-3 left-3 z-20 md:hidden">
+            <button
+              onClick={() => setMobileFiltersOpen(true)}
+              className="px-3 py-1.5 bg-white/95 backdrop-blur-md text-slate-800 text-xs font-bold rounded-xl shadow-md border border-slate-200 flex items-center gap-1.5"
+            >
+              <SlidersHorizontal className="w-3.5 h-3.5 text-blue-600" />
+              <span>Filters ({filteredChallenges.length})</span>
+            </button>
           </div>
-        </div>
 
-        {/* Clean, Modern Map Card Container */}
-        <div className="relative w-full h-[580px] sm:h-[640px] lg:h-[680px] rounded-2xl overflow-hidden shadow-sm border border-slate-200 bg-slate-900">
+          {/* Interactive Leaflet Jharkhand Map */}
           <JharkhandMap
             challenges={filteredChallenges}
             selectedChallenge={selectedChallenge}
@@ -220,28 +225,109 @@ export const JharkhandHomeMapSection: React.FC = () => {
               />
             </div>
           )}
+
+          {/* Mobile Filter Sheet Modal */}
+          {mobileFiltersOpen && (
+            <div className="absolute inset-0 z-40 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-3">
+              <div className="w-full max-w-sm bg-white rounded-2xl shadow-2xl border border-slate-200 p-4 space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                  <h3 className="text-sm font-bold text-slate-900">Filter Map Problems</h3>
+                  <button
+                    onClick={() => setMobileFiltersOpen(false)}
+                    className="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <div className="space-y-2.5 text-xs">
+                  <div>
+                    <label className="font-semibold text-slate-700 block mb-1">Search</label>
+                    <input
+                      type="text"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      placeholder="Keyword or ward..."
+                      className="w-full p-2 bg-slate-50 border border-slate-200 rounded-lg text-xs"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="font-semibold text-slate-700 block mb-1">District</label>
+                    <select
+                      value={selectedDistrict}
+                      onChange={(e) => setSelectedDistrict(e.target.value)}
+                      className="w-full p-2 bg-slate-50 border border-slate-200 rounded-lg text-xs"
+                    >
+                      <option value="ALL">All 24 Districts</option>
+                      {JHARKHAND_DISTRICTS.map((dist) => (
+                        <option key={dist} value={dist}>{dist}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="font-semibold text-slate-700 block mb-1">Category</label>
+                    <select
+                      value={selectedCategory}
+                      onChange={(e) => setSelectedCategory(e.target.value)}
+                      className="w-full p-2 bg-slate-50 border border-slate-200 rounded-lg text-xs"
+                    >
+                      <option value="ALL">All Categories</option>
+                      {categories.map((cat) => (
+                        <option key={cat} value={cat}>{cat}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="font-semibold text-slate-700 block mb-1">Status</label>
+                    <select
+                      value={selectedStatus}
+                      onChange={(e) => setSelectedStatus(e.target.value)}
+                      className="w-full p-2 bg-slate-50 border border-slate-200 rounded-lg text-xs"
+                    >
+                      <option value="ALL">All Status</option>
+                      <option value="REPORTED">Reported</option>
+                      <option value="IN_PROGRESS">In Progress</option>
+                      <option value="SOLVED">Solved</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex items-center gap-2">
+                  {isFiltered && (
+                    <button
+                      onClick={handleResetFilters}
+                      className="flex-1 py-2 rounded-xl bg-slate-100 text-slate-700 font-semibold text-xs text-center"
+                    >
+                      Reset
+                    </button>
+                  )}
+                  <button
+                    onClick={() => setMobileFiltersOpen(false)}
+                    className="flex-1 py-2 rounded-xl bg-blue-600 text-white font-semibold text-xs text-center"
+                  >
+                    Apply ({filteredChallenges.length})
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
         </div>
 
-        {/* 5. PROMINENT REPORT A PROBLEM CTA BLOCK (DIRECTLY BELOW MAP) */}
-        <div className="mt-8 bg-blue-50/90 border border-blue-200 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xs">
-          <div className="space-y-1.5 text-center md:text-left">
-            <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
-              See an issue in your area?
-            </h3>
-            <p className="text-sm text-slate-600 max-w-xl leading-relaxed">
-              Report it with photos and location to help universities and problem solvers take action.
-            </p>
-          </div>
-
-          <Link to="/report" className="shrink-0">
-            <button className="px-6 py-3.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-sm sm:text-base rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-2 group">
-              <span className="material-symbols-outlined text-xl">add_location_alt</span>
-              <span>+ Report a Community Problem</span>
-              <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">
-                arrow_forward
-              </span>
+        {/* REPORT A PROBLEM BUTTON - DIRECTLY BELOW THE MAP */}
+        <div className="mt-3.5 sm:mt-4 text-center">
+          <Link to="/report" className="inline-block">
+            <button className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-[#2563EB] hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-xs sm:text-sm shadow-sm hover:shadow transition-all group cursor-pointer">
+              <span className="material-symbols-outlined text-base sm:text-lg">add_location_alt</span>
+              <span>+ Report a Problem</span>
             </button>
           </Link>
+          <p className="mt-1.5 text-[11px] sm:text-xs text-slate-500">
+            See an issue in your area? Report it with photos and GPS location to connect with universities and municipal solvers.
+          </p>
         </div>
 
       </div>

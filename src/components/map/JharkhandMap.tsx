@@ -151,12 +151,24 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
     const layerBounds = districtsLayer.getBounds();
     if (layerBounds.isValid()) {
       map.fitBounds(layerBounds, {
-        padding: [28, 28],
+        padding: [24, 24],
         maxZoom: 9,
       });
     }
 
+    // Auto-fit strictly to Jharkhand after container layout settles
+    const fitTimer = setTimeout(() => {
+      map.invalidateSize();
+      if (layerBounds.isValid()) {
+        map.fitBounds(layerBounds, {
+          padding: [24, 24],
+          maxZoom: 9,
+        });
+      }
+    }, 150);
+
     return () => {
+      clearTimeout(fitTimer);
       map.remove();
       mapInstanceRef.current = null;
       districtsLayerRef.current = null;
@@ -165,6 +177,7 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
       tileLayerRef.current = null;
       maskLayerRef.current = null;
     };
+
   }, []);
 
   // Toggle Street Base Layer + 100% Solid Inverted Mask
@@ -367,7 +380,9 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
         zIndexOffset: isSelected ? 1200 : isP1 ? 700 : 300,
       });
 
-      const imgUrl = challenge.mediaUrl || challenge.media?.[0]?.file_url || 'https://images.unsplash.com/photo-1584467735815-f778f274e296?w=600&auto=format&fit=crop&q=80';
+      const uploadedImg = challenge.mediaUrl || challenge.media?.[0]?.file_url;
+      const hasUploadedImage = Boolean(uploadedImg && uploadedImg.trim().length > 0);
+
       const formattedDate = challenge.createdAt 
         ? new Date(challenge.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })
         : 'Recently reported';
@@ -389,14 +404,14 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
         .replace(/'/g, '&#39;');
       const locationText = `${challenge.location.ward ? challenge.location.ward + ', ' : ''}${challenge.location.district}`;
 
-      const popupContent = `
-        <div style="font-family: Inter, system-ui, -apple-system, sans-serif; width: 280px; max-width: 90vw; background: #ffffff; border-radius: 12px; overflow: hidden;">
+      const imageHeaderHtml = hasUploadedImage
+        ? `
           <div style="width: 100%; height: 130px; position: relative; background: #F1F5F9; overflow: hidden;">
             <img 
-              src="${imgUrl}" 
+              src="${uploadedImg}" 
               alt="${safeTitle}" 
               style="width: 100%; height: 100%; object-fit: cover; display: block;" 
-              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584467735815-f778f274e296?w=600&auto=format&fit=crop&q=80';"
+              onerror="this.parentElement.style.display='none';"
             />
             <div style="position: absolute; top: 8px; left: 8px; background: rgba(15, 23, 42, 0.82); backdrop-filter: blur(4px); color: #ffffff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.025em;">
               ${challenge.category}
@@ -405,6 +420,21 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
               ${statusLabel}
             </div>
           </div>
+        `
+        : `
+          <div style="padding: 12px 14px 4px 14px; display: flex; align-items: center; justify-content: space-between;">
+            <span style="background: #F1F5F9; color: #334155; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.025em;">
+              ${challenge.category}
+            </span>
+            <span style="font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 6px; ${statusBadgeStyle}">
+              ${statusLabel}
+            </span>
+          </div>
+        `;
+
+      const popupContent = `
+        <div style="font-family: Inter, system-ui, -apple-system, sans-serif; width: 280px; max-width: 90vw; background: #ffffff; border-radius: 12px; overflow: hidden;">
+          ${imageHeaderHtml}
           <div style="padding: 12px 14px 14px 14px;">
             <div style="display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #64748B; margin-bottom: 4px;">
               <span style="color: #EF4444; font-size: 12px;">📍</span>
@@ -430,6 +460,7 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
           </div>
         </div>
       `;
+
 
       marker.bindPopup(popupContent, {
         className: 'civicsolve-rich-popup',
