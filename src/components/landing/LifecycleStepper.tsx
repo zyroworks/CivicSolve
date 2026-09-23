@@ -1,149 +1,108 @@
-import React, { useState } from 'react';
-import { Card } from '../common/Card';
-import { Badge } from '../common/Badge';
+import React from 'react';
 
-interface StepDetail {
-  badge: string;
+interface Step {
+  step: number;
   title: string;
   desc: string;
-  stat: string;
-  node: string;
+  icon: string;
 }
 
-const LIFECYCLE_STEPS: Record<number, StepDetail> = {
-  1: {
-    badge: "GIS Ingestion API",
-    title: "1. Crowdsourced Citizen Reporting",
-    desc: "Citizens submit geo-tagged images, localized audio descriptions, and precise GPS coordinates. The system validates EXIF metadata to prevent falsified reports and aggregates coincident issues into single municipal clusters.",
-    stat: "99.4% SLA Verification",
-    node: "Node: CS-NIC-01"
+const STEPS: Step[] = [
+  {
+    step: 1,
+    title: 'Citizen Reports',
+    desc: 'Citizens submit local civic challenges with photos, description, and GPS location.',
+    icon: 'pin_drop',
   },
-  2: {
-    badge: "Multi-lingual AI Triage",
-    title: "2. NLP Diagnostics & Priority Scoring",
-    desc: "Natural language algorithms parse and categorize submissions across municipal infrastructure domains (water, power, sanitation, transit) and compute severity scores based on population impact.",
-    stat: "0.28s Processing Latency",
-    node: "Node: AI-CLUSTER-04"
+  {
+    step: 2,
+    title: 'AI Analyzes & Triages',
+    desc: 'AI automatically categorizes the issue, determines urgency, and extracts key details.',
+    icon: 'psychology',
   },
-  3: {
-    badge: "Municipal Gateway",
-    title: "3. Government Validation & Sanction",
-    desc: "Ward administrators and district collectors review and authenticate issues against active city maintenance tenders. Validated problems receive formal administrative clearance and a unique tracking token.",
-    stat: "142 Wards Connected",
-    node: "Node: MCD-SYNC-02"
+  {
+    step: 3,
+    title: 'Government Validates',
+    desc: 'Municipal officials review and authenticate the problem for verified civic action.',
+    icon: 'fact_check',
   },
-  4: {
-    badge: "Vector Skill Router",
-    title: "4. Automated Academic & Lab Matching",
-    desc: "Semantic algorithms match validated civic constraints with university labs, specialized engineering faculty, and equipment facilities (e.g., optical sensors, drone testing setups).",
-    stat: "318 Labs Ready",
-    node: "Node: AICTE-ROUTER"
+  {
+    step: 4,
+    title: 'University Matches',
+    desc: 'Engineering students and faculty take on challenges as capstone or R&D projects.',
+    icon: 'school',
   },
-  5: {
-    badge: "Collaborative Track",
-    title: "5. Student & Faculty Prototype Sprints",
-    desc: "Multidisciplinary student squads undergo 6-8 week engineering sprints with embedded faculty mentors, developing functional hardware and software prototypes in civic sandboxes.",
-    stat: "2,400+ Researchers",
-    node: "Node: R&D-SANDBOX"
+  {
+    step: 5,
+    title: 'Industry Collaborates',
+    desc: 'Companies provide mentorship, technical resources, and CSR funding support.',
+    icon: 'handshake',
   },
-  6: {
-    badge: "Corporate Grants",
-    title: "6. Industry Mentorship & CSR Funding",
-    desc: "Participating corporates provide micro-grants for raw materials, sensor rigs, and cloud compute. Corporate mentors conduct weekly technical reviews with student teams.",
-    stat: "₹14.2 Cr Disbursed",
-    node: "Node: CSR-ESCROW"
+  {
+    step: 6,
+    title: 'Deployment & Impact',
+    desc: 'Solutions are piloted and deployed in the community, creating measurable impact.',
+    icon: 'verified',
   },
-  7: {
-    badge: "Municipal Sandboxing",
-    title: "7. Real-World Field Pilot Deployment",
-    desc: "Prototypes are installed in designated local testing zones for empirical evaluation. Real-world telemetry is live-streamed directly to municipal analytics dashboards.",
-    stat: "84 Live Pilots",
-    node: "Node: FIELD-TEST-09"
-  },
-  8: {
-    badge: "Social Audit Register",
-    title: "8. Quantified Public Impact & Handover",
-    desc: "Empirical outcomes such as water turbidity reduction, pothole detection speeds, or farmer cold-storage efficiency gains are certified for public transparency and long-term municipal adoption.",
-    stat: "2.4M Direct Beneficiaries",
-    node: "Node: AUDIT-PUBLIC"
-  }
-};
+];
 
 export const LifecycleStepper: React.FC = () => {
-  const [activeStep, setActiveStep] = useState<number>(1);
-  const current = LIFECYCLE_STEPS[activeStep];
-
-  const steps = [
-    { num: 1, title: 'Citizen Problem', icon: 'pin_drop' },
-    { num: 2, title: 'AI Analysis', icon: 'psychology' },
-    { num: 3, title: 'Govt Validation', icon: 'fact_check' },
-    { num: 4, title: 'Lab Matching', icon: 'hub' },
-    { num: 5, title: 'R&D Sprints', icon: 'group_work' },
-    { num: 6, title: 'Industry CSR', icon: 'handshake' },
-    { num: 7, title: 'Field Pilot', icon: 'sensors' },
-    { num: 8, title: 'Citizen Impact', icon: 'social_leaderboard' },
-  ];
-
   return (
-    <section className="w-full py-14 lg:py-20 bg-slate-50 border-b border-slate-200">
+    <section id="how-it-works" className="w-full py-16 lg:py-20 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <Badge variant="teal" size="sm">
-            Innovation Pipeline
-          </Badge>
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-2">
-            The End-to-End Civic Lifecycle
-          </h2>
-          <p className="text-sm text-slate-500 mt-2 leading-relaxed">
-            How raw community problems transform into verified municipal infrastructure through structured multi-stakeholder collaboration.
-          </p>
-        </div>
-
-        {/* Step Selector Ribbon */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 mb-6">
-          {steps.map((s) => {
-            const isSelected = activeStep === s.num;
-            return (
-              <button
-                key={s.num}
-                type="button"
-                onClick={() => setActiveStep(s.num)}
-                className={`flex flex-col items-center text-center p-3 rounded-xl border text-xs transition-all cursor-pointer ${
-                  isSelected
-                    ? 'bg-blue-600 border-blue-600 text-white shadow-xs font-semibold'
-                    : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-100 hover:border-slate-300'
-                }`}
-              >
-                <span className="material-symbols-outlined text-lg mb-1">{s.icon}</span>
-                <span className="truncate w-full">{s.title}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Active Step Highlight Card */}
-        <Card className="p-6 lg:p-8">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-6 border-b border-slate-100">
-            <div>
-              <div className="flex items-center gap-2 mb-1.5">
-                <Badge variant="blue" size="sm">{current.badge}</Badge>
-                <span className="text-xs font-mono text-slate-400">{current.node}</span>
-              </div>
-              <h3 className="text-xl font-bold text-slate-900">{current.title}</h3>
-            </div>
-
-            <div className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-right shrink-0">
-              <span className="text-[11px] font-semibold uppercase text-slate-400 block">Performance Metric</span>
-              <span className="text-base font-bold text-blue-600">{current.stat}</span>
-            </div>
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold mb-3">
+            <span>Streamlined 6-Stage Pipeline</span>
           </div>
 
-          <p className="text-sm text-slate-600 mt-5 leading-relaxed max-w-4xl">
-            {current.desc}
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+            How CivicSolve Works
+          </h2>
+
+          <p className="mt-2 text-base text-slate-600 leading-relaxed max-w-xl mx-auto">
+            From citizen report to verified community deployment
           </p>
-        </Card>
+        </div>
+
+        {/* 6 Step Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {STEPS.map((s) => (
+            <div
+              key={s.step}
+              className="relative p-6 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-blue-300 hover:shadow-md transition-all flex flex-col justify-between group"
+            >
+              <div>
+                {/* Header: Number and Icon */}
+                <div className="flex items-center justify-between mb-4">
+                  <span className="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">
+                    0{s.step}
+                  </span>
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <span className="material-symbols-outlined text-xl">{s.icon}</span>
+                  </div>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                  {s.title}
+                </h3>
+
+                {/* Description */}
+                <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {s.desc}
+                </p>
+              </div>
+
+              {/* Step indicator footer */}
+              <div className="pt-4 mt-4 border-t border-slate-100 flex items-center text-[11px] font-semibold text-slate-400">
+                <span>Stage 0{s.step} of 06</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );

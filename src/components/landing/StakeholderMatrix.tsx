@@ -1,119 +1,87 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Card } from '../common/Card';
-import { Badge } from '../common/Badge';
 
 export const StakeholderMatrix: React.FC = () => {
   const stakeholders = [
     {
-      role: 'Citizens & Communities',
-      tag: 'Hyperlocal Voice',
-      desc: 'Crowdsource civic pain points in real-time across water distribution, solid waste, transit, and public health with AI validation.',
-      icon: 'record_voice_over',
+      role: 'Citizens',
+      desc: 'Report local problems and track solution progress with verifiable photographic proof.',
+      icon: 'campaign',
       iconBg: 'bg-blue-50 text-blue-600',
-      pills: ['Geotagged Proof', 'Ward SMS Tracking', 'Audit Voting'],
-      linkText: 'Submit Issue',
-      linkPath: '/report',
     },
     {
-      role: 'Govt & Municipal Admin',
-      tag: 'Institutional Oversight',
-      desc: 'Automated NLP deduplication, severity prioritization, ward escalation, and transparent R&D sanction pipelines with full audit logging.',
+      role: 'Government',
+      desc: 'Validate issues, prioritize municipal needs, and adopt solutions across municipal wards.',
       icon: 'account_balance',
       iconBg: 'bg-teal-50 text-teal-600',
-      pills: ['Automated Triage', 'Ward Heatmaps', 'R&D Sanction'],
-      linkText: 'Admin Portal',
-      linkPath: '/admin',
     },
     {
-      role: 'Universities & Labs',
-      tag: 'Academic Translation',
-      desc: 'Transform verified municipal roadblocks into accredited capstones, funded PhD research, and high-impact student engineering prototypes.',
+      role: 'Universities',
+      desc: 'Connect engineering faculty and research labs to real-world challenges needing R&D.',
       icon: 'school',
       iconBg: 'bg-indigo-50 text-indigo-600',
-      pills: ['Lab Vector Matching', 'Field Prototypes', 'Academic Credits'],
-      linkText: 'Open Workspace',
-      linkPath: '/workspace',
     },
     {
-      role: 'Industry & CSR Mentors',
-      tag: 'Scale & Grants',
-      desc: 'Deploy corporate social responsibility grants, supply micro-controller hardware, and mentor engineering squads toward municipal pilot deployment.',
+      role: 'Students & Faculty',
+      desc: 'Work on real-world problems as capstone projects and research sprints for academic credit.',
+      icon: 'groups',
+      iconBg: 'bg-cyan-50 text-cyan-700',
+    },
+    {
+      role: 'Industry / Startups',
+      desc: 'Provide mentorship, technical resources, and CSR funding to pilot deployable innovations.',
       icon: 'corporate_fare',
       iconBg: 'bg-amber-50 text-amber-700',
-      pills: ['Hardware Grants', 'Mentorship Tracks', 'Social ROI Audits'],
-      linkText: 'Impact Metrics',
-      linkPath: '/impact',
     },
   ];
 
   return (
-    <section className="w-full py-16 lg:py-20 bg-white">
+    <section id="stakeholders" className="w-full py-16 lg:py-20 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <Badge variant="blue" size="sm">
-            Ecosystem Synergy
-          </Badge>
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-2">
-            Designed for Every Civic Stakeholder
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold mb-3">
+            <span>Ecosystem Synergy</span>
+          </div>
+
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Connecting Key Stakeholders
           </h2>
-          <p className="text-sm text-slate-500 mt-2 leading-relaxed">
-            Empowering citizens, administrative bodies, researchers, and corporates through tailor-made operational tooling.
+
+          <p className="mt-2 text-base text-slate-600 leading-relaxed max-w-xl mx-auto">
+            A collaborative platform bringing together all parts of the civic innovation ecosystem.
           </p>
         </div>
 
-        {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 5-Card Responsive Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {stakeholders.map((s) => (
             <Card
               key={s.role}
-              className="flex flex-col justify-between hover:shadow-md transition-shadow p-6"
+              className="flex flex-col justify-between hover:shadow-md hover:border-slate-300 transition-all p-5 group"
             >
-              <div className="space-y-4">
-                <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${s.iconBg}`}>
+              <div className="space-y-3">
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${s.iconBg}`}>
                   <span className="material-symbols-outlined text-xl">{s.icon}</span>
                 </div>
 
-                <div>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block mb-1">
-                    {s.tag}
-                  </span>
-                  <h3 className="text-base font-bold text-slate-900">
-                    {s.role}
-                  </h3>
-                  <p className="text-xs text-slate-500 mt-2 leading-relaxed">
-                    {s.desc}
-                  </p>
-                </div>
+                <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                  {s.role}
+                </h3>
 
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {s.pills.map((pill) => (
-                    <span
-                      key={pill}
-                      className="px-2 py-0.5 rounded bg-slate-50 text-slate-600 text-[11px] font-medium border border-slate-100"
-                    >
-                      {pill}
-                    </span>
-                  ))}
-                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  {s.desc}
+                </p>
               </div>
 
-              <div className="pt-5 mt-5 border-t border-slate-100">
-                <Link
-                  to={s.linkPath}
-                  className="text-xs font-semibold text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 group"
-                >
-                  <span>{s.linkText}</span>
-                  <span className="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">
-                    arrow_forward
-                  </span>
-                </Link>
+              <div className="pt-4 mt-4 border-t border-slate-100 flex items-center text-[11px] font-semibold text-blue-600">
+                <span>Active Partner</span>
               </div>
             </Card>
           ))}
         </div>
+
       </div>
     </section>
   );

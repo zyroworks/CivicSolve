@@ -64,3 +64,25 @@
   border-radius: 0.75rem; /* rounded-xl */
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
 }
+
+/* CivicSolve Rich Leaflet Popup */
+.civicsolve-rich-popup .leaflet-popup-content-wrapper {
+  padding: 0 !important;
+  overflow: hidden;
+  border-radius: 14px !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+}
+
+.civicsolve-rich-popup .leaflet-popup-content {
+  margin: 0 !important;
+  line-height: inherit;
+  width: 290px !important;
+  max-width: 90vw !important;
+}
+
+.civicsolve-rich-popup .leaflet-popup-tip {
+  background: #FFFFFF;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}

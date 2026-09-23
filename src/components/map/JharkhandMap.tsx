@@ -367,33 +367,76 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
         zIndexOffset: isSelected ? 1200 : isP1 ? 700 : 300,
       });
 
+      const imgUrl = challenge.mediaUrl || challenge.media?.[0]?.file_url || 'https://images.unsplash.com/photo-1584467735815-f778f274e296?w=600&auto=format&fit=crop&q=80';
+      const formattedDate = challenge.createdAt 
+        ? new Date(challenge.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })
+        : 'Recently reported';
+
+      let statusLabel = 'Reported';
+      let statusBadgeStyle = 'background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE;';
+      if (challenge.status === 'RESOLVED' || challenge.status === 'DEPLOYED') {
+        statusLabel = 'Solved';
+        statusBadgeStyle = 'background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0;';
+      } else if (challenge.status === 'IN_PROGRESS' || challenge.status === 'FIELD_PILOT' || challenge.status === 'LAB_MATCHED') {
+        statusLabel = 'In Progress';
+        statusBadgeStyle = 'background: #FFFBEB; color: #B45309; border: 1px solid #FDE68A;';
+      }
+
+      const safeTitle = (challenge.title || 'Civic Challenge').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      const rawDesc = challenge.description || 'Community reported issue requiring technical assessment and municipal resolution.';
+      const safeDesc = (rawDesc.length > 95 ? rawDesc.slice(0, 95) + '...' : rawDesc)
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+      const locationText = `${challenge.location.ward ? challenge.location.ward + ', ' : ''}${challenge.location.district}`;
+
       const popupContent = `
-        <div style="font-family: inherit; min-width: 220px; padding: 2px;">
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 5px;">
-            <span style="font-size: 10px; font-weight: 800; color: ${primaryColor}; text-transform: uppercase;">
-              ${badgeLabel}
-            </span>
-            <span style="font-size: 10px; font-weight: 700; color: #1E293B; background: #E2E8F0; padding: 1px 7px; border-radius: 4px;">
-              ${challenge.location.district}
-            </span>
+        <div style="font-family: Inter, system-ui, -apple-system, sans-serif; width: 280px; max-width: 90vw; background: #ffffff; border-radius: 12px; overflow: hidden;">
+          <div style="width: 100%; height: 130px; position: relative; background: #F1F5F9; overflow: hidden;">
+            <img 
+              src="${imgUrl}" 
+              alt="${safeTitle}" 
+              style="width: 100%; height: 100%; object-fit: cover; display: block;" 
+              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584467735815-f778f274e296?w=600&auto=format&fit=crop&q=80';"
+            />
+            <div style="position: absolute; top: 8px; left: 8px; background: rgba(15, 23, 42, 0.82); backdrop-filter: blur(4px); color: #ffffff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.025em;">
+              ${challenge.category}
+            </div>
+            <div style="position: absolute; top: 8px; right: 8px; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 6px; ${statusBadgeStyle}">
+              ${statusLabel}
+            </div>
           </div>
-          <h4 style="font-size: 12px; font-weight: 700; color: #0F172A; margin: 0 0 4px 0; line-height: 1.35;">
-            ${challenge.title}
-          </h4>
-          <p style="font-size: 11px; color: #475569; margin: 0 0 6px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.3;">
-            ${challenge.description}
-          </p>
-          <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 5px; border-top: 1px solid #CBD5E1; font-size: 10px; color: #2563EB; font-weight: 700;">
-            <span>Click to inspect photo evidence</span>
-            <span>&rarr;</span>
+          <div style="padding: 12px 14px 14px 14px;">
+            <div style="display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #64748B; margin-bottom: 4px;">
+              <span style="color: #EF4444; font-size: 12px;">📍</span>
+              <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${locationText}</span>
+            </div>
+            <h4 style="font-size: 13px; font-weight: 700; color: #0F172A; margin: 0 0 6px 0; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+              ${safeTitle}
+            </h4>
+            <p style="font-size: 11px; color: #475569; margin: 0 0 10px 0; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+              ${safeDesc}
+            </p>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 6px; margin-bottom: 10px; border-top: 1px solid #F1F5F9; font-size: 10px; color: #94A3B8;">
+              <span>Reported: ${formattedDate}</span>
+              <span style="font-weight: 700; color: ${primaryColor}; background: #F8FAFC; padding: 1px 6px; border-radius: 4px; border: 1px solid #E2E8F0;">${badgeLabel}</span>
+            </div>
+            <a 
+              href="/challenges/${challenge.id}" 
+              style="display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; text-align: center; background: #2563EB; color: #ffffff; font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 8px; text-decoration: none; box-sizing: border-box;"
+            >
+              <span>View Problem</span>
+              <span>&rarr;</span>
+            </a>
           </div>
         </div>
       `;
 
       marker.bindPopup(popupContent, {
-        closeButton: false,
+        className: 'civicsolve-rich-popup',
+        maxWidth: 300,
         offset: [0, -10],
       });
+
 
       marker.on('click', () => {
         onSelectChallenge(challenge);

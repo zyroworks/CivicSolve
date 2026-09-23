@@ -2,9 +2,8 @@ import React from 'react';
 import { HeroSection } from '../components/landing/HeroSection';
 import { JharkhandHomeMapSection } from '../components/landing/JharkhandHomeMapSection';
 import { LifecycleStepper } from '../components/landing/LifecycleStepper';
-import { StakeholderMatrix } from '../components/landing/StakeholderMatrix';
 import { FeaturedChallenges } from '../components/landing/FeaturedChallenges';
-import { ImpactBanner } from '../components/landing/ImpactBanner';
+import { StakeholderMatrix } from '../components/landing/StakeholderMatrix';
 
 export const LandingPage: React.FC = () => {
   return (
@@ -12,9 +11,8 @@ export const LandingPage: React.FC = () => {
       <HeroSection />
       <JharkhandHomeMapSection />
       <LifecycleStepper />
-      <StakeholderMatrix />
       <FeaturedChallenges />
-      <ImpactBanner />
+      <StakeholderMatrix />
     </div>
   );
 };

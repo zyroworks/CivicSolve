@@ -45,11 +45,23 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/challenges', label: 'Challenges' },
-    { path: '/report', label: 'Report Problem' },
-    { path: '/workspace', label: 'Innovation Workspace' },
-    { path: '/admin', label: 'Govt Portal' },
-    { path: '/impact', label: 'Impact' },
+    { path: '/#how-it-works', label: 'How It Works', isAnchor: true },
+    { path: '/#stakeholders', label: 'About', isAnchor: true },
   ];
+
+  const handleNavClick = (e: React.MouseEvent, path: string, isAnchor?: boolean) => {
+    if (isAnchor && path.startsWith('/#')) {
+      const anchorId = path.replace('/#', '');
+      if (location.pathname === '/') {
+        e.preventDefault();
+        const element = document.getElementById(anchorId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  };
+
 
   const sampleNotifications = [
     {
@@ -106,11 +118,12 @@ export const Navbar: React.FC = () => {
           {/* Center: Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => {
-              const isActive = location.pathname === link.path;
+              const isActive = location.pathname === link.path && !link.isAnchor;
               return (
                 <Link
                   key={link.path}
                   to={link.path}
+                  onClick={(e) => handleNavClick(e, link.path, link.isAnchor)}
                   className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${
                     isActive
                       ? 'bg-slate-100 text-blue-600 font-semibold'
@@ -123,6 +136,7 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
         </div>
+
 
         {/* Right Area: Persona Switcher, Notifications & Auth State */}
         <div className="flex items-center gap-2.5 sm:gap-3">
@@ -238,6 +252,15 @@ export const Navbar: React.FC = () => {
             )}
           </div>
 
+          {/* Prominent Report a Problem CTA Button */}
+          <Link
+            to="/report"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs transition-colors"
+          >
+            <span className="material-symbols-outlined text-base">add_location_alt</span>
+            <span>Report a Problem</span>
+          </Link>
+
           {/* Authentication Section */}
           {isAuthenticated && user ? (
             <div className="relative" ref={profileRef}>
@@ -310,7 +333,7 @@ export const Navbar: React.FC = () => {
           ) : (
             <Link
               to="/login"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs transition-colors"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-semibold shadow-xs transition-colors"
             >
               <span>Sign In</span>
             </Link>
@@ -333,6 +356,16 @@ export const Navbar: React.FC = () => {
       {/* Mobile drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white border-b border-slate-200 px-4 py-3 shadow-lg space-y-3">
+          {/* Prominent Mobile CTA */}
+          <Link
+            to="/report"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-xl bg-blue-600 text-white text-sm font-semibold shadow-xs"
+          >
+            <span className="material-symbols-outlined text-lg">add_location_alt</span>
+            <span>Report a Problem</span>
+          </Link>
+
           <div className="grid grid-cols-2 gap-1.5 p-1.5 bg-slate-50 rounded-lg">
             {roles.map(({ role, label, icon }) => (
               <button
@@ -358,9 +391,12 @@ export const Navbar: React.FC = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => {
+                  handleNavClick(e, link.path, link.isAnchor);
+                  setMobileMenuOpen(false);
+                }}
                 className={`px-3 py-2 rounded-lg text-sm transition-colors ${
-                  location.pathname === link.path
+                  location.pathname === link.path && !link.isAnchor
                     ? 'bg-blue-50 text-blue-700 font-semibold'
                     : 'text-slate-700 hover:bg-slate-50 font-medium'
                 }`}
@@ -368,9 +404,20 @@ export const Navbar: React.FC = () => {
                 {link.label}
               </Link>
             ))}
+            {!isAuthenticated && (
+              <Link
+                to="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mt-1 px-3 py-2 rounded-lg text-sm font-semibold text-blue-600 hover:bg-blue-50 transition-colors flex items-center gap-1.5"
+              >
+                <span className="material-symbols-outlined text-base">login</span>
+                <span>Sign In</span>
+              </Link>
+            )}
           </nav>
         </div>
       )}
     </header>
+
   );
 };
